@@ -1,0 +1,4 @@
+/home/zack/Application/clion-2022.1.1/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/zack/Application/clion-2022.1.1/bin/ninja/linux/ninja -G Ninja -S /home/zack/code_work/github_work/My_C_Programming/TicketSystem -B /home/zack/code_work/github_work/My_C_Programming/TicketSystem/cmake-build-debug
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/zack/code_work/github_work/My_C_Programming/TicketSystem/cmake-build-debug

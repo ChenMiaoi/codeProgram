@@ -1,0 +1,6 @@
+/home/zack/code_work/github_work/linux_code/3_lesson/NetCal/cmake-build-debug/CMakeFiles/NetCal.dir
+/home/zack/code_work/github_work/linux_code/3_lesson/NetCal/cmake-build-debug/CMakeFiles/server.dir
+/home/zack/code_work/github_work/linux_code/3_lesson/NetCal/cmake-build-debug/CMakeFiles/client.dir
+/home/zack/code_work/github_work/linux_code/3_lesson/NetCal/cmake-build-debug/CMakeFiles/test.dir
+/home/zack/code_work/github_work/linux_code/3_lesson/NetCal/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/zack/code_work/github_work/linux_code/3_lesson/NetCal/cmake-build-debug/CMakeFiles/rebuild_cache.dir

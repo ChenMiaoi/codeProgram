@@ -1,0 +1,3 @@
+/home/zack/code_work/github_work/My_Cpp_Programming/SpeedingTicketSystem/cmake-build-debug/CMakeFiles/SpeedingTicketSystem.dir
+/home/zack/code_work/github_work/My_Cpp_Programming/SpeedingTicketSystem/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/zack/code_work/github_work/My_Cpp_Programming/SpeedingTicketSystem/cmake-build-debug/CMakeFiles/rebuild_cache.dir

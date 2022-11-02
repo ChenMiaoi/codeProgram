@@ -1,0 +1,13 @@
+
+mcpp:S134""MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(¦·€ğÿÿÿÿÿ8õâ¦”0
+mcpp:S134)"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(¦·€ğÿÿÿÿÿ8öâ¦”0
+[	cpp:S5025":Rewrite the code so that you no longer need this "delete".(ª†™ûÿÿÿÿ8öâ¦”0
+fcpp:S924"FReduce the number of nested "break" statements from 2 to 1 authorized.(˜ïˆÿÿÿÿÿ8öâ¦”0
+J	cpp:S3646K".Declare this variable in a separate statement.(ã‚®¾8öâ¦”0
+B	cpp:S5827c"'Replace the redundant type with "auto".(ŒÜ”8ùâ¦”0
+q	cpp:S5350c"VMake the type of this variable a pointer-to-const. The current type of "p" is "int *".(ŒÜ”8úâ¦”0
+l	cpp:S5025c"QReplace the use of "new" with an operation that automatically manages the memory.(ŒÜ”8üâ¦”0
+Z	cpp:S5008"9Replace this use of "void *" with a more meaningful type.(…øƒüúÿÿÿÿ8ıâ¦”0
+Z	cpp:S5008"9Replace this use of "void *" with a more meaningful type.(…øƒüúÿÿÿÿ8ÿâ¦”0
+Jcpp:S836F"*The left operand of '<' is a garbage value(ÛŒĞØûÿÿÿÿ8…ã¦”0
+V	cpp:S1854c";Value stored to 'p' during its initialization is never read(ŒÜ”8†ã¦”0

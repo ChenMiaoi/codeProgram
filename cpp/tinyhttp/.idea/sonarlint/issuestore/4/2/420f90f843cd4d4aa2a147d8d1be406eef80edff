@@ -1,0 +1,13 @@
+
+T	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(ÆıõÌ8¥ïÀˆª0
+Y	cpp:S50286"8Replace this macro by "const", "constexpr" or an "enum".(ÜÉÉúÿÿÿÿ8¥ïÀˆª0
+T	cpp:S50287"8Replace this macro by "const", "constexpr" or an "enum".(³çÖ¢8ºæßˆª0
+Y	cpp:S50288"8Replace this macro by "const", "constexpr" or an "enum".(èÛ§£øÿÿÿÿ8­÷ãˆª0
+T	cpp:S50289"8Replace this macro by "const", "constexpr" or an "enum".(¸Â°Å8úâèˆª0
+J	cpp:S3646".Declare this variable in a separate statement.(ó½µ8¥ïÀˆª0
+N	cpp:S5945<"2Use "std::string" instead of a C-style char array.(ØÏÆŞ8ÖÌİˆª0
+S	cpp:S5945>"2Use "std::string" instead of a C-style char array.(¥î¦”ÿÿÿÿÿ8ÿşŞˆª0
+S	cpp:S5945?"2Use "std::string" instead of a C-style char array.(‡ÆÂêşÿÿÿÿ8¶§ãˆª0
+N	cpp:S5945@"2Use "std::string" instead of a C-style char array.(ŸİÀ»8°Íéˆª0
+mcpp:S134K"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(â¶šÚûÿÿÿÿ8¦ïÀˆª0
+ucpp:S995E"ZMake the type of this parameter a pointer-to-const. The current type of "buf" is "char *".(ğ£û8öóñˆª0

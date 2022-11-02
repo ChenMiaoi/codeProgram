@@ -1,0 +1,5 @@
+/home/zack/code_work/github_work/My_Cpp_Programming/HTTPServer/cmake-build-debug/CMakeFiles/HTTPServer.dir
+/home/zack/code_work/github_work/My_Cpp_Programming/HTTPServer/cmake-build-debug/CMakeFiles/HTTPCGI.dir
+/home/zack/code_work/github_work/My_Cpp_Programming/HTTPServer/cmake-build-debug/CMakeFiles/DB.dir
+/home/zack/code_work/github_work/My_Cpp_Programming/HTTPServer/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/zack/code_work/github_work/My_Cpp_Programming/HTTPServer/cmake-build-debug/CMakeFiles/rebuild_cache.dir

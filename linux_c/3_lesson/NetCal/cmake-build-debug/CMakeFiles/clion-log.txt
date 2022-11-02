@@ -1,0 +1,4 @@
+/home/zack/Application/clion-2022.1.1/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/zack/Application/clion-2022.1.1/bin/ninja/linux/ninja -G Ninja -S /home/zack/code_work/github_work/linux_code/3_lesson/NetCal -B /home/zack/code_work/github_work/linux_code/3_lesson/NetCal/cmake-build-debug
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/zack/code_work/github_work/linux_code/3_lesson/NetCal/cmake-build-debug

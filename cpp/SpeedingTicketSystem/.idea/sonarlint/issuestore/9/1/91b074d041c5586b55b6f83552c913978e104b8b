@@ -1,0 +1,7 @@
+
+A	cpp:S3642"&Replace this "enum" with "enum class".(íœœt8Ô¨şÅ±0
+V	cpp:S5416";"using" should be preferred to "typedef" for type aliasing.(íœœt8Ô¨şÅ±0
+G	cpp:S3642"&Replace this "enum" with "enum class".(î×Á®úÿÿÿÿ8Ô¨şÅ±0
+\	cpp:S5416";"using" should be preferred to "typedef" for type aliasing.(î×Á®úÿÿÿÿ8Õ¨şÅ±0
+t	cpp:S3539'"SRemove this redundant access specifier; it does not change the accessibility level.(îĞÎúüÿÿÿÿ8Õ¨şÅ±0
+acpp:S107"GThis function has 9 parameters, which is greater than the 7 authorized.(’Û¦+8Õ¨şÅ±0

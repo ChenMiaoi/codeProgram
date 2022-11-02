@@ -1,0 +1,5 @@
+
+	cpp:S3230
+"lDo not use the constructor's initializer list for data member "_left". Use the in-class initializer instead.(Ô„Âúÿÿÿÿ8±ÔÎš¥0
+Œ	cpp:S3230	"kDo not use the constructor's initializer list for data member "_val". Use the in-class initializer instead.(Ôòú»úÿÿÿÿ8±ÔÎš¥0
+‰	cpp:S3230"mDo not use the constructor's initializer list for data member "_right". Use the in-class initializer instead.(¨„¹†8±ÔÎš¥0

@@ -1,0 +1,4 @@
+/home/zack/code_work/github_work/linux_code/3_lesson/http_test/cmake-build-debug/CMakeFiles/http_test.dir
+/home/zack/code_work/github_work/linux_code/3_lesson/http_test/cmake-build-debug/CMakeFiles/http_server.dir
+/home/zack/code_work/github_work/linux_code/3_lesson/http_test/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/zack/code_work/github_work/linux_code/3_lesson/http_test/cmake-build-debug/CMakeFiles/rebuild_cache.dir

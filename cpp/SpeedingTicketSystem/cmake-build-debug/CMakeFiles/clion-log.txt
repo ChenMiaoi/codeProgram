@@ -1,0 +1,4 @@
+/home/zack/Application/clion-2022.1.1/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /home/zack/code_work/github_work/My_Cpp_Programming/SpeedingTicketSystem -B /home/zack/code_work/github_work/My_Cpp_Programming/SpeedingTicketSystem/cmake-build-debug
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/zack/code_work/github_work/My_Cpp_Programming/SpeedingTicketSystem/cmake-build-debug

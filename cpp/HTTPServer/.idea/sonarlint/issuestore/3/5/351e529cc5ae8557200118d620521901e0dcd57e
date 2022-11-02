@@ -1,0 +1,25 @@
+
+M	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(ÜÖãÍ
+7cpp:S125b"Remove the commented out code.(¸ìêÑýÿÿÿÿ
+M	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(ÜÖãÍ
+7cpp:S125b"Remove the commented out code.(¸ìêÑýÿÿÿÿ
+m	cpp:S3539"SRemove this redundant access specifier; it does not change the accessibility level.(îÐÎúüÿÿÿÿ
+æ	cpp:S3624"ËExplicitly define or delete the missing copy assignment operator so that it will not be implicitly provided. Additionally, you may consider defining the move assignment operator and the move constructor.(¿’”ûÿÿÿÿ
+i	cpp:S4963"ORemove this class' copy constructor so that the class follows the rule of Zero.(¿’”ûÿÿÿÿ
+I	cpp:S1709"/Add the "explicit" keyword to this constructor.(„¢¯ÿüÿÿÿÿ
+k	cpp:S3490"VUse "=default" instead of the default implementation of this special member functions.(ÝÁïÚ
+K	cpp:S1066"1Merge this "if" statement with the enclosing one.(›¡Ãšøÿÿÿÿ
+e	cpp:S5025 "QReplace the use of "new" with an operation that automatically manages the memory.(Ç¢€4
+C	cpp:S5817(")This function should be declared "const".(ðôªÓúÿÿÿÿ
+C	cpp:S5817,")This function should be declared "const".(’ŒÏÙüÿÿÿÿ
+=	cpp:S5817.")This function should be declared "const".(‹Ä³
+C	cpp:S58170")This function should be declared "const".(¯±îâøÿÿÿÿ
+A	cpp:S58273"'Replace the redundant type with "auto".(‰ ãûùÿÿÿÿ
+>	cpp:S5817@")This function should be declared "const".(Ú•í¯
+>	cpp:S5817L")This function should be declared "const".(ÑÞÇ
+>	cpp:S5817N")This function should be declared "const".(—ØüÍ
+C	cpp:S5817W")This function should be declared "const".(ª°‹„ûÿÿÿÿ
+|cpp:S995W"cMake the type of this parameter a reference-to-const. The current type of "task" is "class Task &".(ª°‹„ûÿÿÿÿ
+†	cpp:S3230"lDo not use the constructor's initializer list for data member "_stop". Use the in-class initializer instead.(„¢¯ÿüÿÿÿÿ
+S	cpp:S50082"9Replace this use of "void *" with a more meaningful type.(Žª©Ýÿÿÿÿÿ
+S	cpp:S50082"9Replace this use of "void *" with a more meaningful type.(Žª©Ýÿÿÿÿÿ

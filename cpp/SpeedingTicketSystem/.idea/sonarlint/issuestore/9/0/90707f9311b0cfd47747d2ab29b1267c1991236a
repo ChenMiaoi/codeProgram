@@ -1,0 +1,15 @@
+
+Y	cpp:S50289"8Replace this macro by "const", "constexpr" or an "enum".(„â¯‹üÿÿÿÿ8ùÛ°ï¯0
+Y	cpp:S5028:"8Replace this macro by "const", "constexpr" or an "enum".(µÔıÿÿÿÿ8ùÛ°ï¯0
+>cpp:S125B"Remove the commented out code.(§Ø‹€ıÿÿÿÿ8ùÛ°ï¯0
+Y	cpp:S50289"8Replace this macro by "const", "constexpr" or an "enum".(„â¯‹üÿÿÿÿ8Şùï¯0
+Y	cpp:S5028:"8Replace this macro by "const", "constexpr" or an "enum".(µÔıÿÿÿÿ8Şùï¯0
+>cpp:S125B"Remove the commented out code.(§Ø‹€ıÿÿÿÿ8Şùï¯0
+B	cpp:S3642	"&Replace this "enum" with "enum class".(Éÿ›Ê8ùÛ°ï¯0
+W	cpp:S5416	";"using" should be preferred to "typedef" for type aliasing.(Éÿ›Ê8ùÛ°ï¯0
+A	cpp:S3642"&Replace this "enum" with "enum class".(ÿÖég8ùÛ°ï¯0
+V	cpp:S5416";"using" should be preferred to "typedef" for type aliasing.(ÿÖég8ùÛ°ï¯0
+A	cpp:S3642"&Replace this "enum" with "enum class".(£ÔØ8ùÛ°ï¯0
+V	cpp:S5416";"using" should be preferred to "typedef" for type aliasing.(£ÔØ8ùÛ°ï¯0
+N	cpp:S5945="2Use "std::string" instead of a C-style char array.(§ÊÑØ8úÛ°ï¯0
+N	cpp:S5945>"2Use "std::string" instead of a C-style char array.(¡¯„«8úÛ°ï¯0

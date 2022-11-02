@@ -1,0 +1,4 @@
+/home/zack/code_work/github_work/linux_code/3_lesson/TheFirstTCPServer/cmake-build-debug/CMakeFiles/TheFirstTCPServer.dir
+/home/zack/code_work/github_work/linux_code/3_lesson/TheFirstTCPServer/cmake-build-debug/CMakeFiles/test.dir
+/home/zack/code_work/github_work/linux_code/3_lesson/TheFirstTCPServer/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/zack/code_work/github_work/linux_code/3_lesson/TheFirstTCPServer/cmake-build-debug/CMakeFiles/rebuild_cache.dir

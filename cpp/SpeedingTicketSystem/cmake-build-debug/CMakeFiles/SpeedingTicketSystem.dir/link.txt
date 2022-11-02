@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/SpeedingTicketSystem.dir/main.cc.o -o SpeedingTicketSystem 

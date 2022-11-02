@@ -1,0 +1,4 @@
+/home/zack/code_work/github_work/My_Cpp_Programming/CppStd11/cmake-build-debug/CMakeFiles/CppStd11.dir
+/home/zack/code_work/github_work/My_Cpp_Programming/CppStd11/cmake-build-debug/CMakeFiles/main1.dir
+/home/zack/code_work/github_work/My_Cpp_Programming/CppStd11/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/zack/code_work/github_work/My_Cpp_Programming/CppStd11/cmake-build-debug/CMakeFiles/rebuild_cache.dir

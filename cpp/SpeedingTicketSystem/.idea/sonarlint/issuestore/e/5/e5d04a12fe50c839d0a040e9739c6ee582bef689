@@ -1,0 +1,6 @@
+
+t	cpp:S3539"SRemove this redundant access specifier; it does not change the accessibility level.(îÐÎúüÿÿÿÿ8ô¢¼ï¯0
+J	cpp:S5817")This function should be declared "const".(ñÌÿÔûÿÿÿÿ8Å¬½ï¯0
+E	cpp:S5817!")This function should be declared "const".(éöý–8²à¾ï¯0
+J	cpp:S5817%")This function should be declared "const".(‚…ý†øÿÿÿÿ8²à¾ï¯0
+E	cpp:S5817)")This function should be declared "const".(ïÿÔ§8Å¬½ï¯0

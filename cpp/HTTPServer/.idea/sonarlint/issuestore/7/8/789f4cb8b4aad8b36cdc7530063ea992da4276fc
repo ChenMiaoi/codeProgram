@@ -1,0 +1,13 @@
+
+M	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(ö‘ıÉ
+2cpp:S125"Remove the commented out code.(±Ê®É
+2cpp:S125("Remove the commented out code.(Ò¾¨ş
+m	cpp:S3539"SRemove this redundant access specifier; it does not change the accessibility level.(îĞÎúüÿÿÿÿ
+D	cpp:S1709"/Add the "explicit" keyword to this constructor.(Ø²Çš
+p	cpp:S3490"VUse "=default" instead of the default implementation of this special member functions.(×Ó´Àùÿÿÿÿ
+>	cpp:S5817")This function should be declared "const".(¬Ñ©
+=	cpp:S5817")This function should be declared "const".(Á”¤
+z	cpp:S5350"eMake the type of this variable a pointer-to-const. The current type of "tsvr" is "class TCPServer *".(Ï­ë
+C	cpp:S3646".Declare this variable in a separate statement.(ó½µ
+	cpp:S3230"lDo not use the constructor's initializer list for data member "_stop". Use the in-class initializer instead.(Ø²Çš
+S	cpp:S1854">Value stored to 'tsvr' during its initialization is never read(Ï­ë

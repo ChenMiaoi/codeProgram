@@ -1,0 +1,37 @@
+
+S	cpp:S5028Ü"8Replace this macro by "const", "constexpr" or an "enum".(û¥˜Úıÿÿÿÿ
+L	cpp:S5945S"2Use "std::string" instead of a C-style char array.(ÕĞ×Íıÿÿÿÿ
+fcpp:S134p"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(Ê½á¢üÿÿÿÿ
+acpp:S134y"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(—ßƒ³
+J	cpp:S1659d"0Define each identifier in a dedicated statement.(ñ³Åüÿÿÿÿ
+J	cpp:S1659e"0Define each identifier in a dedicated statement.(¢ÀÛ‰ûÿÿÿÿ
+L	cpp:S5945d"2Use "std::string" instead of a C-style char array.(ñ³Åüÿÿÿÿ
+L	cpp:S5945d"2Use "std::string" instead of a C-style char array.(ñ³Åüÿÿÿÿ
+L	cpp:S5945d"2Use "std::string" instead of a C-style char array.(ñ³Åüÿÿÿÿ
+xcpp:S995Å"cMake the type of this parameter a pointer-to-const. The current type of "tmp_ptr" is "struct tm *".(½®Á
+F	cpp:S1659Æ"0Define each identifier in a dedicated statement.(Î£ğü
+H	cpp:S5945Æ"2Use "std::string" instead of a C-style char array.(Î£ğü
+H	cpp:S5945Æ"2Use "std::string" instead of a C-style char array.(Î£ğü
+H	cpp:S5945Æ"2Use "std::string" instead of a C-style char array.(Î£ğü
+H	cpp:S5945Æ"2Use "std::string" instead of a C-style char array.(Î£ğü
+H	cpp:S5945Æ"2Use "std::string" instead of a C-style char array.(Î£ğü
+H	cpp:S5945Æ"2Use "std::string" instead of a C-style char array.(Î£ğü
+V	cpp:S5416Û";"using" should be preferred to "typedef" for type aliasing.(Ç€£˜ùÿÿÿÿ
+H	cpp:S5945à"2Use "std::string" instead of a C-style char array.(¬‰Ìâ
+ycpp:S995å"dMake the type of this parameter a pointer-to-const. The current type of "tail" is "struct Ticket *".(öÇ¡·
+D	cpp:S3562ƒ".Add a "default" case to this switch statement.(ÜŸ•
+=	cpp:S5827Ä"'Replace the redundant type with "auto".(ñÂêË
+F	cpp:S1659È"0Define each identifier in a dedicated statement.(¨•ÆŒ
+H	cpp:S5945ç"2Use "std::string" instead of a C-style char array.(ìæ ®
+ycpp:S995ç"dMake the type of this parameter a pointer-to-const. The current type of "head" is "struct Ticket *".(ìæ ®
+u	cpp:S5350è"ZMake the type of this variable a pointer-to-const. The current type of "time" is "char *".(²à÷şıÿÿÿÿ
+M	cpp:S5945é"2Use "std::string" instead of a C-style char array.(½ÅĞ«úÿÿÿÿ
+Lcpp:S886©"2Refactor this loop so that it is less error-prone.(Å‚ÉÎúÿÿÿÿ
+S	cpp:S5945"=Use "std::array" or "std::vector" instead of a C-style array.(œÜˆï
+H	cpp:S5945"2Use "std::string" instead of a C-style char array.(œÜˆï
+u	cpp:S5350"ZMake the type of this variable a pointer-to-const. The current type of "type" is "char *".(ôò¯»ûÿÿÿÿ
+C	cpp:S3562ª".Add a "default" case to this switch statement.(ìúÇV
+Gcpp:S886Ê"2Refactor this loop so that it is less error-prone.(•÷¸Å
+ycpp:S995Ğ"dMake the type of this parameter a pointer-to-const. The current type of "head" is "struct Ticket *".(¸Åèí
+Ncpp:S836á"42nd function call argument is an uninitialized value(ÉÇâÑıÿÿÿÿ
+7cpp:S125U"Remove the commented out code.(¡ûÔúÿÿÿÿ

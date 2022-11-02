@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d3443a04-863b-4927-97d2-2e06718d2760" name="变更" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../CppStd11/main.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../../../CppStd11/main.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cargo.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Cargo.toml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../main" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../main.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/.rustc_info.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/CACHEDIR.TAG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/debug/.cargo-lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/debug/.fingerprint/Rust-27f2538864f6783a/bin-Rust" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/debug/.fingerprint/Rust-27f2538864f6783a/bin-Rust.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/debug/.fingerprint/Rust-27f2538864f6783a/dep-bin-Rust" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/debug/.fingerprint/Rust-27f2538864f6783a/invoked.timestamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/debug/.fingerprint/Rust-27f2538864f6783a/output-bin-Rust" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/debug/Rust" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/debug/Rust.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/debug/deps/Rust-27f2538864f6783a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/debug/deps/Rust-27f2538864f6783a.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/debug/incremental/Rust-38xoiq2mrnnol/s-gbnb7cp8qg-ucp8v6-e9p7124hf03h/1olicnw6znlwnlsf.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/debug/incremental/Rust-38xoiq2mrnnol/s-gbnb7cp8qg-ucp8v6-e9p7124hf03h/35b8pvooan7n3u0a.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/debug/incremental/Rust-38xoiq2mrnnol/s-gbnb7cp8qg-ucp8v6-e9p7124hf03h/3cer52rtbz4mbm3w.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/debug/incremental/Rust-38xoiq2mrnnol/s-gbnb7cp8qg-ucp8v6-e9p7124hf03h/3told79phkfy48ks.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/debug/incremental/Rust-38xoiq2mrnnol/s-gbnb7cp8qg-ucp8v6-e9p7124hf03h/4cmxujwem6spmzte.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/debug/incremental/Rust-38xoiq2mrnnol/s-gbnb7cp8qg-ucp8v6-e9p7124hf03h/4h6rni5cuhtjr1tn.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/debug/incremental/Rust-38xoiq2mrnnol/s-gbnb7cp8qg-ucp8v6-e9p7124hf03h/5c8eb9se6u61d2hw.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/debug/incremental/Rust-38xoiq2mrnnol/s-gbnb7cp8qg-ucp8v6-e9p7124hf03h/d73ohf43kwlyce5.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/debug/incremental/Rust-38xoiq2mrnnol/s-gbnb7cp8qg-ucp8v6-e9p7124hf03h/dep-graph.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/debug/incremental/Rust-38xoiq2mrnnol/s-gbnb7cp8qg-ucp8v6-e9p7124hf03h/query-cache.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/debug/incremental/Rust-38xoiq2mrnnol/s-gbnb7cp8qg-ucp8v6-e9p7124hf03h/work-products.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/debug/incremental/Rust-38xoiq2mrnnol/s-gbnb7cp8qg-ucp8v6.lock" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="at2bzgiz" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2C25Re00XmUYy2S76AQvUXrJ68L" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/zack/code_work/github_work/My_Cpp_Programming/Rust/projects/func/Cargo.toml&quot;,
+    &quot;org.rust.cargo.project.model.PROJECT_DISCOVERY&quot;: &quot;true&quot;,
+    &quot;org.rust.hideNoCargoProjectNotifications/home/zack/code_work/github_work/My_Cpp_Programming/Rust/projects/func/src/main.rs&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RustProjectSettings">
+    <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
+    <option name="version" value="2" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="d3443a04-863b-4927-97d2-2e06718d2760" name="变更" comment="" />
+      <created>1657987831264</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1657987831264</updated>
+      <workItem from="1657987832357" duration="639000" />
+      <workItem from="1658026170152" duration="4000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

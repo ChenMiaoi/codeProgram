@@ -1,0 +1,12 @@
+
+Y	cpp:S50289"8Replace this macro by "const", "constexpr" or an "enum".(ÃËëÍşÿÿÿÿ8¼Ì¿©0
+9cpp:S125C"Remove the commented out code.(‹Âèı8¼Ì¿©0
+>cpp:S125H"Remove the commented out code.(öÆ·Èûÿÿÿÿ8½Ì¿©0
+9cpp:S125J"Remove the commented out code.(àşëé8¾Ì¿©0
+J	cpp:S3646".Declare this variable in a separate statement.(ã‚®¾8ÀÌ¿©0
+N	cpp:S59452"2Use "std::string" instead of a C-style char array.(±Ùçğ8ÁÌ¿©0
+H	cpp:S5827?"'Replace the redundant type with "auto".(›éäÿÿÿÿÿ8ÂÌ¿©0
+[	cpp:S5025Q":Rewrite the code so that you no longer need this "delete".(¦Ş¡†üÿÿÿÿ8ÄÌ¿©0
+r	cpp:S5025?"QReplace the use of "new" with an operation that automatically manages the memory.(›éäÿÿÿÿÿ8ÆÌ¿©0
+Jcpp:S836"*The left operand of '<' is a garbage value(ÛŒĞØûÿÿÿÿ8ÈÌ¿©0
+8cpp:S125N"Remove the commented out code.(š©8ÈÌ¿©0

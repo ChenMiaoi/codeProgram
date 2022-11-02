@@ -1,0 +1,82 @@
+1.实际执行信号的处理动作被称为信号递达
+2.信号从产生到递达之间的状态被称为信号未决
+3.进程可以选择阻塞某个信号
+4.被阻塞的信号产生时将保持在未决状态，直到进程解除对此信号的阻塞，才执行递达的动作
+5.注意，阻塞和忽略是不同的，只要信号被阻塞就不会递达，而忽略是在递达之后可选的一种处理操作
+
+操作系统是通过位图来发送和接受信号的。
+block表记录的是信号是否需要被阻塞
+pending表记录的是信号是否被屏蔽/阻塞信息：
+	1.位置代表是谁？哪一个信号
+	2.内容代表是否？
+handler表是一个函数指针表，每一个位置都是一个函数指针
+	类似于：sighandler_t signal(int signum, sighandler_t handler);(更改一个进程递达的处理动作)
+
+一个信号可以在未决之前就被屏蔽
+
+# sudo grep -ER "SIG_DFL" /usr/include | less
+找到信号的宏 -- 在signal-defs.h中
+
+sigset_t:
+	每个信号只有一个bit的未决标志，不会记录信号产生了多少次。因此，阻塞和未决使用了相同的数据类型sigset_t来存储，表示有效或无效。因此，使用者想要操作该数据类型只能通过下列系统提供的函数操作。其他类型属于无效输入
+
+sigset_t信号集：
+	int sigemptyset(sigset_t* set);
+		#初始化set所指向的信号集，使所有信号对应的bit置零。
+
+	int sigfillset(sigset_t* set);
+		#初始化set所指向的信号集，使所有信号对应的bit为1
+
+	int sigaddset(sigset_t* set, int signo);
+		#设置set所指向的信号集中的signo位置的bit位信号为1
+
+	int sigdelset(sigset_t* set, int signo);
+		#设置set所指向的信号集中的signo位置的bit位信号为0
+
+	int sigismember(sigset_t* set, int signo);
+		#判定signo位置的信号是否在set指向的信号集中
+##注意：在任何操作前，必须通过sigismember或者sigfillset初始化。同时禁止一切的位操作符
+
+block表也被称为信号屏蔽字
+
+int sigprocmask(int how, const sigset_t* set, sigset_t* oset);
+# 返回值：成功返回0,失败返回-1
+# 假设当前信号屏蔽字为mask
+how :
+	1. SIG_BLOCK	set包含了我们希望添加到当前信号屏蔽字的信号，相当于mask = mask|set
+	2. SIG_UNBLOCK	set包含了我们希望从当前信号屏蔽字中解除阻塞的信号，相当于mask = mask&~set
+	3. SIG_SETMASK	设置当前信号屏蔽字为set所指向的值，相当于mask=set
+set & oset :
+	如果oset是非空指针，则读取进程的当前信号屏蔽字通过oset参数传出。如果set是非空指针，则更改进程的信号的屏蔽字，参数how指定如何更改。如果set&oset都是非空指针，则将原来的信号屏蔽字备份到oset中，然后根据set和how更改信号屏蔽字
+
+int sigpending(sigset_t* set);
+# 获取当前(set)信号的pending信号集
+# 返回值：成功返回0,失败返回-1
+
+
+# 一个信号被递达是在：从内核切换回用户态时，进行信号相关信息的检测
+内核(kernel)态：内核执行 -- 系统接口 -- 权限大
+用户(user)态：用户执行 -- 自定义数据 -- 权限微小
+陷入内核，返回到用户态：当陷入内核的时候，就是操作系统来执行代码，有一个CPU寄存器(cr)专门存储状态
+	中断、异常或系统调用都可以进入内核
+为什么不在内核态处理信号？
+	防止非法操作。
+
+信号捕捉：
+	signal();
+	sigaction(int signum, const struct sigaction* act, struct sigaction* oldact);
+	参数：const struct sigaction* act
+		1. act.sa_handler = handler
+		2. act.sa_flags = 0
+		3. sigemptyset(act.sa_mask)
+
+为什么程序中途出错，到后面才会显示报错呢？
+	因为报错的信号从内核到用户是有一段处理时间的。
+
+如果多个执行流在一个函数中没有引发问题，被称为可重入函数
+
+# volatile
+凡是用volatile修饰的数据，都是不能被覆盖的，保持内存的可见性，告诉编译器，该数据不能被优化，对该数据的任何处理，必须是在真实的内存中进行
+
+#SIGCHLD
+在子进程退出的时候会发送SIGCHLD给父进程的，默认是忽略处理操作。父进程可以自定义SIGCHILD信号的处理方式

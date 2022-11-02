@@ -1,0 +1,12 @@
+
+R	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(¤„Æôşÿÿÿÿ
+p	cpp:S3490"VUse "=default" instead of the default implementation of this special member functions.(˜Á·ûÿÿÿÿ
+m	cpp:S3539)"SRemove this redundant access specifier; it does not change the accessibility level.(îĞÎúüÿÿÿÿ
+ı	cpp:S3624"âExplicitly define or delete the missing copy constructor and copy assignment operator so that they will not be implicitly provided. Additionally, you may consider defining the move assignment operator and the move constructor.(ë¬½˜ûÿÿÿÿ
+c	cpp:S4963"IRemove this class' destructor so that the class follows the rule of Zero.(ë¬½˜ûÿÿÿÿ
+D	cpp:S1709!"/Add the "explicit" keyword to this constructor.(¿¿é§
+C	cpp:S36462".Declare this variable in a separate statement.(ã‚®¾
+=	cpp:S5817Q")This function should be declared "const".(Á”¤
+C	cpp:S3646U".Declare this variable in a separate statement.(ó½µ
+ˆ	cpp:S3230!"sDo not use the constructor's initializer list for data member "_sock_listen". Use the in-class initializer instead.(¿¿é§
+Ccpp:S836X"*The left operand of '<' is a garbage value(ğéãÿÿÿÿÿ

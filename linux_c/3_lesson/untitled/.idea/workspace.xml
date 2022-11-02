@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeReloadState">
+    <option name="reloaded" value="true" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated>
+      <config projectName="untitled" targetName="untitled" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2d22e5ae-da74-4856-a195-95c105a11291" name="变更" comment="">
+      <change beforePath="$PROJECT_DIR$/../TheFirstTCPServer/.idea/sonarlint/issuestore/f/b/fb45e4bf4a5743c0a6db9f71af2185adf43dc68f" beforeDir="false" afterPath="$PROJECT_DIR$/../TheFirstTCPServer/.idea/sonarlint/issuestore/f/b/fb45e4bf4a5743c0a6db9f71af2185adf43dc68f" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TheFirstTCPServer/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../TheFirstTCPServer/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TheFirstTCPServer/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-42ec30a759bbdd808645.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TheFirstTCPServer/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-6d83cec3fd22b9f61aaa.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TheFirstTCPServer/cmake-build-debug/.cmake/api/v1/reply/index-2022-05-30T07-13-22-0789.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TheFirstTCPServer/cmake-build-debug/.cmake/api/v1/reply/target-TheFirstTCPServer-Debug-fe22b3bd048fe1b4ccc0.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TheFirstTCPServer/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../TheFirstTCPServer/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TheFirstTCPServer/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TheFirstTCPServer/cmake-build-debug/CMakeFiles/rules.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/../TheFirstTCPServer/cmake-build-debug/CMakeFiles/rules.ninja" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TheFirstTCPServer/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/../TheFirstTCPServer/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TheFirstTCPServer/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/../TheFirstTCPServer/cmake-build-debug/build.ninja" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2022" />
+    <option name="minorVersion" value="1.2" />
+  </component>
+  <component name="ProjectId" id="2AIJwpFJAKToETXHF9Uilg6lR70" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="untitled" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="untitled" TARGET_NAME="untitled" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="untitled" RUN_TARGET_NAME="untitled">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="2d22e5ae-da74-4856-a195-95c105a11291" name="变更" comment="" />
+      <created>1654691406962</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1654691406962</updated>
+      <workItem from="1654691408223" duration="4000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

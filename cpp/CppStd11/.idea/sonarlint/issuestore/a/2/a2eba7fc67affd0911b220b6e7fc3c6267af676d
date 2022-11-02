@@ -1,0 +1,12 @@
+
+8cpp:S125Ú"Remove the commented out code.(¾÷Õôüÿÿÿÿ
+3cpp:S125à"Remove the commented out code.(¿Íş¿
+8cpp:S125ä"Remove the commented out code.(€“ªµıÿÿÿÿ
+kcpp:S954Š"JMove all #include directives to the very top of the file, before any code.(ïÿ•Ôıÿÿÿÿ8ç†Ğö¤0
+t	cpp:S1186Ö"YAdd a nested comment explaining why this method is empty, or complete the implementation.(ÄÌøÿÿÿÿ
+?	cpp:S5817î")This function should be declared "const".(áİü¿
+>	cpp:S5817õ")This function should be declared "const".(äğÙ4
+C	cpp:S5421¡"!Global variables should be const.(Àêüùùÿÿÿÿ8‹á›÷¤0
+é	cpp:S3624Ï"ËExplicitly define or delete the missing copy assignment operator so that it will not be implicitly provided. Additionally, you may consider defining the move assignment operator and the move constructor.(¶¢ˆ8Åù°ù¤0
+f	cpp:S4963Ï"IRemove this class' destructor so that the class follows the rule of Zero.(¶¢ˆ8Åù°ù¤0
+L	cpp:S1709Ñ"/Add the "explicit" keyword to this constructor.(øóÓ§8ìÁ‡ù¤0

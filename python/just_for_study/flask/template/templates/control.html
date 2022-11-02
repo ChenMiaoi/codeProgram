@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% if age > 18 %}
+        <div>您已成年！</div>
+    {% elif age < 18 %}
+        <div>您未成年！</div>
+    {% else %}
+        <div>您刚成年</div>
+    {% endif %}
+
+    <ul>
+        {% for book in books %}
+            <li> {{ book }} </li>
+        {% endfor %}
+    </ul>
+
+    {% for key, value in person.items() %}
+        <div>{{ key }} : {{ value }}</div>
+    {% endfor %}
+</body>
+</html>

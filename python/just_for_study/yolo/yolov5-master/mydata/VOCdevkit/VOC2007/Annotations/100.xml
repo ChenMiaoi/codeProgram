@@ -1,0 +1,26 @@
+<annotation>
+	<folder>JPEGImages</folder>
+	<filename>100.png</filename>
+	<path>E:\cache\Desktop\YOLO\VOCdevkit\VOC2007-Hero\JPEGImages\100.png</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1920</width>
+		<height>1032</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>Buff</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>896</xmin>
+			<ymin>258</ymin>
+			<xmax>1254</xmax>
+			<ymax>550</ymax>
+		</bndbox>
+	</object>
+</annotation>

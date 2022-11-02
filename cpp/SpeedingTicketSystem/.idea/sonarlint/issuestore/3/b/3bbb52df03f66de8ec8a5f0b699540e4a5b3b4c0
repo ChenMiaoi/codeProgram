@@ -1,0 +1,32 @@
+
+T	cpp:S5028
+"8Replace this macro by "const", "constexpr" or an "enum".(û³€µ8à“·ï¯0
+Y	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(Ü¬°øşÿÿÿÿ8à“·ï¯0
+Y	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(ŸÎÌãıÿÿÿÿ8à“·ï¯0
+T	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(Üş•ë8à“·ï¯0
+>cpp:S125!"Remove the commented out code.(Î’Ä¥şÿÿÿÿ8à“·ï¯0
+>cpp:S125="Remove the commented out code.(Î’Ä¥şÿÿÿÿ8à“·ï¯0
+8cpp:S125G"Remove the commented out code.(Ğ€é}8à“·ï¯0
+>cpp:S125W"Remove the commented out code.(Î’Ä¥şÿÿÿÿ8à“·ï¯0
+>cpp:S125i"Remove the commented out code.(ÍÀÒ®úÿÿÿÿ8à“·ï¯0
+:cpp:S125«"Remove the commented out code.(¬ÚÏ¶8à“·ï¯0
+T	cpp:S5028
+"8Replace this macro by "const", "constexpr" or an "enum".(û³€µ8Şùï¯0
+Y	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(Ü¬°øşÿÿÿÿ8Şùï¯0
+Y	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(ŸÎÌãıÿÿÿÿ8Şùï¯0
+T	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(Üş•ë8Şùï¯0
+>cpp:S125!"Remove the commented out code.(Î’Ä¥şÿÿÿÿ8Şùï¯0
+>cpp:S125="Remove the commented out code.(Î’Ä¥şÿÿÿÿ8Şùï¯0
+8cpp:S125G"Remove the commented out code.(Ğ€é}8Şùï¯0
+>cpp:S125W"Remove the commented out code.(Î’Ä¥şÿÿÿÿ8Şùï¯0
+>cpp:S125i"Remove the commented out code.(ÍÀÒ®úÿÿÿÿ8Şùï¯0
+:cpp:S125«"Remove the commented out code.(¬ÚÏ¶8Şùï¯0
+t	cpp:S3539"SRemove this redundant access specifier; it does not change the accessibility level.(îĞÎúüÿÿÿÿ8à“·ï¯0
+u	cpp:S3539ª"SRemove this redundant access specifier; it does not change the accessibility level.(ĞòÚÚüÿÿÿÿ8ùéâï¯0
+J	cpp:S5817")This function should be declared "const".(Ü·î²ûÿÿÿÿ8á“·ï¯0
+E	cpp:S58170")This function should be declared "const".(ïÿÔ§8á“·ï¯0
+J	cpp:S58174")This function should be declared "const".(Î¹í şÿÿÿÿ8á“·ï¯0
+E	cpp:S5817K")This function should be declared "const".(€†„¸8á“·ï¯0
+E	cpp:S5817m")This function should be declared "const".(Ò–ìÓ8á“·ï¯0
+D	cpp:S5817{")This function should be declared "const".(»Õ§8£»¹ï¯0
+F	cpp:S5817˜")This function should be declared "const".(É÷æ›8úéâï¯0

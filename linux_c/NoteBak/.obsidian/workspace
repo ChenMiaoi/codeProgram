@@ -1,0 +1,103 @@
+{
+  "main": {
+    "id": "7315d48fa2d187fb",
+    "type": "split",
+    "children": [
+      {
+        "id": "28101606c77a6ba0",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Shell.md",
+            "mode": "source",
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "97a1624b54be038b",
+    "type": "split",
+    "children": [
+      {
+        "id": "131dffe61b580a4b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2c36c6c946a03ed2",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "959fecef51386d35",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "ec6204ac9422ad19",
+    "type": "split",
+    "children": [
+      {
+        "id": "0d077c80baa5314b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0f046450f7d5e67b",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Shell.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "28101606c77a6ba0",
+  "lastOpenFiles": [
+    "Shell.md",
+    "MySQL.md",
+    "Activation functions.md",
+    "网络基础2.md",
+    "Class.md",
+    "网络基础.md",
+    "openCV.md",
+    "tanh.png",
+    "sigmoid.png",
+    "Clash.md"
+  ]
+}

@@ -1,0 +1,7 @@
+
+i	cpp:S3776"TRefactor this function to reduce its Cognitive Complexity from 33 to the 25 allowed.(Ôˆ™“
+fcpp:S134"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(ü§è½ùÿÿÿÿ
+acpp:S134;"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(Òˆï±
+fcpp:S134="MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(ÇÁ—§úÿÿÿÿ
+J	cpp:S1659"0Define each identifier in a dedicated statement.(ÿƒî¨şÿÿÿÿ
+L	cpp:S5945"2Use "std::string" instead of a C-style char array.(şáĞûÿÿÿÿ

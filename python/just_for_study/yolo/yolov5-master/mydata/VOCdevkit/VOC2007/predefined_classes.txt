@@ -1,0 +1,12 @@
+Hero
+Tower
+Solider
+Lizard
+Pig
+Buff
+Spirit
+BaoJun
+ZhuZai
+Wolf
+Dragon
+Bird

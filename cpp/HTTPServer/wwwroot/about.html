@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html lang="en">
+
+<style>
+a:link {color:#1c1f1f;}      /* 未访问链接*/
+/*a:visited {color:#dfeadfdc;}  /* 已访问链接 */
+a:hover {color:hwb(191 24% 12%);}  /* 鼠标移动到链接上 */
+/*a:active {color:#0000FF;}*/
+
+</style>
+    <head>  
+        <title>项目相关</title>
+        <meta charset="utf-8">
+    <title>Stone Responsive Template</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- Bootstrap Stylesheet -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    
+    <!-- Normailize Stylesheet -->
+    <link rel="stylesheet" href="css/normalize.min.css">
+
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="css/templatemo-style.css">
+
+    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+
+    </head>
+
+    <body>
+        <div class="site-header">
+            <div class="container">
+                <div class="row">
+                    <nav class="navbar navbar-default navbar-static-top">
+                        <div class="navbar-header">
+                            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#main-menu">
+                                <span class="sr-only">Toggle navigation</span>
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <a class="navbar-brand" href="index.html">Stone</a>
+                        </div>
+                        <div class="collapse navbar-collapse" id="main-menu">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="promotion.html">Promotion</a></li>
+                                <li><a href="products.html">Products</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </div>
+                    </nav>         
+                </div>
+            </div>
+        </div>
+        <!--这里是about信息盒子-->
+        <div style="color: black; font-size: 20px;text-align: left;">
+            <h1 style="font-size: 60px;text-align: center;">项目相关</h1>
+                
+                 <!--&nbsp-空格<br>换行<hr>横线-->
+            
+        
+
+        <div class="two_box" style="font-size: 20px;text-align: center;">
+
+            <div class="one" style="font-size: 20px;">
+                <p style="font-size: 20px;text-align: center;">项目相关负责人</p>
+                <p>陈磊：后端加部分前端</p>
+                <p>彭世柱：前端</p>
+                <p>任佳欣：前端</p>
+                <p>何旻：论文</p>
+                <p>陆浩宇：论文</p>
+
+             </div>
+
+            <div class="two">
+                <p style="font-size: 60px;text-align: center;">项目主要</p>
+                <!--<p>后端：<br>
+                    1. C/C++ Socket编程 -> TCP/IP网络编程<br>
+                        a -> TCP/UDP -> 为什么我们选择了TCP<br>
+                        b -> TCP/IP的接口<br>
+                            -> server<br>
+                                -> socket -> 建立套接字<br>
+                                -> bind   -> 绑定套接字<br>
+                                -> listen -> 监听套接字<br>
+                                -> accept -> 接受client socket发送的请求<br>
+                                    -> 地址复用 -> 因为如果断开之后，<br>由于延迟应答和超时重传机制的存在，<br>会导致socket之间在断开之后，<br>还会向对方发起请求(丢包,各种原因...)，<br>导致你绑定的端口号还是被占用的 -> <br>如果服务器断开了，没办法马上再次启动，需要等待一段时间才能重启服务器。<br>
+                            -> client<br>
+                                -> socket -> 建立套接字<br>
+                                -> bind   -> 绑定套接字<br>
+                                -> connect -> 连接server socket<br>
+                        c -> 什么是三次握手，四次挥手 -> 为什么要这样 -> 三次握手，<br>四次挥手额外机制 -> 确认应答机制 -> <br>超时重传机制 -> 慢启动机制 -> 延迟应答<br>
+                        d -> (注意:) ip + port才能确定一台主机上的特定一个软件(进程)<br>
+                        e -> HTTP协议 -> HTTP的报文格式 -> 响应报头(重要):<br>例如 -> GET HTTP/1.1 OK，Content-Length字段等等 -><br> POST 和 GET的区别<br>
+                        f -> TCP/UDP协议 -> <br>TCP/UDP的报文格式<br>
+                        g -> IP协议 -> IP的报文格式<br>
+                        h -> MAC帧 -> MAC帧报文格式<br>
+                    2. C/C++ 进程间通信<br>
+                        a -> 父子进程 -> fork() -> 如果创建成功，<br>那么返回0以及把子进程的pid交给父进程<br>
+                        b -> 僵尸进程 -> 为什么会产生僵尸进程 -> 怎么解决<br>
+                        c -> 孤儿进程(linux特有) -> <br>为什么会产生孤儿进程 -> 怎么解决<br>
+                        d -> 父子进程之间有哪些数据是共有的，有哪些是私有的<br>
+                        e -> 进程替换(非常重要) -> CGI技术 -> <br>进程间替换的时候，不会将管道的缓冲区进行替换！！！<br>
+                        f -> 缓冲区 -> 0 1 2 输出缓冲区，输入缓冲区，错误缓冲区<br>
+                        g -> 管道 -> pipe的创建 -> 进程间父子进程的通信 -> <br>CGI技术 -> 将父进程的读端关闭，子进程的写端关闭<br>
+                        h -> 重定向技术 -> dup2()<br>
+                    3. CGI技术<br>
+                        上网查资料(意义，作用...)<br>
+                    4. 线程池技术<br>
+                        a -> 线程和进程的区别，但是在windows上(是有明确定义的线程和进程的),<br> linux上(没有线程和进程的定义，<br>只有task_struct也就是任务，但是可以当作进程线程理解)<br>
+                        b -> 生产者消费模型 -><br> 消费者需要多少，生产者就生产多少，如果消费者需求过多，<br>那么生产者就继续生产，<br>如果消费者需求过少，那么生产者就减少生产
+                        c -> 线程之间有哪些数据是共有的，有哪些是私有的<br>
+                        d -> 互斥锁 -> lock/unlock -> <br>条件变量 -> 线程是否休眠/被唤醒<br>
+                        e -> 任务队列(我们项目中的一个任务队列，依赖线程池来启动 -> <br>配合单例模式 -> 实现每一个线程启动一个服务)<br>
+                    5. 设计模式之单例模式<br>
+                        上网查资料(意义，作用...)<br>
+                    6. 数据库<br>
+                        a -> 数据库的意义<br>
+                        b -> 数据库的使用(略)<br>
+                        c -> 链接数据库(略)<br>
+                        d -> 设计表单 -> 和项目关联<br>
+                </p>-->
+                <p>后端:</p>
+                <p>1. C/C++ Socket编程 -> TCP/IP网络编程
+                    <br>
+                    <p>TCP/IP的接口<br>
+                        server <br>
+                        socket -> 建立套接字<br>
+                        bind   -> 绑定套接字<br>
+                        listen -> 监听套接字<br>
+                        accept -> 接受client socket发送的请求<br>
+                        socket -> 建立套接字<br>
+                        bind   -> 绑定套接字<br>
+                        connect -> 连接server socket<br><br>
+                        </p>
+                </p>
+                <p>2. C/C++ 进程间通信
+                    <p>
+                        父子进程 -> fork()<br>
+                        僵尸进程<br>
+                        孤儿进程(linux特有)<br>
+                        父子进程之间公有私有<br>
+                        进程替换(非常重要) -> CGI技术<br>
+                        缓冲区<br>
+                        管道 -> pipe的创建<br> 
+                        重定向技术 -> dup2()<br>
+
+                    </p>
+                </p> 
+                   <p> 3. CGI技术<br>...</p>
+                    <p>4. 线程池技术<br>...</p> 
+                   <p>5. 设计模式之单例模式<br>...</p> 
+                   <p>6. 数据库<br><br><br>...</p> 
+                    <p>前端：</p>
+                    <p>1.HTML</p>
+                    <p>div盒子布局，页面整体设计...</p>
+                    <p>2.css样式表</p>
+                    <p>设置HTML标签样式...</p>
+                    <p>3.javascript</p>
+                    <p>运用js实现各类特效效果以及界面交互...</p>
+                    <p>...</p>
+
+            </div>
+        </div>
+
+        <p >
+            <a  href="index.html" >点击这里跳转主页</a><!--href添加主页链接-->
+       </p>
+        
+        </div>
+        
+    </body>
+    <script src="js/vendor/jquery-1.10.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>    
+    <script src="js/liuxing.js"></script>
+    
+
+</html>

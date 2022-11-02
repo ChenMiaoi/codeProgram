@@ -1,0 +1,13 @@
+
+A	cpp:S5827"'Replace the redundant type with "auto".(±ûÉçÿÿÿÿÿ
+<	cpp:S5827
+"'Replace the redundant type with "auto".(”Ïç‘
+E	cpp:S1659 "0Define each identifier in a dedicated statement.(ôÒ‹×
+E	cpp:S1659I"0Define each identifier in a dedicated statement.(ð×»Ñ
+E	cpp:S1659J"0Define each identifier in a dedicated statement.(µÿ´º
+x	cpp:S5350I"cMake the type of this variable a pointer-to-const. The current type of "temp" is "struct Ticket *".(ð×»Ñ
+gcpp:S134—"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(ŸæÎ‡ûÿÿÿÿ
+K	cpp:S1659ƒ"0Define each identifier in a dedicated statement.(º ‡Ñøÿÿÿÿ
+M	cpp:S5945"2Use "std::string" instead of a C-style char array.(Ò·˜íýÿÿÿÿ
+gcpp:S134À"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(­Ö¹§úÿÿÿÿ
+H	cpp:S5945³"2Use "std::string" instead of a C-style char array.(„´óÃ

@@ -1,0 +1,28 @@
+
+9cpp:S125"Remove the commented out code.(Œï¡8Ö‘®™¥0
+9cpp:S125*"Remove the commented out code.(°­§±8Ç¬Çš¥0
+>cpp:S125D"Remove the commented out code.(ü¯”©şÿÿÿÿ8‚ö±š¥0
+>cpp:S125F"Remove the commented out code.(–ÊÄÍúÿÿÿÿ8ƒö±š¥0
+9cpp:S125I"Remove the commented out code.(å¥‡8…ö±š¥0
+9cpp:S125K"Remove the commented out code.(ÈŠ½´8†ö±š¥0
+G	cpp:S1103F"&Remove the misleading "/*" characters.(–ÊÄÍúÿÿÿÿ8‡ö±š¥0
+G	cpp:S1103E"&Remove the misleading "//" characters.(ØÜç¦øÿÿÿÿ8ˆö±š¥0
+G	cpp:S1103F"&Remove the misleading "//" characters.(–ÊÄÍúÿÿÿÿ8ˆö±š¥0
+G	cpp:S1103G"&Remove the misleading "//" characters.(ƒ—’¡ıÿÿÿÿ8ˆö±š¥0
+A	cpp:S1103H"&Remove the misleading "//" characters.(æõ|8ˆö±š¥0
+B	cpp:S1103J"&Remove the misleading "//" characters.(ô¯õœ8ˆö±š¥0
+9cpp:S125"Remove the commented out code.(Œï¡8±©Ûš¥0
+9cpp:S125*"Remove the commented out code.(°­§±8±©Ûš¥0
+>cpp:S125D"Remove the commented out code.(ü¯”©şÿÿÿÿ8±©Ûš¥0
+>cpp:S125F"Remove the commented out code.(–ÊÄÍúÿÿÿÿ8±©Ûš¥0
+9cpp:S125I"Remove the commented out code.(å¥‡8±©Ûš¥0
+9cpp:S125K"Remove the commented out code.(ÈŠ½´8±©Ûš¥0
+G	cpp:S1103F"&Remove the misleading "/*" characters.(–ÊÄÍúÿÿÿÿ8±©Ûš¥0
+G	cpp:S1103E"&Remove the misleading "//" characters.(ØÜç¦øÿÿÿÿ8±©Ûš¥0
+G	cpp:S1103F"&Remove the misleading "//" characters.(–ÊÄÍúÿÿÿÿ8±©Ûš¥0
+G	cpp:S1103G"&Remove the misleading "//" characters.(ƒ—’¡ıÿÿÿÿ8±©Ûš¥0
+A	cpp:S1103H"&Remove the misleading "//" characters.(æõ|8±©Ûš¥0
+B	cpp:S1103J"&Remove the misleading "//" characters.(ô¯õœ8±©Ûš¥0
+R	cpp:S1066,"1Merge this "if" statement with the enclosing one.(ØØ„Ñıÿÿÿÿ8Ë¼Èš¥0
+U	cpp:S5008"9Replace this use of "void *" with a more meaningful type.(Ä è8ï¹°š¥0
+Fcpp:S836"+The left operand of '==' is a garbage value(¯œÑ—8ØÆš¥0

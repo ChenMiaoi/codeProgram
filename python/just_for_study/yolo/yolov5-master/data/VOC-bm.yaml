@@ -1,0 +1,19 @@
+path: D:\GitWork\GitHub\Python\just_for_study\yolo\yolov5-master\mydata\VOCdevkit  # dataset root dir
+train: images/train  # train images (relative to 'path') 128 images
+val: images/train  # val images (relative to 'path') 128 images
+test:  # test images (optional)
+
+# Classes
+names:
+  0: Hero
+  1: Tower
+  2: Solider
+  3: Lizard
+  4: Pig
+  5: Buff
+  6: Spirit
+  7: BaoJun
+  8: ZhuZai
+  9: Wolf
+  10: Dragon
+  11: Bird
