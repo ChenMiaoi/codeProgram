@@ -33,11 +33,11 @@ from pathlib import Path
 
 import torch
 
-FILE = Path(__file__).resolve()
+FILE = Path(__file__).resolve() # 获取detect文件的绝对路径
 ROOT = FILE.parents[0]  # YOLOv5 root directory
-if str(ROOT) not in sys.path:
+if str(ROOT) not in sys.path: # 将YOLOv5路径添加到搜索路径 -> 确保在后续导包时能够正确的导入
     sys.path.append(str(ROOT))  # add ROOT to PATH
-ROOT = Path(os.path.relpath(ROOT, Path.cwd()))  # relative
+ROOT = Path(os.path.relpath(ROOT, Path.cwd()))  # relative -> 将YOLOv5项目路径转化为相对路径
 
 from models.common import DetectMultiBackend
 from utils.dataloaders import IMG_FORMATS, VID_FORMATS, LoadImages, LoadScreenshots, LoadStreams
@@ -77,11 +77,14 @@ def run(
         dnn=False,  # use OpenCV DNN for ONNX inference
         vid_stride=1,  # video frame-rate stride
 ):
-    source = str(source)
+    source = str(source) # 我们传入的source参数
     save_img = not nosave and not source.endswith('.txt')  # save inference images
+    # nosave = False， source.endswith('.txt') = False 那么都是not，最后save_img = True
     is_file = Path(source).suffix[1:] in (IMG_FORMATS + VID_FORMATS)
+    # 当source路径下的后缀是在IMG_FORMATS 或 VID_FORMATS就是True
     is_url = source.lower().startswith(('rtsp://', 'rtmp://', 'http://', 'https://'))
     webcam = source.isnumeric() or source.endswith('.txt') or (is_url and not is_file)
+    # 此处就是判断是否是数字，例如数字0，就是打开电脑上第一个摄像头
     screenshot = source.lower().startswith('screen')
     if is_url and is_file:
         source = check_file(source)  # download
@@ -91,13 +94,17 @@ def run(
     (save_dir / 'labels' if save_txt else save_dir).mkdir(parents=True, exist_ok=True)  # make dir
 
     # Load model
-    device = select_device(device)
+    device = select_device(device) # 自动根据配置的环境，选择GPU or CPU
     model = DetectMultiBackend(weights, device=device, dnn=dnn, data=data, fp16=half)
+    # DetectMultiBackend 多后端检测，内部内置很多深度学习框架，例如：pt(pytorch)、torchscript(TorchScript)
     stride, names, pt = model.stride, model.names, model.pt
+    # 从选择到的模型来获取模型中的stride(步长)、names(模型检测的类别码)、pt(这个模型是否是pytorch模型)
     imgsz = check_img_size(imgsz, s=stride)  # check image size
+    # 传入的imgsz要和步长是一个倍数的关系，步长一般默认32，如果不成倍数，那么会自动计算一个倍数合适的大小
 
     # Dataloader
     bs = 1  # batch_size
+    # 在此处的batch_size设置为1，让加载好的图片以一张一张的传入
     if webcam:
         view_img = check_imshow()
         dataset = LoadStreams(source, img_size=imgsz, stride=stride, auto=pt, vid_stride=vid_stride)
@@ -110,49 +117,59 @@ def run(
 
     # Run inference
     model.warmup(imgsz=(1 if pt or model.triton else bs, 3, *imgsz))  # warmup
+    # 热身，或许叫做预处理 -> 随便传入一张图片让GPU跑
     seen, windows, dt = 0, [], (Profile(), Profile(), Profile())
+    # dt 通过上下文信息来记录时间
     for path, im, im0s, vid_cap, s in dataset:
+        # path图片路径，im就是经过resize后的img，im0s就是原图，vid_cap返回的False，s是每张图片的打印信息
         with dt[0]:
-            im = torch.from_numpy(im).to(model.device)
+            im = torch.from_numpy(im).to(model.device) # 将numpy格式的im转化为tensor支持的格式，然后再送入对应的device(CPU or GPU)上
             im = im.half() if model.fp16 else im.float()  # uint8 to fp16/32
-            im /= 255  # 0 - 255 to 0.0 - 1.0
-            if len(im.shape) == 3:
-                im = im[None]  # expand for batch dim
+            im /= 255  # 0 - 255 to 0.0 - 1.0 归一化操作
+            if len(im.shape) == 3: # 确认尺寸是否是三维的
+                im = im[None]  # expand for batch dim -> torch.Size([1, 3, 640, 480])
 
         # Inference
         with dt[1]:
             visualize = increment_path(save_dir / Path(path).stem, mkdir=True) if visualize else False
+            # 如果传参的时候将visualize改为True，会将训练过程中的特征图保存下来
             pred = model(im, augment=augment, visualize=visualize)
+            # pred是预测结果的一个检测框(全部图片的)
+            # 如果传参的时候将augment改为True，就会判断是否进行数据增强
 
         # NMS
         with dt[2]:
             pred = non_max_suppression(pred, conf_thres, iou_thres, classes, agnostic_nms, max_det=max_det)
+            # conf_thres 置信度，iou_thres阈值，对检测框进行过滤， max_det最多可检测多少个目标，如果超过，则会自动过滤掉剩下的目标
 
         # Second-stage classifier (optional)
         # pred = utils.general.apply_classifier(pred, classifier_model, im, im0s)
 
         # Process predictions
-        for i, det in enumerate(pred):  # per image
-            seen += 1
+        for i, det in enumerate(pred):  # per image det是一张图片内有几个检测框，每个检测框内有多少个检测信息
+            seen += 1 # seen计数功能
             if webcam:  # batch_size >= 1
                 p, im0, frame = path[i], im0s[i].copy(), dataset.count
                 s += f'{i}: '
             else:
                 p, im0, frame = path, im0s.copy(), getattr(dataset, 'frame', 0)
+                # 如果dataset中没有frame这个信息，那么frame = 0
 
             p = Path(p)  # to Path
             save_path = str(save_dir / p.name)  # im.jpg
             txt_path = str(save_dir / 'labels' / p.stem) + ('' if dataset.mode == 'image' else f'_{frame}')  # im.txt
-            s += '%gx%g ' % im.shape[2:]  # print string
+            s += '%gx%g ' % im.shape[2:]  # print string 添加了图片的尺寸
             gn = torch.tensor(im0.shape)[[1, 0, 1, 0]]  # normalization gain whwh
-            imc = im0.copy() if save_crop else im0  # for save_crop
+            imc = im0.copy() if save_crop else im0  # for save_crop 是否需要将检测框的区域单独裁剪下来保存
             annotator = Annotator(im0, line_width=line_thickness, example=str(names))
-            if len(det):
+            # 在原图上画图，线的粗细由传参决定，最后是检测出来的标签名
+            if len(det): # 判断是否有框
                 # Rescale boxes from img_size to im0 size
                 det[:, :4] = scale_boxes(im.shape[2:], det[:, :4], im0.shape).round()
+                # 坐标映射，因为现在的图片是被缩放过的，所以需要对其需要画框的坐标点进行定位
 
                 # Print results
-                for c in det[:, 5].unique():
+                for c in det[:, 5].unique(): # 统计每张图所有框上的类别，在输出打印的时候显示
                     n = (det[:, 5] == c).sum()  # detections per class
                     s += f"{n} {names[int(c)]}{'s' * (n > 1)}, "  # add to string
 
@@ -167,12 +184,15 @@ def run(
                     if save_img or save_crop or view_img:  # Add bbox to image
                         c = int(cls)  # integer class
                         label = None if hide_labels else (names[c] if hide_conf else f'{names[c]} {conf:.2f}')
+                        # 如果hide_labels是True，那么在最后保存的时候，不会将标签画出来
+                        # 如果hide_conf是True，那么在最后保存的时候，不会将置信度画出来
                         annotator.box_label(xyxy, label, color=colors(c, True))
+                        # 这里才是真正意义上的画图，调用box_label()方法
                     if save_crop:
                         save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
 
             # Stream results
-            im0 = annotator.result()
+            im0 = annotator.result() # 当画好之后，annotator会返回画好的图片
             if view_img:
                 if platform.system() == 'Linux' and p not in windows:
                     windows.append(p)
@@ -205,19 +225,20 @@ def run(
 
     # Print results
     t = tuple(x.t / seen * 1E3 for x in dt)  # speeds per image
+    # 统计了每张图片的平均时间，seen是预测了多少张图片，dt是总共的耗时
     LOGGER.info(f'Speed: %.1fms pre-process, %.1fms inference, %.1fms NMS per image at shape {(1, 3, *imgsz)}' % t)
     if save_txt or save_img:
         s = f"\n{len(list(save_dir.glob('labels/*.txt')))} labels saved to {save_dir / 'labels'}" if save_txt else ''
-        LOGGER.info(f"Results saved to {colorstr('bold', save_dir)}{s}")
+        LOGGER.info(f"Results saved to {colorstr('bold', save_dir)}{s}") # 最后的显示保存文件位置
     if update:
         strip_optimizer(weights[0])  # update model (to fix SourceChangeWarning)
 
 
 def parse_opt():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--weights', nargs='+', type=str, default=ROOT / 'runs/train/exp2/weights/best.pt', help='model path or triton URL')
-    parser.add_argument('--source', type=str, default=ROOT / 'mydata/VOCdevkit/test/test2.mp4', help='file/dir/URL/glob/screen/0(webcam)')
-    parser.add_argument('--data', type=str, default=ROOT / 'data/VOC-bm.yaml', help='(optional) dataset.yaml path')
+    parser.add_argument('--weights', nargs='+', type=str, default=ROOT / 'yolov5s.pt', help='model path or triton URL')
+    parser.add_argument('--source', type=str, default='0', help='file/dir/URL/glob/screen/0(webcam)')
+    parser.add_argument('--data', type=str, default=ROOT / 'data/RM-test.yaml', help='(optional) dataset.yaml path')
     parser.add_argument('--imgsz', '--img', '--img-size', nargs='+', type=int, default=[640], help='inference size h,w')
     parser.add_argument('--conf-thres', type=float, default=0.25, help='confidence threshold')
     parser.add_argument('--iou-thres', type=float, default=0.50, help='NMS IoU threshold')
@@ -249,10 +270,10 @@ def parse_opt():
 
 
 def main(opt):
-    check_requirements(exclude=('tensorboard', 'thop'))
-    run(**vars(opt))
+    check_requirements(exclude=('tensorboard', 'thop')) # 检测当前环境与requirements文件中的依赖以及版本信息是否正确
+    run(**vars(opt)) # 解包操作，传入参数
 
-
+# 这里是入口
 if __name__ == "__main__":
     opt = parse_opt()
     main(opt)

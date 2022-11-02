@@ -1,0 +1,5 @@
+train: ./train/images
+val: ./val/images
+
+nc: 24
+names: ['r1','r2','r3','r4','r5','rs','rj','rq','b1','b2','b3','b4','b5','bs','bj','bq','w1','w2','w3','w4','w5','ws','wj','wq']

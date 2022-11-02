@@ -1,0 +1,21 @@
+path: D:\GitWork\GitHub\Python\just_for_study\yolo\yolov5-master\mydata\RMtest  # dataset root dir
+train: images/train  # train images (relative to 'path') 128 images
+val: images/train  # val images (relative to 'path') 128 images
+test:  # test images (optional)
+
+# Classes
+names:
+  0: Blue0
+  1: Blue1
+  2: Blue2
+  3: 3 Un-Known
+  4: Blue4
+  5: Blue5
+  6: Blue6
+  7: Red0
+  8: Red1
+  9: Red2
+  10: 10 Un-Known
+  11: Red4
+  12: Red5
+  13: Red6
