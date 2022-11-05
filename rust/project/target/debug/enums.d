@@ -1,1 +1,1 @@
-D:\GitWork\GitHub\codeProgram\rust\project\target\debug\enums.exe: D:\GitWork\GitHub\codeProgram\rust\project\enums\src\main.rs
+/home/zack/codeWork/githubWork/codeProgram/rust/project/target/debug/enums: /home/zack/codeWork/githubWork/codeProgram/rust/project/enums/src/main.rs

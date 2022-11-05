@@ -1,1 +1,1 @@
-D:\GitWork\GitHub\codeProgram\rust\project\target\debug\project.exe: D:\GitWork\GitHub\codeProgram\rust\project\src\main.rs
+/home/zack/codeWork/githubWork/codeProgram/rust/project/target/debug/project: /home/zack/codeWork/githubWork/codeProgram/rust/project/src/main.rs

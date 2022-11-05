@@ -49,6 +49,27 @@ fn plus_one(x: Option<i32>) -> Option<i32> {
     }
 }
 
+fn add_fancy_hat() {
+    println!("Add the Fancy Hat");
+}
+
+fn remove_fancy_hat() {
+    println!("Remove the Fancy Hat");
+}
+
+fn reroll() {
+    println!("Do it again!");
+}
+
+fn dice_roll(x: u8) {
+    match x {
+        3 => add_fancy_hat(),
+        7 => remove_fancy_hat(),
+        // _ => reroll()
+        _ => ()
+    }
+}
+
 fn main() {
     println!("Hello, world!");
     route(IpAddrKind::V4);
@@ -75,4 +96,27 @@ fn main() {
     let five = Some(5);
     let six = plus_one(five);
     let none = plus_one(None);
+    dbg!(six);
+    dbg!(none);
+
+    dice_roll(3);
+    dice_roll(6);
+
+    let config_max = Some(3u8);
+    match config_max {
+        Some(max) => println!("{}", max),
+        _ => ()
+    }
+
+    if let Some(max) = config_max {
+        println!("{}", max);
+    };
+
+    let coin = Coin::Quarter(UsState::Alabama);
+    let mut count = 0;
+    if let Coin::Quarter(state) = coin {
+        println!("{:?}!", state);
+    }else {
+        count += 1;
+    }
 }

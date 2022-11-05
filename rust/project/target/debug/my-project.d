@@ -1,0 +1,1 @@
+/home/zack/codeWork/githubWork/codeProgram/rust/project/target/debug/my-project: /home/zack/codeWork/githubWork/codeProgram/rust/project/my-project/src/lib.rs /home/zack/codeWork/githubWork/codeProgram/rust/project/my-project/src/main.rs
