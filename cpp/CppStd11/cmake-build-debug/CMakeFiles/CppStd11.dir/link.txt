@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/CppStd11.dir/main.cc.o CMakeFiles/CppStd11.dir/main1.c.o -o CppStd11 

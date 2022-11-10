@@ -1,4 +1,4 @@
-# Install script for directory: /home/zack/code_work/github_work/My_Cpp_Programming/CppStd11
+# Install script for directory: /home/zack/codeWork/githubWork/codeProgram/cpp/CppStd11
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/zack/code_work/github_work/My_Cpp_Programming/CppStd11/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/zack/codeWork/githubWork/codeProgram/cpp/CppStd11/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
