@@ -171,8 +171,155 @@ void test2() {
     std::cout << binops["%"](10, 5);
 }
 
+namespace Test3 {
+    class SmallInt {
+    public:
+        SmallInt(int i = 0): var(i) {
+            if (i < 0 || i > 255) {
+                throw std::out_of_range("Bad SmallInt value");
+            }
+        }
+
+        explicit operator int() const {
+            // explicit将隐式类型转换必须通过显示来进行
+            return var;
+        }
+    private:
+        std::size_t var;
+    };
+
+    struct A {
+        // 转换构造函数，和普通构造函数一致，但是只允许一个参数
+        // 例如：A a; a = 20;
+        // 假如刚好有多个转换构造函数，且普通函数重载的参数是不同的转换构造函数，那么会产生二义性问题
+        A(int a) {
+
+        }
+    };
+
+    struct B {
+        B(int b) {
+
+        }
+    };
+
+    struct C {
+        C(double c) {
+
+        }
+    };
+}
+
+void manip(const Test3::A& a) {
+
+}
+
+void manip(const Test3::B& b) {
+
+}
+
+void manip(const Test3::C& c) {
+
+}
+void test3() {
+    Test3::SmallInt smallInt;
+    smallInt = static_cast<int>(smallInt) + 255;
+    std::cout << static_cast<int>(smallInt) << std::endl;
+    Test3::A a(10);
+    a = 20;
+
+    // manip(10); 转化构造函数产生的二义性问题
+    manip(Test3::A(10));
+    manip(Test3::B(20));
+    // manip(10); 注意，哪怕转换构造函数的参数类型不一样，由于int也可以隐式转化double因此，也会造成二义性问题
+}
+
+namespace Test4 {
+    class SmallInt {
+        friend SmallInt operator+ (const SmallInt& smallInt1, const SmallInt& smallInt2);
+    public:
+        SmallInt(int a = 0): var(a) {} // 转换构造函数，默认从0转换
+        operator int() const { // 类型转换运算符， SmallInt -> int
+            std::cout << "operator int() const -- SmallInt -> int (" << __LINE__ << "rows)" << std::endl;
+            return var;
+        }
+
+//        SmallInt operator+ (const SmallInt& smallInt) {
+//
+//        }
+    private:
+        std::size_t var;
+    };
+
+    SmallInt operator+ (const SmallInt& smallInt1, const SmallInt& smallInt2) {
+        static int count = 0;
+        std::cout << "SmallInt operator+ (const SmallInt& smallInt1, const SmallInt& smallInt2): " << count++ << std::endl;
+        // 此处不能用过operator int() 来复用，如果使用这样，会导致operator+无限递归
+        return smallInt1 + smallInt2;
+    }
+
+    void test() {
+        SmallInt s1, s2;
+        SmallInt s3 = s1 + s2;
+        // s3 = s1 + s2 实际上是调用了 operator+ 然后得到的返回值进行转换构造
+        // int i = s3 + 0; 此处的+号，是因为operator+ 和 转化构造函数发生了冲突
+    }
+}
+
+namespace Test5 {
+    class Quote {
+    public:
+        Quote() = default;
+        Quote(const std::string& book, double sales_price)
+            : bookNo(book)
+            , price(sales_price)
+        {}
+
+        virtual ~Quote() = default;
+    public:
+        std::string isbn() const {
+            return "hello";
+        }
+
+        virtual double net_price(std::size_t n) const;
+    protected:
+        double price = 0.0;
+    private:
+        std::string bookNo;
+    };
+
+    class Bulk_quote: public Quote {
+    public:
+        Bulk_quote() {
+            Quote("hellp", 20.0);
+        }
+    public:
+        double net_price(std::size_t n) const override {
+            // override 关键字告诉编译器该函数重载于父类的某个虚函数
+            std::cout << "double Bulk_quote::net_price(std::size_t n) const override" << std::endl;
+            return n;
+        }
+    };
+
+    double print_total(std::ostream& _os, const Quote& item, size_t n) {
+        double ret = item.net_price(n);
+        // _os << item.isbn();
+        return ret;
+    }
+
+    void test() {
+        Quote basic;
+        Bulk_quote bulk;
+        // print_total(std::cout, basic, 5);
+        print_total(std::cout, Bulk_quote(), 5);
+    }
+}
+
 int main() {
-    test1();
-    test2();
+    // test1();
+    // test2();
+    // test3();
+    // Test4::test();
+    // Test5::test();
     return 0;
 }
