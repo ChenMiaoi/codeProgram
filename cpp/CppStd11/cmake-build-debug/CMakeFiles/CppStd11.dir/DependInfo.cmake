@@ -8,8 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/zack/codeWork/githubWork/codeProgram/cpp/CppStd11/main1.c" "CMakeFiles/CppStd11.dir/main1.c.o" "gcc" "CMakeFiles/CppStd11.dir/main1.c.o.d"
-  "/home/zack/codeWork/githubWork/codeProgram/cpp/CppStd11/main.cc" "CMakeFiles/CppStd11.dir/main.cc.o" "gcc" "CMakeFiles/CppStd11.dir/main.cc.o.d"
+  "D:/GitWork/GitHub/codeProgram/cpp/CppStd11/main.cc" "CMakeFiles/CppStd11.dir/main.cc.obj" "gcc" "CMakeFiles/CppStd11.dir/main.cc.obj.d"
   )
 
 # Targets to which this target links.

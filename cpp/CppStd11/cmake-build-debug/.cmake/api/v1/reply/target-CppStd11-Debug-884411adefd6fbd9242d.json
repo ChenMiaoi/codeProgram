@@ -2,7 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "CppStd11"
+			"path" : "CppStd11.exe"
+		},
+		{
+			"path" : "CppStd11.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -54,30 +57,6 @@
 			[
 				0
 			]
-		},
-		{
-			"compileCommandFragments" : 
-			[
-				{
-					"fragment" : "-g"
-				},
-				{
-					"fragment" : "-std=gnu11"
-				}
-			],
-			"language" : "C",
-			"languageStandard" : 
-			{
-				"backtraces" : 
-				[
-					1
-				],
-				"standard" : "11"
-			},
-			"sourceIndexes" : 
-			[
-				1
-			]
 		}
 	],
 	"id" : "CppStd11::@6890427a1f51a3e7e1df",
@@ -92,12 +71,16 @@
 			{
 				"fragment" : "",
 				"role" : "flags"
+			},
+			{
+				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
+				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
 	"name" : "CppStd11",
-	"nameOnDisk" : "CppStd11",
+	"nameOnDisk" : "CppStd11.exe",
 	"paths" : 
 	{
 		"build" : ".",
@@ -109,8 +92,7 @@
 			"name" : "Source Files",
 			"sourceIndexes" : 
 			[
-				0,
-				1
+				0
 			]
 		}
 	],
@@ -120,12 +102,6 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "main.cc",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 1,
-			"path" : "main1.c",
 			"sourceGroupIndex" : 0
 		}
 	],

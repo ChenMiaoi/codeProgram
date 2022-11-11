@@ -2,7 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "main1"
+			"path" : "main1.exe"
+		},
+		{
+			"path" : "main1.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -38,10 +41,10 @@
 					"fragment" : "-g"
 				},
 				{
-					"fragment" : "-std=gnu11"
+					"fragment" : "-std=gnu++11"
 				}
 			],
-			"language" : "C",
+			"language" : "CXX",
 			"languageStandard" : 
 			{
 				"backtraces" : 
@@ -68,12 +71,16 @@
 			{
 				"fragment" : "",
 				"role" : "flags"
+			},
+			{
+				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
+				"role" : "libraries"
 			}
 		],
-		"language" : "C"
+		"language" : "CXX"
 	},
 	"name" : "main1",
-	"nameOnDisk" : "main1",
+	"nameOnDisk" : "main1.exe",
 	"paths" : 
 	{
 		"build" : ".",
@@ -94,7 +101,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "main1.c",
+			"path" : "test.cc",
 			"sourceGroupIndex" : 0
 		}
 	],
