@@ -266,6 +266,7 @@ namespace Test4 {
     }
 }
 
+#if 0
 namespace Test5 {
     class Quote {
     public:
@@ -314,6 +315,72 @@ namespace Test5 {
         print_total(std::cout, Bulk_quote(), 5);
     }
 }
+#endif
+
+#if 0
+namespace Test6 {
+    class Animal {
+    public:
+        Animal() = default;
+        Animal(int i = 0): _a(i) {}
+    public:
+        virtual void sleep() const;
+    private:
+        int _a;
+    };
+
+    class Cat: public Animal {
+    public:
+        Cat(int i = 0): Animal(1), _b(i) {}
+    public:
+        void sleep() const override {
+            std::cout << "void Cat::sleep() override" << std::endl;
+        }
+    private:
+        int _b;
+    };
+
+    class Dog: public Animal {
+    public:
+        Dog(int i = 0): Animal(1), _c(i) {}
+    public:
+        void sleep() const override {
+            std::cout << "void Dog::sleep() override" << std::endl;
+        }
+    private:
+        int _c;
+    };
+
+    void Sleep(const Animal& animal) {
+        animal.sleep();
+    }
+
+    void test6() {
+        Cat cat;
+        Dog dog;
+        Sleep(cat);
+        Sleep(dog);
+
+        // Animal animal1;
+        // Animal& animal = cat;
+        // Cat& cat1 = animal1; 可以从衍生类对基类的隐式转化，可以从大切片到小，不能从小增加到大
+    }
+}
+#endif
+
+namespace Test7 {
+    class Base {
+
+    };
+
+    class Last final: Base {
+
+    };
+
+    void test7() {
+
+    }
+}
 
 int main() {
     // test1();
@@ -321,5 +388,7 @@ int main() {
     // test3();
     // Test4::test();
     // Test5::test();
+    // Test6::test6();
+    Test7::test7();
     return 0;
 }
