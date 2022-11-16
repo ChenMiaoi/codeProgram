@@ -382,6 +382,35 @@ namespace Test7 {
     }
 }
 
+namespace Test8 {
+    class Base {
+    public:
+        virtual double net_price(double price) const = 0;
+    };
+
+    double Base::net_price(double price) const {
+        std::cout << "double Base::net_price(double price) const" << std::endl;
+        return 0;
+    }
+
+    class Derive: public Base {
+    public:
+        double net_price(double price) const {
+            std::cout << "double Derive::net_price(double price) const" << std::endl;
+            return 0;
+        }
+    };
+
+    void func(const Base& base) {
+        base.net_price(0);
+    }
+
+    void test8() {
+        Derive derive;
+        func(derive);
+    }
+}
+
 int main() {
     // test1();
     // test2();
@@ -389,6 +418,7 @@ int main() {
     // Test4::test();
     // Test5::test();
     // Test6::test6();
-    Test7::test7();
+    // Test7::test7();
+    Test8::test8();
     return 0;
 }
