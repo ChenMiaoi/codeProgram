@@ -385,7 +385,16 @@ namespace Test7 {
 namespace Test8 {
     class Base {
     public:
-        virtual double net_price(double price) const = 0;
+        virtual double net_price(double price) const;
+
+        // 具有继承的对象指针delete时，需要使用虚析构
+        virtual ~Base() {
+            std::cout << "virtual ~Base()" << std::endl;
+        }
+
+//        ~Base() {
+//            std::cout << "~Base()" << std::endl;
+//        }
     };
 
     double Base::net_price(double price) const {
@@ -399,6 +408,10 @@ namespace Test8 {
             std::cout << "double Derive::net_price(double price) const" << std::endl;
             return 0;
         }
+
+        ~Derive() {
+            std::cout << "~Derive()" << std::endl;
+        }
     };
 
     void func(const Base& base) {
@@ -406,8 +419,28 @@ namespace Test8 {
     }
 
     void test8() {
-        Derive derive;
-        func(derive);
+//        Derive derive;
+//        func(derive);
+//        Base* item = new Base();
+//        delete item;
+//        item = new Derive;
+//        delete item;
+
+        // 容器的类型是一个继承对象的时候，我们通常存放基类的指针，
+        // 因为他是动态类型，我们需要通过动态绑定去决定最终的类型
+        std::vector<std::shared_ptr<Base>> base;
+        base.emplace_back(std::make_shared<Base>());
+        base.emplace_back(std::make_shared<Derive>());
+        base[0]->net_price(10);
+        base[1]->net_price(10);
+
+        std::vector<Base*> base1;
+        Base wuhu;
+        Derive sdha;
+        base1.emplace_back(&wuhu);
+        base1.emplace_back(&sdha);
+        base1[0]->net_price(10);
+        base1[1]->net_price(10);
     }
 }
 
