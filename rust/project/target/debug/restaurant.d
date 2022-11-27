@@ -1,1 +1,1 @@
-/home/zack/codeWork/githubWork/codeProgram/rust/project/target/debug/restaurant: /home/zack/codeWork/githubWork/codeProgram/rust/project/restaurant/src/lib.rs /home/zack/codeWork/githubWork/codeProgram/rust/project/restaurant/src/main.rs
+D:\GitWork\GitHub\codeProgram\rust\project\target\debug\restaurant.exe: D:\GitWork\GitHub\codeProgram\rust\project\restaurant\src\lib.rs D:\GitWork\GitHub\codeProgram\rust\project\restaurant\src\main.rs

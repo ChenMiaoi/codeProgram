@@ -141,6 +141,19 @@ main1/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main1.dir\build.make CMakeFiles/main1.dir/build
 .PHONY : main1/fast
 
+#=============================================================================
+# Target rules for targets named main
+
+# Build rule for target.
+main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 main
+.PHONY : main
+
+# fast build rule for target.
+main/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/build
+.PHONY : main/fast
+
 main.obj: main.cc.obj
 .PHONY : main.obj
 
@@ -164,6 +177,30 @@ main.s: main.cc.s
 main.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CppStd11.dir\build.make CMakeFiles/CppStd11.dir/main.cc.s
 .PHONY : main.cc.s
+
+template.obj: template.cc.obj
+.PHONY : template.obj
+
+# target to build an object file
+template.cc.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/template.cc.obj
+.PHONY : template.cc.obj
+
+template.i: template.cc.i
+.PHONY : template.i
+
+# target to preprocess a source file
+template.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/template.cc.i
+.PHONY : template.cc.i
+
+template.s: template.cc.s
+.PHONY : template.s
+
+# target to generate assembly for a file
+template.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/template.cc.s
+.PHONY : template.cc.s
 
 test.obj: test.cc.obj
 .PHONY : test.obj
@@ -198,10 +235,14 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... CppStd11
+	@echo ... main
 	@echo ... main1
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... template.obj
+	@echo ... template.i
+	@echo ... template.s
 	@echo ... test.obj
 	@echo ... test.i
 	@echo ... test.s

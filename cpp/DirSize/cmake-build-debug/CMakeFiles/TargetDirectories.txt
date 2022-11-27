@@ -1,0 +1,3 @@
+D:/GitWork/GitHub/codeProgram/cpp/DirSize/cmake-build-debug/CMakeFiles/DirSize.dir
+D:/GitWork/GitHub/codeProgram/cpp/DirSize/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/GitWork/GitHub/codeProgram/cpp/DirSize/cmake-build-debug/CMakeFiles/rebuild_cache.dir

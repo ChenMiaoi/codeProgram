@@ -105,6 +105,50 @@
 					<DistClean command="D:/Clion/CLion 2021.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;D:/GitWork/GitHub/codeProgram/cpp/CppStd11/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="main">
+				<Option output="D:/GitWork/GitHub/codeProgram/cpp/CppStd11/cmake-build-debug/main.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/GitWork/GitHub/codeProgram/cpp/CppStd11/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="D:/Clion/CLion 2021.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
+					<Add directory="D:/Clion/CLion 2021.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="D:/Clion/CLion 2021.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
+					<Add directory="D:/Clion/CLion 2021.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
+					<Add directory="D:/Clion/CLion 2021.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
+					<Add directory="D:/Clion/CLion 2021.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
+					<Add directory="D:/Clion/CLion 2021.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="D:/Clion/CLion 2021.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;D:/GitWork/GitHub/codeProgram/cpp/CppStd11/cmake-build-debug/Makefile&quot;  VERBOSE=1 main"/>
+					<CompileFile command="D:/Clion/CLion 2021.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;D:/GitWork/GitHub/codeProgram/cpp/CppStd11/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/Clion/CLion 2021.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;D:/GitWork/GitHub/codeProgram/cpp/CppStd11/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/Clion/CLion 2021.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;D:/GitWork/GitHub/codeProgram/cpp/CppStd11/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="main/fast">
+				<Option output="D:/GitWork/GitHub/codeProgram/cpp/CppStd11/cmake-build-debug/main.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/GitWork/GitHub/codeProgram/cpp/CppStd11/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="D:/Clion/CLion 2021.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
+					<Add directory="D:/Clion/CLion 2021.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="D:/Clion/CLion 2021.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
+					<Add directory="D:/Clion/CLion 2021.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
+					<Add directory="D:/Clion/CLion 2021.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
+					<Add directory="D:/Clion/CLion 2021.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
+					<Add directory="D:/Clion/CLion 2021.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="D:/Clion/CLion 2021.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;D:/GitWork/GitHub/codeProgram/cpp/CppStd11/cmake-build-debug/Makefile&quot;  VERBOSE=1 main/fast"/>
+					<CompileFile command="D:/Clion/CLion 2021.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;D:/GitWork/GitHub/codeProgram/cpp/CppStd11/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/Clion/CLion 2021.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;D:/GitWork/GitHub/codeProgram/cpp/CppStd11/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/Clion/CLion 2021.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;D:/GitWork/GitHub/codeProgram/cpp/CppStd11/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 			<Target title="edit_cache">
 				<Option working_dir="D:/GitWork/GitHub/codeProgram/cpp/CppStd11/cmake-build-debug"/>
 				<Option type="4"/>
@@ -128,6 +172,9 @@
 		</Build>
 		<Unit filename="D:/GitWork/GitHub/codeProgram/cpp/CppStd11/main.cc">
 			<Option target="CppStd11"/>
+		</Unit>
+		<Unit filename="D:/GitWork/GitHub/codeProgram/cpp/CppStd11/template.cc">
+			<Option target="main"/>
 		</Unit>
 		<Unit filename="D:/GitWork/GitHub/codeProgram/cpp/CppStd11/test.cc">
 			<Option target="main1"/>

@@ -6,5 +6,5 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_C_STANDARD 11)
 
 add_executable(CppStd11 main.cc)
-
 add_executable(main1 test.cc)
+add_executable(main template.cc)

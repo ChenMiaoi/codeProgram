@@ -51,7 +51,7 @@ namespace Test2 {
         typedef std::string __string_type;
         typedef typename std::vector<_Ty>::size_type __size_type;
     public:
-        inline Blob() = default;
+        inline Blob(): _data(std::make_shared<std::vector<_Ty>>()) {};
         inline Blob(std::initializer_list<_Ty> __il);
         _Ty& operator[] (__size_type __index);
         inline ~Blob() = default;
