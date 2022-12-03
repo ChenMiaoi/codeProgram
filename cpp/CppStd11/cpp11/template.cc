@@ -2,6 +2,9 @@
 #include <vector>
 #include <string>
 #include <cstring>
+#include <stack>
+#include <queue>
+#include <list>
 #include <functional>
 #include <algorithm>
 #include <map>
@@ -96,7 +99,65 @@ namespace Test2 {
     }
 }
 
+namespace Test3 {
+    // !TIP 如果希望提前知道T的类型，那么需要使用typename去告知编译器
+    //      注意，只允许使用typename关键字去告知
+    //      注意，value_type只是STL::traits，其内部是typename _Ty value_type封装
+    template <typename T>
+    typename T::value_type top(const T& c) {
+        if (!c.empty())
+            return c.back();
+        else
+            return typename T::value_type();
+    }
+
+    template <typename T, typename fn = std::less<T>>
+    int compare(const T& v1, const T& v2, fn f = fn()) {
+        if (f(v1, v2)) return -1;
+        if (f(v2, v1)) return 1;
+        return 0;
+    }
+
+    void test() {
+        std::queue<int, std::list<int>> s;
+        cout << top(s);
+        cout << std::queue<int>::value_type();
+        cout << compare(1, 2, [](int a, int b) -> bool {
+            return a < b;
+        });
+    }
+}
+
+namespace Test4 {
+    class DebugDelete {
+    public:
+        DebugDelete(std::ostream& s = std::cerr): os(s) {}
+        template<class T>
+        void operator() (T* p) {
+            os << "deleting unique_ptr" << std::endl;
+            delete p;
+        }
+
+    private:
+        std::ostream& os;
+    };
+    void test() {
+        double* p = new double ;
+        DebugDelete d;
+        d(p); // 相当于调用了 DebugDelete::operator() (double* p)
+        int* ip = new int ;
+        DebugDelete() (ip);
+
+        // use unique_ptr
+        std::unique_ptr<int, DebugDelete> pk (new int, DebugDelete());
+        std::unique_ptr<double, DebugDelete> sp (new double, DebugDelete());
+        std::unique_ptr<std::string, DebugDelete> ssp (new std::string, DebugDelete());
+    }
+}
+
 int main() {
 //    Test1::test();
-    Test2::test();
+//    Test2::test();
+//    Test3::test();
+    Test4::test();
 }
