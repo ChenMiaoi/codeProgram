@@ -1,2 +1,4 @@
-
 python/cal.py
+**/.idea
+**/cmake-build-debug
+rust/**/target/
