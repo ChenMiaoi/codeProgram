@@ -33,22 +33,22 @@ constexpr long fibonacii(long num) {
 }
 
 long fibonacii(long num, int) {
-    return num <= 2 ? 1 : fibonacii(num - 1) + fibonacii(num - 2);
+    return num <= 2 ? 1 : fibonacii(num - 1, 0) + fibonacii(num - 2, 0);
 }
 
 void Constants(int) {
     std::chrono::time_point start = std::chrono::system_clock::now();
-    std::cout << fibonacii(45) << "\n";
+    std::cout << fibonacii(50) << "\n";
     std::chrono::time_point end = std::chrono::system_clock::now();
     std::cout << std::chrono::duration_cast<std::chrono::milliseconds> (end - start).count() << " milliseconds -> constexpr\n";
 
     start = std::chrono::system_clock::now();
-    std::cout << fibonacii(45, 0) << "\n";
+    std::cout << fibonacii(50, 0) << "\n";
     end = std::chrono::system_clock::now();
     std::cout << std::chrono::duration_cast<std::chrono::milliseconds> (end - start).count() << " milliseconds -> none\n";
 }
 
-consteval double nth(double x, int n) {
+constexpr double nth(double x, int n) {
     double res = 1;
     int i = 0;
     while (i < n) {
@@ -59,6 +59,6 @@ consteval double nth(double x, int n) {
 }
 
 int main() {
-
+    Constants(0);
     return 0;
 }
