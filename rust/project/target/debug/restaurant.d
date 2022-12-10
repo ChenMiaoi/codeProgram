@@ -1,1 +1,0 @@
-D:\GitWork\GitHub\codeProgram\rust\project\target\debug\restaurant.exe: D:\GitWork\GitHub\codeProgram\rust\project\restaurant\src\lib.rs D:\GitWork\GitHub\codeProgram\rust\project\restaurant\src\main.rs
