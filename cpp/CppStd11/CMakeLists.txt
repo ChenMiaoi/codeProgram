@@ -9,3 +9,4 @@ add_executable(cpp11_2 cpp11/test.cc)
 add_executable(cpp11_3 cpp11/template.cc)
 
 add_executable(Atour_1 Atour/main.cc)
+add_executable(Atour_2 Atour/UserDefinedType.cc)
