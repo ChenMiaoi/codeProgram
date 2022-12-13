@@ -1,5 +1,6 @@
 #include <iostream>
 
+#if old_version
 struct Vector {
     double* elem;
     int sz;
@@ -28,8 +29,61 @@ void f(Vector& v, Vector& rv, Vector* pv) {
     int i2 = rv.sz;
     int i3 = pv->sz;
 }
+#endif // old_version of Vector
+
+class Vector {
+public:
+    Vector(int s): elem{new double[s]}, sz{s} {}
+    double& operator[] (int i) { return elem[i]; }
+    int size() { return sz; }
+private:
+    double* elem;
+    int sz;
+};
+
+enum class Color {
+    red,
+    blue,
+    green
+};
+
+enum class Traffic_light {
+    green,
+    yellow,
+    red
+};
+
+Traffic_light& operator++ (Traffic_light& t) { // prefix increment: ++Color
+    switch (t) {
+        case Traffic_light::green: return t = Traffic_light::yellow;
+        case Traffic_light::yellow: return t = Traffic_light::red;
+        case Traffic_light::red: return t = Traffic_light::green;
+    }
+}
+
+#if simple_version
+Traffic_light& operator++ (Traffic_light& t) { // prefix increment: ++Color
+    using enum Traffic_light;
+    switch (t) {
+        case green: return t = yellow;
+        case yellow: return t = red;
+        case red: return t = green;
+    }
+}
+#endif // simple_version
+
+enum Color_1 {
+    red,
+    green,
+    blue
+};
 
 int main() {
+    Color col = Color::red;
+    Traffic_light light = Traffic_light::red;
+    auto signal = Traffic_light::red;
+    Traffic_light next = ++signal;
 
+    int col_1 = Color_1::green;
     return 0;
 }
