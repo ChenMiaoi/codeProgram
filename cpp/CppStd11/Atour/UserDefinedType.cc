@@ -78,6 +78,45 @@ enum Color_1 {
     blue
 };
 
+enum class Type { // a Type can hold values ptr and num
+    ptr,
+    num
+};
+
+union Value {
+    double* p;
+    int i;
+};
+
+#if old_version
+struct Entry {
+    std::string name;
+    Type t;
+    double* p; // use p if t == Type::ptr
+    int i;  // use i if t == Type::num
+};
+
+void f(Entry* pe) {
+    if (pe->t == Type::num)
+        std::cout << pe->i;
+    else if (pe->t == Type::ptr)
+        std::cout << pe->p;
+}
+#endif // old_version
+
+struct Entry {
+    std::string name;
+    Type t;
+    Value v;
+};
+
+void f(Entry* pe) {
+    if (pe->t == Type::ptr)
+        std::cout << pe->v.p;
+    else
+        std::cout << pe->v.i;
+}
+
 int main() {
     Color col = Color::red;
     Traffic_light light = Traffic_light::red;
@@ -85,5 +124,6 @@ int main() {
     Traffic_light next = ++signal;
 
     int col_1 = Color_1::green;
+
     return 0;
 }
