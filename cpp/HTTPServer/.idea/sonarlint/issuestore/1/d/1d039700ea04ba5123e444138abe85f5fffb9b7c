@@ -1,57 +1,0 @@
-
-M	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(‘Š¸°
-M	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(Ïã¥ç
-R	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(¥Õ¼úÿÿÿÿ
-L	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(ğ†Üe
-R	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(ÓâÅ‚øÿÿÿÿ
-R	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(âÕï§üÿÿÿÿ
-M	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(Ã¶¤
-R	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(ˆâ¨Òûÿÿÿÿ
-M	cpp:S5028 "8Replace this macro by "const", "constexpr" or an "enum".(å›Â
-M	cpp:S5028!"8Replace this macro by "const", "constexpr" or an "enum".(ùúí×
-M	cpp:S5028""8Replace this macro by "const", "constexpr" or an "enum".(—Û€ø
-M	cpp:S5028$"8Replace this macro by "const", "constexpr" or an "enum".(¸ÉÔİ
-3cpp:S125¼"Remove the commented out code.(öÕã¨
-3cpp:S125õ"Remove the commented out code.(¨ŠşÓ
-8cpp:S125„"Remove the commented out code.(ã¤ÍØüÿÿÿÿ
-8cpp:S125"Remove the commented out code.(—¨âóÿÿÿÿÿ
-8cpp:S125ú"Remove the commented out code.(¡Ëºûÿÿÿÿ
-m	cpp:S3539I"SRemove this redundant access specifier; it does not change the accessibility level.(îĞÎúüÿÿÿÿ
-p	cpp:S3490H"VUse "=default" instead of the default implementation of this special member functions.(×£²ÿÿÿÿÿ
-m	cpp:S3539c"SRemove this redundant access specifier; it does not change the accessibility level.(îĞÎúüÿÿÿÿ
-p	cpp:S3490b"VUse "=default" instead of the default implementation of this special member functions.(ä¤úŞúÿÿÿÿ
-m	cpp:S4144‰"WUpdate this method so that its implementation is not identical to ParseHttpRequestLine.(ÓÉßÎ
-m	cpp:S3539r"SRemove this redundant access specifier; it does not change the accessibility level.(îĞÎúüÿÿÿÿ
-m	cpp:S3539t"SRemove this redundant access specifier; it does not change the accessibility level.(îĞÎúüÿÿÿÿ
-n	cpp:S3539Ü"SRemove this redundant access specifier; it does not change the accessibility level.(ĞòÚÚüÿÿÿÿ
-I	cpp:S1709p"/Add the "explicit" keyword to this constructor.(€ùëğıÿÿÿÿ
-k	cpp:S3490q"VUse "=default" instead of the default implementation of this special member functions.(µ…»û
->	cpp:S5817s")This function should be declared "const".(—ı‹Û
-I	cpp:S3646‚".Declare this variable in a separate statement.(—º”øÿÿÿÿ
-?	cpp:S5817Ç")This function should be declared "const".(ÖÛ–
-`cpp:S924ê"FReduce the number of nested "break" statements from 2 to 1 authorized.(˜ïˆÿÿÿÿÿ
-D	cpp:S5817ı")This function should be declared "const".(Ù‹¢Äşÿÿÿÿ
-?	cpp:S5817‰")This function should be declared "const".(ÓÉßÎ
-D	cpp:S5817•")This function should be declared "const".(Ö¾è•ÿÿÿÿÿ
-?	cpp:S5817¶")This function should be declared "const".(ÇÌ®ã
-o	cpp:S3776¾"TRefactor this function to reduce its Cognitive Complexity from 27 to the 25 allowed.(®£ãÿÿÿÿÿ
-D	cpp:S5817¾")This function should be declared "const".(®£ãÿÿÿÿÿ
-gcpp:S134"MRefactor this code to not nest more than 3 if|for|do|while|switch statements.(°èÙåøÿÿÿÿ
-K	cpp:S1659Ì"0Define each identifier in a dedicated statement.(Î·Úşüÿÿÿÿ
-X	cpp:S5945Ì"=Use "std::array" or "std::vector" instead of a C-style array.(Î·Úşüÿÿÿÿ
-X	cpp:S5945Ì"=Use "std::array" or "std::vector" instead of a C-style array.(Î·Úşüÿÿÿÿ
-?	cpp:S5817Ÿ")This function should be declared "const".(÷æÎé
-I	cpp:S3646¤".Declare this variable in a separate statement.(—º”øÿÿÿÿ
-D	cpp:S5817²")This function should be declared "const".(ù¸²Äúÿÿÿÿ
-n	cpp:S3539é"SRemove this redundant access specifier; it does not change the accessibility level.(îĞÎúüÿÿÿÿ
-n	cpp:S3539í"SRemove this redundant access specifier; it does not change the accessibility level.(îĞÎúüÿÿÿÿ
-l	cpp:S3490ç"VUse "=default" instead of the default implementation of this special member functions.(ƒä´µ
-q	cpp:S3490è"VUse "=default" instead of the default implementation of this special member functions.(ú¢ˆÊıÿÿÿÿ
-B	cpp:S5827ø"'Replace the redundant type with "auto".(‹¶îÂøÿÿÿÿ
-P	cpp:S5025‚":Rewrite the code so that you no longer need this "delete".(¦üË
-l	cpp:S5025ø"QReplace the use of "new" with an operation that automatically manages the memory.(‹¶îÂøÿÿÿÿ
-‡	cpp:S3230a"sDo not use the constructor's initializer list for data member "_status_code". Use the in-class initializer instead.(¸›µ+
-€	cpp:S3230G"kDo not use the constructor's initializer list for data member "_cgi". Use the in-class initializer instead.(Êè¦ü
-~	cpp:S3230a"jDo not use the constructor's initializer list for data member "_fd". Use the in-class initializer instead.(¸›µ+
-†	cpp:S3230p"lDo not use the constructor's initializer list for data member "_stop". Use the in-class initializer instead.(€ùëğıÿÿÿÿ
-‹	cpp:S3230G"vDo not use the constructor's initializer list for data member "_content_length". Use the in-class initializer instead.(Êè¦ü

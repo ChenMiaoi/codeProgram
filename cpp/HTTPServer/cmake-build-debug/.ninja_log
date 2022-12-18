@@ -1,7 +1,0 @@
-# ninja log v5
-1	549	1663567634724939869	CMakeFiles/HTTPServer.dir/server/main.cc.o	108b32fea1782fe4
-0	179	1663682507371620380	CMakeFiles/HTTPCGI.dir/server/cgi/db_conn.cc.o	bffa74d9e0ce0d94
-549	592	1663567634768276838	HTTPServer	eeddc38a975eba69
-1	488	1662693551873426429	CMakeFiles/HTTPServer.dir/main.cc.o	e1866d9ad825e1b3
-0	190	1663682507384952730	CMakeFiles/HTTPCGI.dir/server/cgi/test_cgi.cc.o	f28481e4755cf537
-0	172	1663683373853115599	CMakeFiles/DB.dir/server/cgi/db_conn.cc.o	6b439de224125428

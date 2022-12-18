@@ -1,6 +1,9 @@
 #ifndef CPPSTD11_VECTOR_H
 #define CPPSTD11_VECTOR_H
 
+#include <iostream>
+#include <stdexcept>
+
 class Vector {
 public:
     Vector(int s);

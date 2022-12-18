@@ -1,65 +1,0 @@
-
-M	cpp:S5028	"8Replace this macro by "const", "constexpr" or an "enum".(‹èìÜ
-L	cpp:S5028
-"8Replace this macro by "const", "constexpr" or an "enum".(šÖ¬q
-M	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(ÚÙ’÷
-R	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(ÁÂÌ¶ÿÿÿÿÿ
-M	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(ûÑÄ‘
-R	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(¤¾Û‚ýÿÿÿÿ
-R	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(Áú´Áþÿÿÿÿ
-1cpp:S125("Remove the commented out code.(”¨´
-M	cpp:S5028	"8Replace this macro by "const", "constexpr" or an "enum".(‹èìÜ
-L	cpp:S5028
-"8Replace this macro by "const", "constexpr" or an "enum".(šÖ¬q
-M	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(ÚÙ’÷
-R	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(ÁÂÌ¶ÿÿÿÿÿ
-M	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(ûÑÄ‘
-R	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(¤¾Û‚ýÿÿÿÿ
-R	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(Áú´Áþÿÿÿÿ
-1cpp:S125("Remove the commented out code.(”¨´
-M	cpp:S5028	"8Replace this macro by "const", "constexpr" or an "enum".(‹èìÜ
-L	cpp:S5028
-"8Replace this macro by "const", "constexpr" or an "enum".(šÖ¬q
-M	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(ÚÙ’÷
-R	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(ÁÂÌ¶ÿÿÿÿÿ
-M	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(ûÑÄ‘
-R	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(¤¾Û‚ýÿÿÿÿ
-R	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(Áú´Áþÿÿÿÿ
-1cpp:S125("Remove the commented out code.(”¨´
-M	cpp:S5028	"8Replace this macro by "const", "constexpr" or an "enum".(‹èìÜ
-L	cpp:S5028
-"8Replace this macro by "const", "constexpr" or an "enum".(šÖ¬q
-M	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(ÚÙ’÷
-R	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(ÁÂÌ¶ÿÿÿÿÿ
-M	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(ûÑÄ‘
-R	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(¤¾Û‚ýÿÿÿÿ
-R	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(Áú´Áþÿÿÿÿ
-1cpp:S125("Remove the commented out code.(”¨´
-M	cpp:S5028	"8Replace this macro by "const", "constexpr" or an "enum".(‹èìÜ
-L	cpp:S5028
-"8Replace this macro by "const", "constexpr" or an "enum".(šÖ¬q
-M	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(ÚÙ’÷
-R	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(ÁÂÌ¶ÿÿÿÿÿ
-M	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(ûÑÄ‘
-R	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(¤¾Û‚ýÿÿÿÿ
-R	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(Áú´Áþÿÿÿÿ
-1cpp:S125("Remove the commented out code.(”¨´
-G	cpp:S5945"2Use "std::string" instead of a C-style char array.(‡ñ·£
-M	cpp:S5028	"8Replace this macro by "const", "constexpr" or an "enum".(‹èìÜ
-L	cpp:S5028
-"8Replace this macro by "const", "constexpr" or an "enum".(šÖ¬q
-M	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(ÚÙ’÷
-R	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(ÁÂÌ¶ÿÿÿÿÿ
-M	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(ûÑÄ‘
-R	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(¤¾Û‚ýÿÿÿÿ
-R	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(Áú´Áþÿÿÿÿ
-1cpp:S125("Remove the commented out code.(”¨´
-M	cpp:S5028	"8Replace this macro by "const", "constexpr" or an "enum".(‹èìÜ
-L	cpp:S5028
-"8Replace this macro by "const", "constexpr" or an "enum".(šÖ¬q
-M	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(ÚÙ’÷
-R	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(ÁÂÌ¶ÿÿÿÿÿ
-M	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(ûÑÄ‘
-R	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(¤¾Û‚ýÿÿÿÿ
-R	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(Áú´Áþÿÿÿÿ
-1cpp:S125("Remove the commented out code.(”¨´
