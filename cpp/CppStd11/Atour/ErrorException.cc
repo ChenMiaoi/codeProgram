@@ -21,10 +21,14 @@ void test(int n) {
 }
 
 int main() {
-    Vector v(5);
+    Vector v(6);
+    // v[7];
     // f(v);
-    test(-27); // throws length_error (-27 is too small)
-    test(10'0000'0000); // may throw bad_alloc
-    test(10); // likely OK
+    // test(-27); // throws length_error (-27 is too small)
+    // test(10'0000'0000); // may throw bad_alloc
+    // test(10); // likely OK
+    constexpr int a = 3;
+    constexpr int b = 6;
+    static_assert(a <= sizeof (int));
     return 0;
 }
