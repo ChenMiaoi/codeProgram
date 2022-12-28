@@ -16,3 +16,4 @@ add_executable(Atour_4 Atour/model/Vector.cc Atour/model/Vector.cppm Atour/model
 add_executable(Atour_5 Atour/structuredBinding.cc)
 add_executable(Atour_6 Atour/ErrorException.cc Atour/Vector/Vector.cc Atour/Vector/Vector.h)
 add_executable(Atour_7 Atour/ConcreteType.cc)
+add_executable(Atour_8 Atour/EssentialOperations.cc Atour/Vector/Vector.cc Atour/Vector/Vector.h)

@@ -6,6 +6,7 @@
 
 class Vector {
 public:
+    Vector();
     Vector(int s);
     double& operator[] (int i);
     int size();

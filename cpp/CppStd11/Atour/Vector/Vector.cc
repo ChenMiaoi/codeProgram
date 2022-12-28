@@ -1,5 +1,7 @@
 #include "Vector.h"
 
+Vector::Vector() {}
+
 Vector::Vector(int s) {
     if (s < 0)
         throw std::length_error {"Vector constructor: negative size"};
