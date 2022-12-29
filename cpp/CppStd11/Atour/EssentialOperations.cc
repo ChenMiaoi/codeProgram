@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "Vector/Vector.h"
+#include "Operation-Vector//Vector.h"
 
 template <typename Sometype>
 class X {
@@ -10,8 +10,14 @@ public:
     X(const X&) { std::cout << "X(const X&)" << "\n"; }; // copy constructor
     X(X&&) { std::cout << "X(X&&)" << "\n"; }; // move constructor
 
-    X& operator= (const X&) { std::cout << "X& operator= (const X&)" << "\n"; }; // copy assignment: clean up target and copy
-    X& operator= (X&&) { std::cout << "X& operator= (X&&)" << "\n"; }; // move assignment: clean up target and move
+    X<Sometype>& operator= (const X<Sometype>&) { // copy assignment: clean up target and copy
+        std::cout << "X& operator= (const X&)" << "\n";
+        return *this;
+    };
+    X<Sometype>& operator= (X<Sometype>&&) { // move assignment: clean up target and move
+        std::cout << "X& operator= (X&&)" << "\n";
+        return *this;
+    };
     ~X() {}; // destructor: clean up
 };
 
@@ -28,8 +34,18 @@ struct Z {
     std::string s;
 };
 
+X<int> f() {
+    X<int> x(1000);
+    X<int> y(1000);
+    X<int> z(1000);
+    z = x;
+    y = std::move(x);
+
+    // return std::move(z);
+    return z;
+}
+
 int main() {
-    Z z1;
-    Z z2 = z1;
+    X<int> x = f();
     return 0;
 }
