@@ -14,3 +14,4 @@ add_executable(Atour_6 ErrorException.cc Vector/Vector.cc Vector/Vector.h)
 add_executable(Atour_7 ConcreteType.cc)
 add_executable(Atour_8 EssentialOperations.cc
         Operation-Vector/Vector.cc Operation-Vector/Vector.h)
+add_executable(Atour_9 Templates.cc)
