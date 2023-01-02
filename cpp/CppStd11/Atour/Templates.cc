@@ -1,5 +1,7 @@
 #include <iostream>
 #include <list>
+#include <vector>
+#include <complex>
 #include <string>
 
 template <typename T>
@@ -10,7 +12,9 @@ public:
     ~Vector() { delete[] elem; } // destructor: release resources
 public:
     T* begin();
+    T* begin() const;
     T* end();
+    T* end() const;
 
     // copy and move operations
     Vector(const Vector<T>& v);
@@ -83,6 +87,46 @@ void func2() {
     Vector vs2 {"Hello"s, "World"s};
     // Vector vs3 {"Hello"s, "World"};
     Vector<std::string> vs4 {"Hello"s, "World"};
+}
+
+template <typename Sequence, typename Value>
+Value sum (const Sequence& s, Value v) {
+    for (auto x : s)
+        v += x;
+    return v;
+}
+
+void user(Vector<int>& vi, std::list<double>& ld,
+          std::vector<std::complex<double>>& vc) {
+    int x = sum(vi, 0); // the sum of a vector of ints (add ints)
+    double d = sum(vi, 0.0); // the sum of a vector of ints (add doubles)
+    double dd = sum(ld, 0.0); // the sum of a list of doubles
+    auto z = sum(vc, std::complex {0.0, 0.0});
+    // the sum of a vector of complex<double>
+}
+
+template <typename T>
+class Less_than {
+    const T val; // value to compare against
+public:
+    Less_than(const T& v): val(v) {}
+    bool operator() (const T& x) const { return x < val; } // call operator
+};
+
+void func3() {
+    Less_than lti {42}; // lti(i) will compare i to 42 using < (i<42)
+    using namespace std::literals::string_literals;
+    Less_than lts {"Backus"s}; // lts(s) will compare s to "Backus" using < (s<"Backus")
+    Less_than<std::string> lts2 {"Naur"}; // "Naur" is a C-style string, so we need <string> to get the right <
+}
+
+void fct(int n, const std::string& s) {
+    Less_than lti {42};
+    using namespace std::literals::string_literals;
+    Less_than lts {"Backus"s};
+    Less_than<std::string> lts2 {"Naur"};
+    bool b1 = lti(n); // true if n < 42
+    bool b2 = lts(s); // true is s < "Backus"
 }
 
 int main() {
