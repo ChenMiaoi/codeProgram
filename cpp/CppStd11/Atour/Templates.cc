@@ -80,30 +80,30 @@ void use() {
     outs<arr>(); // OK
 }
 
-void func2() {
-    using namespace std::literals::string_literals;
-    Vector<std::string> vs {"Hello", "World"};
-    Vector vs1 {"Hello", "World"};
-    Vector vs2 {"Hello"s, "World"s};
-    // Vector vs3 {"Hello"s, "World"};
-    Vector<std::string> vs4 {"Hello"s, "World"};
-}
+//void func2() {
+//    using namespace std::literals::string_literals;
+//    Vector<std::string> vs {"Hello", "World"};
+//    Vector vs1 {"Hello", "World"};
+//    Vector vs2 {"Hello"s, "World"s};
+//    // Vector vs3 {"Hello"s, "World"};
+//    Vector<std::string> vs4 {"Hello"s, "World"};
+//}
 
-template <typename Sequence, typename Value>
-Value sum (const Sequence& s, Value v) {
-    for (auto x : s)
-        v += x;
-    return v;
-}
+//template <typename Sequence, typename Value>
+//Value sum (const Sequence& s, Value v) {
+//    for (auto x : s)
+//        v += x;
+//    return v;
+//}
 
-void user(Vector<int>& vi, std::list<double>& ld,
-          std::vector<std::complex<double>>& vc) {
-    int x = sum(vi, 0); // the sum of a vector of ints (add ints)
-    double d = sum(vi, 0.0); // the sum of a vector of ints (add doubles)
-    double dd = sum(ld, 0.0); // the sum of a list of doubles
-    auto z = sum(vc, std::complex {0.0, 0.0});
-    // the sum of a vector of complex<double>
-}
+//void user(Vector<int>& vi, std::list<double>& ld,
+//          std::vector<std::complex<double>>& vc) {
+//    int x = sum(vi, 0); // the sum of a vector of ints (add ints)
+//    double d = sum(vi, 0.0); // the sum of a vector of ints (add doubles)
+//    double dd = sum(ld, 0.0); // the sum of a list of doubles
+//    auto z = sum(vc, std::complex {0.0, 0.0});
+//    // the sum of a vector of complex<double>
+//}
 
 template <typename T>
 class Less_than {
@@ -129,7 +129,92 @@ void fct(int n, const std::string& s) {
     bool b2 = lts(s); // true is s < "Backus"
 }
 
+//void f(const Vector<int>& vec, const std::list<std::string>& lst, int x, const std::string& s) {
+//    std::cout << "number of values less than " << x << " : " << std::count(vec.begin(), Less_than {x}) << "\n";
+//    std::cout << "number of values less than " << s << " : " << std::count(lst, Less_than {x});
+//}
+
+//void f(const Vector<int>& vec, const std::list<std::string>& lst, int x, const std::string& s) {
+//    std::cout << "number of values less than "
+//                << x << " : "
+//                << std::count(vec.begin(), [&](int a) { return a < x; })
+//                << "\n";
+//    std::cout << "number of values less than "
+//                << s << " : "
+//              << std::count(lst, [&](const std::string& a) { return a < s; });
+//}
+
+class X {
+public:
+    void f(X& x) {
+        auto f = [this]() { return *this; };
+        auto f1 = [*this](){ return *this; };
+    }
+};
+
+enum class Init_mode {
+    zero,
+    seq,
+    cpy,
+    patrn
+}; // initializer alternatives
+
+//void user(Init_mode m, int n, std::vector<int>& arg, Iterator p, Iterator q) {
+//    std::vector<int> v;
+//
+//    switch (m) {
+//        case Init_mode::zero:
+//            v = std::vector<int> (n);
+//            break;
+//        case Init_mode::cpy:
+//            v = arg;
+//            break;
+//    }
+//
+//    if (m == Init_mode::seq)
+//        v.assign(p, q);
+//}
+
+//void user(Init_mode m, int n, std::vector<int>& arg, Iterator p, Iterator q) {
+//    std::vector<int> v = [&] {
+//        switch (m) {
+//            case Init_mode::zero:
+//                return std::vector<int> (n);
+//            case Init_mode::seq:
+//                return std::vector<int> {p, q};
+//            case Init_mode::cpy:
+//                return arg;
+//            case Init_mode::patrn:
+//                break;
+//        }
+//    }();
+//}
+
+template <class F>
+struct Final_action {
+    explicit Final_action(F f): act(f) {}
+    ~Final_action() { act(); }
+    F act;
+};
+
+template <class F>
+[[nodiscard]] auto finally(F f) {
+    return Final_action {f};
+}
+
+void old_type (int n) {
+    void* p = (void*) malloc(n * sizeof (int )); // C-type
+    auto act = finally([&]{ free(p); }); // call the lambda upon scope exit
+}// p is implicitly freed upon scope exit
+
+[[nodiscard("The empty return value must be used")]]
+bool empty() {
+    return false;
+}
+
 int main() {
-    func1();
+    // func1();
+    // old_type(1);
+    empty();
     return 0;
 }
