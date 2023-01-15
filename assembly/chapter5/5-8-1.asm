@@ -3,7 +3,7 @@
 ; 因为ffff：X和0020：X相距大于64KB，在不同的64KB段中，设置两次DS是正确的，但是这样效率不高
 ; 因此可以用两个段寄存器来实现
 
-assume code 
+assume cs:code 
 
 code segment
     mov ax, 0ffffh

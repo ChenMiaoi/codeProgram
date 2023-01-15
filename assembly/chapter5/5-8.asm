@@ -1,6 +1,6 @@
 ; 将内存ffff：0～ffff：b单元中的数据复制到0：200～0：20b单元中
 
-assume code 
+assume cs:code 
 
 code segment
     mov bx, 0
