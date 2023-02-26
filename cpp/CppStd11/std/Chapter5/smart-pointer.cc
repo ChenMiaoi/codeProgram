@@ -1,5 +1,6 @@
 #include <iostream>
 #include <sys/mman.h>
+#include <functional>
 #include <unistd.h>
 #include <cerrno>
 #include <cstring>
@@ -261,16 +262,155 @@ void foo5() {
     std::cout << "nico's family exists" << "\n"
               << "- nico is shared " << p.use_count() << " times" << "\n"
               << "- name of 1st kid of nico's mom: " << p->mother->kids[0].lock()->name << std::endl;
+    // ! lock()会产出一个empty shared_ptr
     p = initFamily("jim");
     std::cout << "jim's family exists" << std::endl;
     // ! 可以发现，这里出去以后，析构函数未能被调用，当p重新被赋值时，其析构函数因为Person还至少被一个shared_ptr所指向而无法释放
 }
 
-int main() {
+/**
+ * ! 误用shared_ptr，除了上述的循环依赖外，还有一种可能就是必须确保某对象只被一组shared_ptr拥有
+*/
+
+void foo6() {
+    int* p = new int;
+    std::shared_ptr<int> sp1(p);
+    std::shared_ptr<int> sp2(p); // ! error， 因为sp1和sp2在丢失p的时候进行对应的销毁，因此p会被销毁两次
+
+    // ! 因此，如果你需要这样做，那么应该以下面这一种方式
+    std::shared_ptr<int> s1(new int);
+    std::shared_ptr<int> s2(s1); // ! OK
+}
+
+/**
+ * ! unique_ptr独占式智能指针，该指针要求其所指向的对象只有唯一拥有者，因此，当unique_ptr销毁时，其所指向的对象也自动被销毁
+*/
+
+class A {
+   
+};
+
+void foo7() {
+    std::unique_ptr<A> ptr(new A);
+
+    std::unique_ptr<std::string> up(new std::string("nico"));
+    (*up)[0] = 'N';
+    up->append("lai");
+    std::cout << *up << std::endl;
+
+    // ! 可以使用release()获取所拥有的对象并放弃其拥有权
+    std::string* sp = up.release();
+    if (up) 
+        std::cout << *up << std::endl;
+}
+
+void foo8() {
+    std::string* sp = new std::string("hello");
+    std::unique_ptr<std::string> up1(sp);
+    // std::unique_ptr<std::string> up2(sp); // ! 此处显然是错误的，要保证unique_ptr只有一个指向 
+    // ! 但是，C++11其提供了移动语义，我们可以将所有权交付给up2
+    std::unique_ptr<std::string> up2(std::move(up1)); // OK
+    std::unique_ptr<std::string> up3 = std::move(up2); // OK
+    std::cout << *up3 << std::endl;
+
+    // ! 如果在移动前，需要移动的对象已经有了一个拥有权，那么在之后失去拥有权了并不会获得一个“指向无物”的新拥有权
+    // ! 如果想指派新值，那么新值必须也是unique
+    up2 = std::unique_ptr<std::string> (new std::string("world"));
+    std::cout << *(up2) << std::endl;
+}
+
+void sink(std::unique_ptr<std::string> up) {
+    std::cout << "sink: " << *up << std::endl;
+}
+
+std::unique_ptr<std::string> source() {
+    std::unique_ptr<std::string> up(new std::string("source's src"));
+    // ! 在此处不需要显式的调用std::move()，因为C++语法会进行对应的RVO优化
+    return up;
+}
+
+void foo9() {
+    // ! 当函数是接收端，如果我们传入一个std::move()，那么调用的函数参数会得到unique的所有权，并且在函数结束时被delete
+    std::unique_ptr<std::string> up(new std::string("hello"));
+    sink(std::move(up));
+    if (up == nullptr)
+        std::cout << "up was moved" << std::endl;
+    
+    // ! 当函数是供应端，如果函数返回一个unique，其拥有权便会被转移
+    std::unique_ptr<std::string> p;
+    for (int i = 0; i < 10; i++) {
+        p = source();
+        std::cout << "source was moved #" << i << ": " << *p << std::endl;
+    }
+}
+
+// ! 如果你使用unique代替普通指针，那么就不再需要析构函数，因为对象被删除会连带所有成员被删除
+
+class ClassA {
+public:
+    ClassA(int var): a(var) {}
+private:
+    int a;
+};
+
+class ClassB {
+public:
+    ClassB(int var1, int var2)
+        : ptr1(new ClassA(var1))
+        , ptr2(new ClassA(var2)) {}
+    ClassB(const ClassB& x)
+        : ptr1(new ClassA(*x.ptr1)) // 隐式类型转化了
+        , ptr2(new ClassA(*x.ptr2)) {}
+    const ClassB& operator= (const ClassB& x) {
+        *ptr1 = *x.ptr1;
+        *ptr2 = *x.ptr2;
+        return *this;
+    }
+    // ~ClassB() {
+    //     delete ptr1;
+    //     delete ptr2;
+    // } ! 如果将类型改为unique则不再需要
+private:
+    // ClassA* ptr1;
+    // ClassA* ptr2;
+    std::unique_ptr<ClassA> ptr1;
+    std::unique_ptr<ClassA> ptr2;
+};
+
+// ! 当我们想要处理array时，unique提供了一个偏特化接口，但是该接口不再提供*或 -> 而是提供operator[]
+
+template<typename T>
+using uniquePtr = std::unique_ptr<T, void(*)(T*)>;
+void foo10() {
+    std::unique_ptr<int[]> up(new int[10]{0});
+    std::cout << up[5] << std::endl;
+
+    // ! 自定义deleter，需要指出其类型
+    std::unique_ptr<int, void(*)(int*)> up1(new int, [](int* p){
+        delete p;
+        std::cout << "delete p" << std::endl;
+    });
+    std::unique_ptr<int, std::function<void(int*)>> up2(new int, [](int* p) {
+        delete p;
+        std::cout << "delete p" << std::endl;
+    });
+    
+    // ! 为了避免必须指明delete类型，可以使用alias template
+    uniquePtr<int> up3(new int, [](int* p) {
+        delete p;
+        std::cout << "delete p" << std::endl;
+    });
+}
+
+int main() { 
     foo();
     foo2();
     foo3();
     foo4();
     foo5();
+    foo7();
+    foo8();
+    foo9();
+    foo10();
     return 0;
 }
