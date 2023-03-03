@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iterator>
+#include <vector>
 #include <list>
 #include <algorithm>
 
@@ -104,10 +105,83 @@ void foo3() {
     std::cout << "\n";
 }
 
+/**
+ * ! 可以让正常迭代器转化为反向迭代器，也可以通过base()将反向迭代器转化为正常
+ * */
+
+void foo4() {
+    std::list<int> coll { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+    std::list<int>::const_iterator pos = std::find(coll.begin(), coll.end(), 5);
+    std::cout << "pos: " << *pos << std::endl;
+    std::list<int>::const_reverse_iterator rpos(pos);
+    std::cout << "rpos: " << *rpos << std::endl;
+    std::list<int>::const_iterator rrpos = rpos.base();
+    std::cout << "rrpos: " << *rrpos << std::endl;
+}
+
+/**
+ * ! Back Insert借由成员push_back()，back insert生成时，其初始化必须明确知道所属容器
+ * ? 可以通过std::back_insert_iterator<> 来获取迭代器，然后进行插入
+ * ? 另外一种简单的方式为：通过std::back_insert()来插入
+ * */
+
+void foo5() {
+    std::vector<int> coll;
+    std::back_insert_iterator<std::vector<int>> iter (coll);
+    *iter++ = 1;
+    *iter++ = 2;
+    *iter++ = 3;
+    for (const auto& i : coll)
+        std::cout << i << " ";
+    std::cout << "\n";
+
+    std::back_inserter(coll) = 44;
+    std::back_inserter(coll) = 55;
+    for (const auto& i : coll)
+        std::cout << i << " ";
+    std::cout << "\n";
+    coll.reserve(2 * coll.size());
+    std::copy(coll.begin(), coll.end(), std::back_inserter(coll));
+    for (const auto& i : coll)
+        std::cout << i << " ";
+    std::cout << "\n";
+}
+
+/**
+ * ! Front Insert借由成员push_front()，front insert生成时，其初始化必须明确知道所属容器
+ * ? 可以通过std::front_insert_iterator<> 来获取迭代器，然后进行插入
+ * ? 另外一种简单的方式为：通过std::front_insert()来插入
+ * */
+
+void foo6() {
+    std::list<int> coll;
+    std::front_insert_iterator<std::list<int>> iter (coll);
+    *iter++ = 1;
+    *iter++ = 2;
+    *iter++ = 3;
+    for (const auto& i : coll)
+        std::cout << i << " ";
+    std::cout << "\n";
+
+    std::front_inserter(coll) = 44;
+    std::front_inserter(coll) = 55;
+    for (const auto& i : coll)
+        std::cout << i << " ";
+    std::cout << "\n";
+
+    std::copy(coll.begin(), coll.end(), std::front_inserter(coll));
+    for (const auto& i : coll)
+        std::cout << i << " ";
+    std::cout << "\n";
+}
+
 int main() {
     foo();
     foo1();
     foo2();
     foo3();
+    foo4();
+    foo5();
+    foo6();
     return 0;
 }
