@@ -3,6 +3,7 @@
 #include <vector>
 #include <list>
 #include <algorithm>
+#include <set>
 
 /**
  * @brief 迭代器种类
@@ -175,6 +176,91 @@ void foo6() {
     std::cout << "\n";
 }
 
+/**
+ * ! General Inserter，根据两个实参完成初始化：容器和待安插位置，迭代器内部以"待安插位置"为实参调用成员函数insert)_
+ * ! 而inserter()是便捷的接口，general inserter对所有容器均适用(除array和forward list)
+ * ! 安插完毕后，相当于为 pos = container.insert(pos, value); ++pos; 为了防止迭代器失效
+ * */
+
+void foo7() {
+    std::set<int> coll;
+    std::insert_iterator<std::set<int>> iter (coll, coll.begin());
+    *iter++ = 1;
+    *iter++ = 2;
+    *iter++ = 3;
+
+    for (const auto& i : coll)
+        std::cout << i << " ";
+    std::cout << "\n";
+
+    std::inserter(coll, coll.end()) = 44;
+    std::inserter(coll, coll.end()) = 55;
+    for (const auto& i : coll)
+        std::cout << i << " ";
+    std::cout << "\n";
+
+    std::list<int> coll2;
+    std::copy(coll.begin(), coll.end(), std::inserter(coll2, coll2.begin()));
+    for (const auto& i : coll2)
+        std::cout << i << " ";
+    std::cout << "\n";
+
+    std::copy(coll.begin(), coll.end(), std::inserter(coll2, std::next(coll2.begin())));
+    for (const auto& i : coll2)
+        std::cout << i << " ";
+    std::cout << "\n";
+}
+
+/**
+ * ！ Ostream iterator可以将"被赋值"写入output stream中，因此，算法就可以直接写入stream，其与上述唯一的区别就是将赋值动作自动转化为output动作
+ * */
+
+void foo8() {
+    std::ostream_iterator<int> intWriter(std::cout, " "); // ! 后面的参数为分隔符
+    // ! 需要注意的是，分隔符是const char*类型，因此传入string需要string::c_str()
+    *intWriter++ = 42;
+    *intWriter++ = 77;
+    *intWriter++ = -5;
+
+    std::vector<int> coll { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+    std::copy(coll.begin(), coll.end(), std::ostream_iterator<int>(std::cout));
+    std::cout << std::endl;
+
+    std::copy(coll.begin(), coll.end(), std::ostream_iterator<int>(std::cout, " < "));
+    std::cout << std::endl;
+}
+
+/**
+ * ! istream iterator是ostream迭代器的搭档，用来从input stream中读取元素。
+ * ! 建立istream迭代器时，必须提供一个input stream作为实参，因为读取元素可能失败(读取到尾部，或读取错误，因此，可以使用一个
+ * ! 所谓的end-of-stream迭代器(也就是istream iterator = default构造)，只要有任何一次读取失败，所有的istream迭代器都会变为end-of-stream
+ * */
+
+void foo9() {
+    std::istream_iterator<int> intReader (std::cin);
+    std::istream_iterator<int> intReaderEOF;
+
+    while (intReader != intReaderEOF) {
+        std::cout << "once: " << *intReader << std::endl;
+        std::cout << "once again: " << *intReader << std::endl;
+        ++intReader;
+    }
+}
+
+void foo10() {
+    std::istream_iterator<std::string> cinPos(std::cin);
+    std::ostream_iterator<std::string> coutPos(std::cout, " ");
+
+    while (cinPos != std::istream_iterator<std::string>()) {
+        std::advance(cinPos, 2); // ! 使得cinPos强制前进两个单位，即忽略了前两个输入
+
+        if (cinPos != std::istream_iterator<std::string>()) { // ! advance不进行检查，防止读取错误
+            *coutPos++ = *cinPos++;
+        }
+    }
+    std::cout << std::endl;
+}
+
 int main() {
     foo();
     foo1();
@@ -183,5 +269,9 @@ int main() {
     foo4();
     foo5();
     foo6();
+    foo7();
+    foo8();
+    // foo9();
+    foo10();
     return 0;
 }
