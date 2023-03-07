@@ -28,7 +28,7 @@ calc        MOV     r13, #0xA000                ; 初始化栈指针
 
 ; 读数字串，累加和在r1寄存器中，将非法数字终止符保存在r0中，返回
 input       MOV     r0, #0                      ; 将输入寄存器清零    
-            MOV     r1, #1                      ; 将累加和清零
+            MOV     r1, #0                      ; 将累加和清零
 next        STR     r14, [sp, #-4]!             ; 将链接寄存器进栈，采用的是满下降栈
             BL      getCh   
             LDR     r14, [sp], #4
@@ -61,7 +61,7 @@ math        CMP     r2, #'+'                    ; 检查操作符
 ; 使用十六进制格式打印r1中的结果
 outHex      STMFD   r13!, { r0, r1, r8, r14 }   
             MOV     r8, #8
-outNxt      MOV     r1, r1, ROR, #28            ; 得到最高字节的低半字节
+outNxt      MOV     r1, r1, ROR #28            ; 得到最高字节的低半字节
             AND     r0, r1, #0xF                ; 把半字节送往r0打印
             ADD     r0, r0, #0x30               ; 把十六进制转换成ASCII
             CMP     r0, #0x39
