@@ -6,5 +6,5 @@ set(CMAKE_C_STANDARD 11)
 add_executable(exit exit.c)
 add_executable(_exit _exit.c)
 add_executable(wait wait.c)
-add_executable(waitpid waitpid.c)
-
+add_executable(waitpid waitpid.cc)
+add_executable(exec exec.c)
