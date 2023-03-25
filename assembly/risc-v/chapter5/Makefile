@@ -1,10 +1,24 @@
 # 算术操作符目录
 SECTION_Arithmetic = \
-	add \
+	add 	\
+	add2	\
+	addi 	\
+	sub 	\
+	lui		\
+	auipc	\
+
+# 伪指令操作目录
+SCETION_Pseudoorder = \
+	neg 	\
+	mv		\
+	nop		\
+	li		\
+	la		\
 
 # 总编译文件目录
 SECTION = \
-	${SECTION_Arithmetic} \
+	${SECTION_Arithmetic} 	\
+	${SCETION_Pseudoorder} 	\
 
 # 默认的编译目标
 # 循环遍历每一个文件夹进行编译
