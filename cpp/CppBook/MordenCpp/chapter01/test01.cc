@@ -83,7 +83,21 @@ void test() {
 int main() {
     // test();
     share_wrap<shape> ptr1 {create_shape(shape_type::circle)};
-    share_wrap<shape> ptr2 {ptr1};
-    share_wrap<shape> ptr3 = ptr2;
+    // share_wrap<shape> ptr2 {ptr1};
+    share_wrap<shape> ptr3;
+    ptr3 = std::move(ptr1);
+
+    share_wrap<circle> p1(new circle());
+    printf("use count of ptr1 is %ld\n", p1.use_count());
+    share_wrap<circle> p2;
+    printf("use count of ptr2 is %ld\n", p2.use_count());
+    p2 = p1;
+    printf("use count of ptr2 is %ld\n", p2.use_count());
+
+    if (p1) {
+        printf("p1 is not empty!\n");
+    }
+    share_wrap<circle> p3 = dynamic_pointer_cast<circle>(p2);
+    printf("use count of ptr3 is %ld\n", p3.use_count());
     return 0;
 }
