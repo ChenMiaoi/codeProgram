@@ -50,5 +50,7 @@ int main() {
     printf("main()\n");
     result&& r =  process_shape(circle(), triangle());
     printf("something else\n");
+
+    bar(circle());
     return 0;
 }
