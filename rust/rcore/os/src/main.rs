@@ -8,10 +8,14 @@ use core::arch::global_asm;
 use log::*;
 
 #[macro_use]
-mod lang_items;
 mod console;
-mod sbi;
-mod logging;
+pub mod trap;
+pub mod sync;
+pub mod batch;
+pub mod syscall;
+pub mod lang_items;
+pub mod sbi;
+pub mod logging;
 
 #[path = "boards/qemu.rs"]
 mod boards;
