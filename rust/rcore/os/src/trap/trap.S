@@ -34,3 +34,28 @@ __alltraps:
     sd      t2, 2*8(sp)                         # 存入栈中
     mov     a0, sp
     call    trap_handler                        # 进入到trap的处理函数，位于trap::mod::trap_handler
+
+__restore:                                      # __restore(cx_addr: usize)
+    mv      sp, a0                              # 将cx_addr存入sp中
+
+    ld      t0, 32*8(sp)                        # 陷入内核前的sstatus信息，载入t0
+    ld      t1, 33*8(sp)                        # 陷入内核前的sepc信息，载入t1
+    ld      t2, 2*(sp)                          # 陷入内核前的用户栈指针, 载入t2
+
+    csrw    sstatus, t0                         # 读取到当前的sstatus
+    csrw    sepc, t1                            # 读取到当前的sepc
+    csrw    sscratch, t2                        # 读取到当前的sscratch
+
+    ld      ra, 1*8(sp)                         # 开始加载通用寄存器
+    ld      gp, 3*8(sp)
+    .set    n, 5
+    .rept   27
+            LOAD_GP %n
+            .set n, n+1
+    .endr
+
+    addi    sp, sp, 34*8                        # 恢复栈
+    csrrw   sp, sscratch, sp                    # 将sscratch的用户栈写入sp中，sp的内核栈指向sscratch
+                                                # 也就是sp -> user_stack, sscratch -> kernel_stack
+    sret                                        # sret会从sepc寄存器中获取返回地址，然后spec设置pc + 4，
+                                                # 然后从sstatus中读取新的特权和状态为，设定为新值，从scause中读取异常，重置为0， 然后返回

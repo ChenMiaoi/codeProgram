@@ -26,6 +26,7 @@ ${KERNEL_BIN}: kernel
 	@${OBJCOPY} ${KERNEL_ELF} --strip-all -O binary $@
 
 kernel:
+	@make -C ../user build
 	@cargo build ${MODE_ARG}
 
 run: run-inner

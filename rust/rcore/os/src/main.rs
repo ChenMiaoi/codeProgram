@@ -21,6 +21,7 @@ pub mod logging;
 mod boards;
 
 global_asm!(include_str!("entry.asm"));
+global_asm!(include_str!("link_app.S"));
 
 pub fn clear_bss() {
     extern "C" {
@@ -54,6 +55,8 @@ pub fn start_main() -> ! {
     info!("[kernel] .data [{:#?}, {:#?})", start_data as usize, end_data as usize);
     warn!("[kernel] .boot_stack top = {:#?}, lower = {:#?}", start_rodata as usize, end_rodata as usize);
     error!("[kernel] .bss [{:#?}, {:#?})", start_bss as usize, end_bss as usize);
-    use crate::boards::QEMUExit;
-    crate::boards::QEMU_EXIT_HANDLE.exit_success();
+
+    trap::init();
+    batch::init();
+    batch::run_next_app();
 }
