@@ -44,7 +44,7 @@ pub fn start_main() -> ! {
         fn end_data();
         fn start_bss();
         fn end_bss();
-        fn boot_stact_lower_bound();
+        fn boot_stack_lower_bound();
         fn boot_stack_top();
     }
     clear_bss();
@@ -53,7 +53,8 @@ pub fn start_main() -> ! {
     trace!("[kernel] .rodata [{:#?}, {:#?})", start_rodata as usize, end_rodata as usize);
     debug!("[kernel] .text [{:#?}, {:#?})", start_text as usize, end_text as usize);
     info!("[kernel] .data [{:#?}, {:#?})", start_data as usize, end_data as usize);
-    warn!("[kernel] .boot_stack top = {:#?}, lower = {:#?}", start_rodata as usize, end_rodata as usize);
+    warn!("[kernel] .boot_stack top = {:#?}, \
+        lower = {:#?}", boot_stack_top as usize, boot_stack_lower_bound as usize);
     error!("[kernel] .bss [{:#?}, {:#?})", start_bss as usize, end_bss as usize);
 
     trap::init();

@@ -1,5 +1,5 @@
 TARGET 		:= riscv64gc-unknown-none-elf
-MODE 		:= debug
+MODE 		:= release
 KERNEL_ELF 	:= target/${TARGET}/${MODE}/os
 KERNEL_BIN 	:= ${KERNEL_ELF}.bin
 
@@ -46,5 +46,6 @@ debug-client:
 
 clean:
 	@cargo clean
+	@make -C ../user clean
 
 .PHONY: build env kernel clean run-inner debug-client debug-server

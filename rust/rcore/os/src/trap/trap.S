@@ -32,7 +32,7 @@ __alltraps:
 
     csrr    t2, sscratch                        # 读取用户栈指针到t2
     sd      t2, 2*8(sp)                         # 存入栈中
-    mov     a0, sp
+    mv      a0, sp
     call    trap_handler                        # 进入到trap的处理函数，位于trap::mod::trap_handler
 
 __restore:                                      # __restore(cx_addr: usize)
@@ -40,7 +40,7 @@ __restore:                                      # __restore(cx_addr: usize)
 
     ld      t0, 32*8(sp)                        # 陷入内核前的sstatus信息，载入t0
     ld      t1, 33*8(sp)                        # 陷入内核前的sepc信息，载入t1
-    ld      t2, 2*(sp)                          # 陷入内核前的用户栈指针, 载入t2
+    ld      t2, 2*8(sp)                          # 陷入内核前的用户栈指针, 载入t2
 
     csrw    sstatus, t0                         # 读取到当前的sstatus
     csrw    sepc, t1                            # 读取到当前的sepc
