@@ -5,9 +5,10 @@ use crate::syscall::syscall;
 use core::arch::global_asm;
 use riscv::register::{
     mtvec::TrapMode,
-    scause::{self, Exception, Trap},
-    stval, stvec,
+    scause::{self, Exception, Interrupt, Trap},
+    sie, stval, stvec,
 };
+use crate::println;
 pub use crate::trap::context::TrapContext;
 
 global_asm!(include_str!("trap.S"));
@@ -21,6 +22,13 @@ pub fn init() {
         // 其中，write方法能够将__alltraps的地址存入stvec中，采用直接处理的模式，该模式会直接跳转到指定地址进行处理
         // 而对应有一种TrapMode::Vector，会跳转到一个间接的地址进行处理
         stvec::write(__alltraps as usize, TrapMode::Direct);
+    }
+}
+
+pub fn enable_timer_interrupt() {
+    unsafe {
+        // sie是riscv中的S模式下的中断使能
+        sie::set_stimer();
     }
 }
 
@@ -41,6 +49,9 @@ pub fn trap_handler(cx: &mut TrapContext) -> &mut TrapContext {
         Trap::Exception(Exception::IllegalInstruction) => {                  // 处理非法指令
             println!("[kernel] IllegalInstruction in application, kernel killed it");
             run_next_app();
+        },
+        Trap::Interrupt(Interrupt::SupervisorTimer) => {
+            todo!()
         },
         _ => {
             panic!(

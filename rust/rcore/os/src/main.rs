@@ -3,12 +3,17 @@
 #![no_std]
 #![no_main]
 #![feature(panic_info_message)]
+#![feature(alloc_error_handler)]
 
 use core::arch::global_asm;
 use log::*;
 
 #[macro_use]
+mod loader;
 mod console;
+mod heap_alloc;
+pub mod timer;
+pub mod config;
 pub mod trap;
 pub mod sync;
 pub mod batch;
@@ -33,8 +38,7 @@ pub fn clear_bss() {
     });
 }
 
-#[no_mangle]
-pub fn start_main() -> ! {
+fn kernel_log_info() {
     extern "C" {
         fn start_text();
         fn end_text();
@@ -57,7 +61,15 @@ pub fn start_main() -> ! {
         lower = {:#?}", boot_stack_top as usize, boot_stack_lower_bound as usize);
     error!("[kernel] .bss [{:#?}, {:#?})", start_bss as usize, end_bss as usize);
 
+}
+
+#[no_mangle]
+pub fn start_main() -> ! {
+    clear_bss();
+    kernel_log_info();
+    heap_alloc::init_heap();
     trap::init();
-    batch::init();
-    batch::run_next_app();
+    loader::load_apps();
+
+    panic!("Unreachable in rust_main!");
 }
