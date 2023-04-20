@@ -22,4 +22,4 @@ for app in apps:
         "[build.py] application %s start with address %s"
         % (app, hex(base_addr + step * app_id))
     )
-    # app_id = app_id + 1
+    app_id = app_id + 1

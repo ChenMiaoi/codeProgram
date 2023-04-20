@@ -1,14 +1,14 @@
 mod context;
 
-use crate::batch::run_next_app;
 use crate::syscall::syscall;
+use crate::timer::set_next_trigger;
 use core::arch::global_asm;
 use riscv::register::{
     mtvec::TrapMode,
     scause::{self, Exception, Interrupt, Trap},
     sie, stval, stvec,
 };
-use crate::println;
+use crate::task::{exit_current_and_run_next, suspend_current_and_run_next};
 pub use crate::trap::context::TrapContext;
 
 global_asm!(include_str!("trap.S"));
@@ -44,14 +44,15 @@ pub fn trap_handler(cx: &mut TrapContext) -> &mut TrapContext {
         Trap::Exception(Exception::StoreFault) |
         Trap::Exception(Exception::StorePageFault) => {                      // 处理存储错误和存储页面错误
             println!("[Kernel] PageFault in application, kernel killed it");
-            run_next_app();
+            exit_current_and_run_next();
         },
         Trap::Exception(Exception::IllegalInstruction) => {                  // 处理非法指令
             println!("[kernel] IllegalInstruction in application, kernel killed it");
-            run_next_app();
+            exit_current_and_run_next();
         },
         Trap::Interrupt(Interrupt::SupervisorTimer) => {
-            todo!()
+            set_next_trigger();
+            suspend_current_and_run_next();
         },
         _ => {
             panic!(

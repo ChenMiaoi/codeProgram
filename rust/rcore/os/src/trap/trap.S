@@ -36,7 +36,7 @@ __alltraps:
     call    trap_handler                        # 进入到trap的处理函数，位于trap::mod::trap_handler
 
 __restore:                                      # __restore(cx_addr: usize)
-    mv      sp, a0                              # 将cx_addr存入sp中
+    # mv      sp, a0                            # 将cx_addr存入sp中
 
     ld      t0, 32*8(sp)                        # 陷入内核前的sstatus信息，载入t0
     ld      t1, 33*8(sp)                        # 陷入内核前的sepc信息，载入t1

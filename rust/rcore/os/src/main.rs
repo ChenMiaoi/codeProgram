@@ -2,6 +2,7 @@
 // #![deny(warnings)]
 #![no_std]
 #![no_main]
+#![warn(unused_doc_comments)]
 #![feature(panic_info_message)]
 #![feature(alloc_error_handler)]
 
@@ -9,14 +10,14 @@ use core::arch::global_asm;
 use log::*;
 
 #[macro_use]
-mod loader;
 mod console;
+mod loader;
 mod heap_alloc;
 pub mod timer;
 pub mod config;
 pub mod trap;
+pub mod task;
 pub mod sync;
-pub mod batch;
 pub mod syscall;
 pub mod lang_items;
 pub mod sbi;
@@ -70,6 +71,8 @@ pub fn start_main() -> ! {
     heap_alloc::init_heap();
     trap::init();
     loader::load_apps();
-
+    trap::enable_timer_interrupt();
+    timer::set_next_trigger();
+    task::run_first_task();
     panic!("Unreachable in rust_main!");
 }
