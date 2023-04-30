@@ -9,6 +9,10 @@ SECTIONS {
     start_text = .;
     .text : {
         *(.text.entry)
+        . = ALIGN(4K);
+        strampoline = .;
+        *(.text.trampoline);
+        . = ALIGN(4K);
         *(.text .text.*)
     }
 
@@ -30,6 +34,7 @@ SECTIONS {
 
     . = ALIGN(4K);
     end_data = .;
+    start_bss_with_stack = .;
     .bss : {
         *(.bss.stack)
         start_bss = .;

@@ -6,6 +6,8 @@
 #![feature(panic_info_message)]
 #![feature(alloc_error_handler)]
 
+extern crate alloc;
+
 use core::arch::global_asm;
 use log::*;
 
@@ -13,6 +15,7 @@ use log::*;
 mod console;
 mod loader;
 mod heap_alloc;
+pub mod mm;
 pub mod timer;
 pub mod config;
 pub mod trap;
@@ -68,9 +71,10 @@ fn kernel_log_info() {
 pub fn start_main() -> ! {
     clear_bss();
     kernel_log_info();
-    heap_alloc::init_heap();
+    mm::init();
+    println!("[kernel] back to world!");
+    mm::remap_test();
     trap::init();
-    loader::load_apps();
     trap::enable_timer_interrupt();
     timer::set_next_trigger();
     task::run_first_task();

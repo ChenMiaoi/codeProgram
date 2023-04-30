@@ -3,7 +3,7 @@ mod switch;
 #[allow(clippy::module_inception)]
 mod task;
 
-use crate::config::MAX_APP_NUM;
+use crate::config::{MAX_APP_NUM, MAX_SYSCALL_NUM};
 use crate::loader::{get_num_app, init_app_cx};
 use crate::sync::UPSafeCell;
 use lazy_static::*;
@@ -27,6 +27,8 @@ lazy_static! {
         let mut tasks = [TaskControlBlock {                                // 任务队列的初始化
             task_cx: TaskContext::zero_init(),
             task_status: TaskStatus::UnInit,                                                        // 初始化任务状态
+            task_syscall_time: [0 as u32; MAX_SYSCALL_NUM],                                         // 初始化任务时间
+            task_start_time: 0 as usize,                                                            // 初始化任务起始时间
         }; MAX_APP_NUM];
         for (i, task) in tasks.iter_mut().enumerate() {
             task.task_cx = TaskContext::goto_restore(init_app_cx(i));                               // 构建任务，得到任务的上下文
@@ -96,6 +98,27 @@ impl TaskManager {
             panic!("All applications completed!");
         }
     }
+
+    // 获取当前任务状态
+    fn get_current_task_status(&self) -> TaskStatus {
+        let inner = self.inner.exclusive_access();
+        let current = inner.current_task;
+        inner.tasks[current].task_status
+    }
+
+    // 获取当前任务的调用时间
+    fn get_current_task_syscall_time(&self) -> [u32; MAX_SYSCALL_NUM] {
+        let inner = self.inner.exclusive_access();
+        let current = inner.current_task;
+        inner.tasks[current].task_syscall_time
+    }
+
+    // 获取当前任务的起始时间
+    fn get_current_task_start_time(&self) -> usize {
+        let inner = self.inner.exclusive_access();
+        let current = inner.current_task;
+        inner.tasks[current].task_start_time
+    }
 }
 
 pub fn run_first_task() {                                                                           // 外部接口，开始执行任务
@@ -122,4 +145,19 @@ pub fn suspend_current_and_run_next() {                                         
 pub fn exit_current_and_run_next() {                                                                // 外部接口，退出当前任务，执行下一个任务
     mark_current_exit();
     run_next_task();
+}
+
+// 获取当前任务状态
+pub fn get_current_task_status() -> TaskStatus {
+    get_current_task_status()
+}
+
+// 获取当前任务的调用时间
+pub fn get_current_task_syscall_time() -> [u32; MAX_SYSCALL_NUM] {
+    get_current_task_syscall_time()
+}
+
+// 获取当前任务的起始时间
+pub fn get_current_task_start_time() -> usize {
+    get_current_task_start_time()
 }
