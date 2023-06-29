@@ -4,6 +4,20 @@ rust/**/target/
 **/cmake-build-*/
 **/link_app.S
 
+# For stm32 Ignore -----------------------------------------------------------------------------------------------------
+**/.vscode/
+**/stm32f**
+**/Start/
+**/Library/
+**/Objects/
+**/Listings/
+**/*.uv*
+**/JLink*
+**/Debug*
+**/.eide/
+**/*workspace
+**/*.pdsbak
+
 # Repo-specific GitIgnore ----------------------------------------------------------------------------------------------
 *.jpg
 *.jpeg
