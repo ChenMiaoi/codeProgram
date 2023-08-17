@@ -48,13 +48,13 @@ take' n (x:xs) = x : take' (n - 1) xs
 
 elem' :: Eq a => a -> [a] -> Bool
 elem' _ [] = False
-elem' a (x:xs) 
+elem' a (x:xs)
     | a == x = True
     | otherwise = elem' a xs
 
 delete' :: Eq a => a -> [a] -> [a]
 delete' _ [] = []
-delete' a (x:xs) 
+delete' a (x:xs)
     | a == x = delete' a xs
     | otherwise = x : delete' a xs
 
@@ -84,7 +84,7 @@ total' (x:xs) n = total' xs $! (n + x)
 total xs = total' xs 0
 
 mc :: Int -> Int
-mc n 
+mc n
     | n > 100 = n - 10
     | otherwise = mc (mc (n + 11))
 
@@ -110,3 +110,15 @@ fibs n = map fastFib [1..n]
 
 fibs' :: Num b => Int -> [b]
 fibs' n = take n (map fst (iterate fibStep (0, 1)))
+
+halt :: Integral a => a -> [a]
+halt 1 = [1]
+halt n
+    | even n    = let n' = n `div` 2 in n' : halt n'
+    | otherwise = let n' = 3 * n + 1 in n' : halt n'
+
+fix :: (a -> a) -> a
+fix f = f $ fix f
+
+factorial' :: Int -> Int
+factorial' = fix (\f n -> if n == 0 then 1 else n * f (n - 1))

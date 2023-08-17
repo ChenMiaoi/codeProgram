@@ -51,9 +51,14 @@ binarySearch a xs
 
 binarySearch' :: Ord a => a -> [a] -> [a]
 binarySearch' _ [] = []
-binarySearch' a xs
-    | m < a = binarySearch' a behind
-    | m > a = binarySearch' a front
-    | otherwise = m : binarySearch' a behind
+binarySearch' target xs = binarySearch'' target xs 0 (length xs - 1)
     where
-        (front, m : behind) = splitAt (length xs `div` 2) xs
+        binarySearch'' :: Ord a => a -> [a] -> Int -> Int -> [a]
+        binarySearch'' target xs left right
+            | left > right = []
+            | midVal == target = midVal : binarySearch'' target xs left (mid - 1) ++ binarySearch'' target xs (mid + 1) right
+            | midVal < target = binarySearch'' target xs (mid + 1) right
+            | otherwise = binarySearch'' target xs left (mid - 1)
+                where 
+                    mid = (left + right) `div` 2
+                    midVal = xs !! mid
