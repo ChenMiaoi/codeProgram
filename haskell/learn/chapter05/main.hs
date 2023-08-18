@@ -1,3 +1,4 @@
+import Debug.Trace (trace)
 factorial :: Integer -> Integer
 -- factorial n = 
 --     if n < 0 then error "n is less than 0"
@@ -122,3 +123,28 @@ fix f = f $ fix f
 
 factorial' :: Int -> Int
 factorial' = fix (\f n -> if n == 0 then 1 else n * f (n - 1))
+
+squareroot :: Int -> Double -> Double
+squareroot 0 x = x
+squareroot n x = (squareroot (n - 1) x + x / squareroot (n - 1) x) / 2
+
+fix' :: Show t => (t -> t -> Bool) -> (t -> t) -> t -> t
+fix' c f x 
+    | c x (f x) = x
+    | otherwise = trace ("x: " ++ show x ++ "\tf x: " ++ show (f x)) fix' c f $ f x
+
+newton :: (Fractional a, Show a) => a -> a -> a
+newton c t = (c / t + t) / 2.0
+
+mysqrt :: Double -> Double
+mysqrt c = fix' (\a b -> a - b < 0.000001) (newton c) c
+
+lazyShorter :: [a] -> [a] -> [a]
+lazyShorter xs ys
+    | short xs ys = xs
+    | otherwise = ys
+    where
+        short :: [a] -> [a] -> Bool
+        short [] ys = True
+        short xs [] = False
+        short (x:xs) (y:ys) = short xs ys
