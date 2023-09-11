@@ -9,6 +9,7 @@
 #include <string>
 #include <map>
 #include <unordered_map>
+#include <unordered_set>
 #include <sys/types.h>
 #include <utility>
 #include <vector>
@@ -28,6 +29,10 @@ namespace httplib {
 
     using Range  = std::pair<ssize_t, ssize_t>;
     using Ranges = std::vector<Range>;
+
+    using socket_t = int;
+    using Logger = std::function<void(const Response&, const Response&)>;
+    using SocketOtions = std::function<void(socket_t sock)>;
 }
 
 #endif //!__DEF_H__

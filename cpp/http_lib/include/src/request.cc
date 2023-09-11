@@ -1,7 +1,11 @@
 #include "../request.hpp"
 #include <algorithm>
+#include <cstddef>
 #include <iterator>
+#include <map>
+#include <regex>
 #include <string>
+#include <unordered_map>
 
 namespace httplib {
     auto Request::has_header(const std::string &key) const -> bool {
@@ -24,6 +28,9 @@ namespace httplib {
     }
     auto Request::has_param(const std::string &key) const -> bool {
         return _params.find(key) != _params.end();
+    }
+    auto Request::get_params() const -> std::unordered_map<std::string, std::string> {
+        return _path_params;
     }
     auto Request::get_param_value(const std::string &key, size_t id) const -> std::string {
         auto rng = _params.equal_range(key);
@@ -54,5 +61,24 @@ namespace httplib {
     auto Request::is_multi_form_data() const -> bool {
         const auto& content_type = get_header_value("Content-Type");
         return !content_type.rfind("multipart/form-data", 0);
+    }
+    auto Request::set_matches(const Match& matches) -> void {
+        _matches = matches;
+    }
+    auto Request::clear_path_params(size_t reserve_len) -> void {
+        _path_params.clear();
+        _path_params.reserve(reserve_len);
+    }
+    auto Request::set_path(const std::string& path) -> void {
+        _path = path;
+    }
+    auto Request::get_path() const -> const std::string& {
+        return _path;
+    }
+    auto Request::get_path_length() const -> size_t {
+        return _path.size();
+    }
+    auto Request::get_matches() const -> Match {
+        return _matches;
     }
 }

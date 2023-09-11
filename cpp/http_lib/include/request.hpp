@@ -10,12 +10,44 @@
 
 #include <cstddef>
 #include <cstdint>
+#include <regex>
 #include <string>
+#include <unordered_map>
 
 namespace httplib {
     const int INVAILD_PORT = -1;
 
     struct Request {
+    public:
+        /* 判断是否存在该头部 */
+        auto has_header(const std::string& key) const -> bool; 
+        /* 获取头部的值 */
+        auto get_header_value(const std::string& key, size_t id = 0) const -> std::string;
+        /* uint64_t 类型 */
+        auto get_header_value_u64(const std::string &key, size_t id = 0) const -> uint64_t; 
+        /* 获取头部的数量 */
+        auto get_header_value_count(const std::string& key) const -> size_t;
+        /* 设置头部 */
+        auto set_header(const std::string& key, const std::string& val) -> void;
+
+        auto has_param(const std::string& key) const -> bool;
+        auto get_params() const -> std::unordered_map<std::string, std::string>;
+        auto get_param_value(const std::string& key, size_t id = 0) const -> std::string;
+        auto get_param_value_count(const std::string& key) const -> size_t; 
+
+        auto has_file(const std::string &key) const -> bool;
+        auto get_file_value(const std::string &key) const -> MultipartFormData;
+        auto get_file_values(const std::string &key) const -> MultipartFormDataItems;
+
+        auto is_multi_form_data() const -> bool;
+
+        /* 设置smatch */
+        auto set_matches(const Match& matches = std::smatch()) -> void;
+        auto clear_path_params(size_t reserve_len = 0) -> void;
+        auto set_path(const std::string& path) -> void;
+        auto get_path() const -> const std::string&;
+        auto get_path_length() const -> size_t;
+        auto get_matches() const -> Match;
     private:
         /* request header */
         std::string _method;
@@ -36,7 +68,7 @@ namespace httplib {
         Ranges _ranges;
         Match  _matches;
         MultipartFormDataMap _files;
-        std::unordered_map<std::string, std::string> _path_paramsl;
+        std::unordered_map<std::string, std::string> _path_params;
 
         /* for client */
         Progress _progress;
@@ -45,31 +77,6 @@ namespace httplib {
         #ifdef CPPHTTPLIB_OPENSSL_SUPPORT
             const SSL* ssl = nullptr;
         #endif
-
-    public:
-        /* 判断是否存在该头部 */
-        auto has_header(const std::string& key) const -> bool; 
-        /* 获取头部的值 */
-        auto get_header_value(const std::string& key, size_t id = 0) const -> std::string;
-        /* uint64_t 类型 */
-        auto get_header_value_u64(const std::string &key, size_t id = 0) const -> uint64_t; 
-        /* 获取头部的数量 */
-        auto get_header_value_count(const std::string& key) const -> size_t;
-        /* 设置头部 */
-        auto set_header(const std::string& key, const std::string& val) -> void;
-
-        auto has_param(const std::string& key) const -> bool;
-        auto get_param_value(const std::string& key, size_t id = 0) const -> std::string;
-        auto get_param_value_count(const std::string& key) const -> size_t; 
-
-        auto has_file(const std::string &key) const -> bool;
-        auto get_file_value(const std::string &key) const -> MultipartFormData;
-        auto get_file_values(const std::string &key) const -> MultipartFormDataItems;
-
-        auto is_multi_form_data() const -> bool;
-
-
-    private:
         size_t _redirect_count = CPPHTTPLIB_REDIRECT_MAX_COUNT;
         size_t _content_length = 0;
         ContentProvider _content_provider;
