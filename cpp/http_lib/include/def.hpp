@@ -3,20 +3,41 @@
 
 #include "detail.hpp"
 
+#include <cstddef>
 #include <cstdint>
 #include <functional>
 #include <regex>
 #include <string>
+#include <limits>
 #include <map>
+#include <thread>
 #include <unordered_map>
 #include <unordered_set>
 #include <sys/types.h>
 #include <utility>
 #include <vector>
 
-#ifndef CPPHTTPLIB_REDIRECT_MAX_COUNT
-#define CPPHTTPLIB_REDIRECT_MAX_COUNT 20
-#endif
+const int INVALID_SOCKET = -1;
+const size_t CPPHTTPLIB_PAYLOAD_MAX_LENGTH         = 
+            std::numeric_limits<size_t>::max();
+const bool CPPHTTPLIB_TCP_NODELAY                  = false;
+
+const size_t CPPHTTPLIB_READ_TIMEOUT_SECOND        = 5;
+const size_t CPPHTTPLIB_READ_TIMEOUT_USECOND       = 0;
+const size_t CPPHTTPLIB_WRITE_TIMEOUT_SECOND       = 5;
+const size_t CPPHTTPLIB_WRITE_TIMEOUT_USECOND      = 0;
+
+const size_t CPPHTTPLIB_IDLE_INTERVAL_SECOND       = 0;
+const size_t CPPHTTPLIB_IDLE_INTERVAL_USECOND      = 0;
+
+const size_t CPPHTTPLIB_REDIRECT_MAX_COUNT         = 20;
+const size_t CPPHTTPLIB_KEEPALIVE_MAX_COUNT        = 2;
+const size_t CPPHTTPLIB_KEEPALIVE_TIMEOUT_SECOND   = 5;
+
+const int CPPHTTPLIB_THREAD_POOL_COUNT             = 
+    ((std::max)(8u, std::thread::hardware_concurrency() > 0  
+                            ? std::thread::hardware_concurrency() - 1 
+                            : 0));
 
 namespace httplib {
     struct Response;
@@ -32,7 +53,7 @@ namespace httplib {
 
     using socket_t = int;
     using Logger = std::function<void(const Response&, const Response&)>;
-    using SocketOtions = std::function<void(socket_t sock)>;
+    using SocketOptions = std::function<void(socket_t sock)>;
 }
 
 #endif //!__DEF_H__

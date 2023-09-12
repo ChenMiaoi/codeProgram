@@ -4,11 +4,14 @@
 #include "def.hpp"
 #include "data_deal/data_sink.hpp"
 
+#include <asm-generic/socket.h>
 #include <cstddef>
 #include <cstdint>
 #include <cstdlib>
 #include <iterator>
+#include <memory>
 #include <string>
+#include <sys/socket.h>
 #include <sys/types.h>
 
 namespace httplib {
@@ -56,7 +59,18 @@ namespace httplib {
         private:
             ContentProviderWithoutLength _content_provider;
         };
+    } // namespace detail
+
+    inline void defaul_socket_options(socket_t sock) {
+        int yes = 1;
+    #ifdef SO_REUSEPORT
+        setsockopt(sock, SOL_SOCKET, SO_REUSEPORT,
+             reinterpret_cast<const void *>(&yes), sizeof(yes));
+    #else
+        setsockopt(sock, SOL_SOCKET, SO_REUSEADDR,
+             reinterpret_cast<const void *>(&yes), sizeof(yes));
+    #endif
     }
-}
+} // namespace httplib
 
 #endif //!__UTIL_H__

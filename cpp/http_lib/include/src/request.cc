@@ -55,7 +55,9 @@ namespace httplib {
     auto Request::get_file_values(const std::string &key) const -> MultipartFormDataItems {
         MultipartFormDataItems values;
         auto rng = _files.equal_range(key);
-        std::copy(rng.first, rng.second, values.begin());
+        std::transform(rng.first, rng.second, std::back_inserter(values), [](const auto& var){
+            return var.second;
+        });
         return values;
     }
     auto Request::is_multi_form_data() const -> bool {

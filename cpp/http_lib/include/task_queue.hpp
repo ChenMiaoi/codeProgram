@@ -12,7 +12,7 @@ namespace httplib {
 
         virtual auto enqueue(std::function<void(void)> fn) -> void = 0;
         virtual auto shutdown() -> void = 0;
-        virtual auto on_idle()  -> void = 0;
+        // virtual auto on_idle()  -> void = 0;
     };
 }
 
