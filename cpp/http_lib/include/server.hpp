@@ -51,6 +51,21 @@ namespace httplib {
         auto Patch (const std::string &pattern, HandlerWithContentReader handler) -> Server&;
         auto Delete(const std::string &pattern, HandlerWithContentReader handler) -> Server&;
 
+        auto set_base_dir(const std::string& dir, const std::string& mount_point = {}) -> bool;
+        auto set_mount_point(const std::string& mount_point, const std::string& dir, Headers headers = {}) -> bool;
+        auto remove_mount_point(const std::string& mount_point) -> bool;
+
+        auto set_file_extension_mimetype_mapping(const std::string& ext, const std::string& mime) -> Server&;
+        auto set_default_file_mimetype(const std::string& mime) -> Server&;
+        auto set_error_handler(Handler handler) -> Server&;
+        auto set_error_handler(HandlerWithResponse handler) -> Server&;
+        auto set_exception_handler(ExceptionHandler handler) -> Server&;
+        auto set_pre_routing_handler(HandlerWithResponse handler) -> Server&;
+        auto set_post_routing_handler(Handler handler) -> Server&;
+
+        auto set_expect_100_continue_handler(Expect100ContinueHandler handler) -> Server&;
+        auto set_logger(Logger logger) -> Server&;
+
     private:
         auto make_matcher(const std::string& pattern) -> std::unique_ptr<detail::MatcherBase>;
 
@@ -84,6 +99,7 @@ namespace httplib {
         std::atomic<bool> _is_running {false};
         std::atomic<bool> _done {false};
         std::vector<MountPointEntry> _base_dirs;
+        std::string _default_file_mimetype = "application/octet-stream";
         std::map<std::string, std::string> _file_extension_mimetype;
         std::function<TaskQueue*(void)> _new_stack_queue;
 

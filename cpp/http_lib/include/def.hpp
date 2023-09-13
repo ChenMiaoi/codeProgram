@@ -3,6 +3,7 @@
 
 #include "detail.hpp"
 
+#include <iostream>
 #include <cstddef>
 #include <cstdint>
 #include <functional>
@@ -16,6 +17,7 @@
 #include <sys/types.h>
 #include <utility>
 #include <vector>
+#include <sys/stat.h>
 
 const int INVALID_SOCKET = -1;
 const size_t CPPHTTPLIB_PAYLOAD_MAX_LENGTH         = 

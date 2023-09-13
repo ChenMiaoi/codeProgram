@@ -59,6 +59,10 @@ namespace httplib {
         private:
             ContentProviderWithoutLength _content_provider;
         };
+        inline bool is_dir(const std::string& path) {
+            struct stat st;
+            return stat(path.c_str(), &st) >= 0 && S_ISDIR(st.st_mode);
+        }
     } // namespace detail
 
     inline void defaul_socket_options(socket_t sock) {

@@ -38,6 +38,11 @@ namespace httplib {
             }
             if (last_param_end < pattern.length())
                 _static_fragments.push_back(pattern.substr(last_param_end));
+
+            for (int i = 0; i < _static_fragments.size(); i++) {
+                std::cout << "[Debug]: " << "\n\tfragments: " << _static_fragments[i] 
+                                        << "\n\tname: " << _param_names[i] << std::endl;
+            }
         }
         auto PathParamsMatcher::match(Request &request) const -> bool {
             request.set_matches();
