@@ -63,6 +63,13 @@ namespace httplib {
             struct stat st;
             return stat(path.c_str(), &st) >= 0 && S_ISDIR(st.st_mode);
         }
+        inline int shutdown_socket(socket_t sock) {
+            return shutdown(sock, SHUT_RDWR);
+        }
+        inline int close_socket(socket_t sock) {
+            return close(sock);
+        }
+
     } // namespace detail
 
     inline void defaul_socket_options(socket_t sock) {

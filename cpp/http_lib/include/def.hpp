@@ -17,6 +17,7 @@
 #include <sys/types.h>
 #include <utility>
 #include <vector>
+#include <unistd.h>
 #include <sys/stat.h>
 
 const int INVALID_SOCKET = -1;
