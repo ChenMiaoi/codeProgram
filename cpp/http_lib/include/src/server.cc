@@ -1,12 +1,30 @@
 #include "../server.hpp"
 #include "def.hpp"
+#include "detail.hpp"
+#include "stream.hpp"
+#include "task_queue.hpp"
+#include "util.hpp"
+#include <asm-generic/errno-base.h>
+#include <asm-generic/socket.h>
 #include <atomic>
+#include <bits/types/struct_timeval.h>
 #include <cassert>
+#include <cerrno>
+#include <chrono>
+#include <cstddef>
+#include <memory>
+#include <netdb.h>
+#include <netinet/in.h>
+#include <sys/socket.h>
+#include <thread>
 
 namespace httplib {
     Server::Server(): _new_stack_queue([]() -> TaskQueue* {
         return new ThreadPool(CPPHTTPLIB_THREAD_POOL_COUNT);
     }) {}
+    auto Server::is_valid() const -> bool {
+        return true;
+    }
     auto Server::Get(const std::string &pattern, Handler handler) -> Server& {
         std::cout << "[Debug]: " << "entry the Get, pattern: " << pattern << std::endl;
         _get_handlers.push_back(
@@ -206,10 +224,98 @@ namespace httplib {
         std::cout << "[Debug]: " << "entry the make_matcher, RegexMatcher" << std::endl;
         return std::make_unique<detail::RegexMatcher>(pattern);
     }
+    auto Server::__create_server_socket(const std::string& host, int port, int socket_flags, 
+        SocketOptions socket_option) const -> socket_t {
+        return detail::create_socket(host, {}, port, _address_family, socket_flags, _tcp_nodelay, 
+            std::move(_socket_options), [](socket_t sock, struct addrinfo& ai) -> bool {
+                if (::bind(sock, ai.ai_addr, static_cast<socklen_t>(ai.ai_addrlen)))
+                    return false;
+                if (::listen(sock, CPPHTTPLIB_LISTEN_BACKLOG))
+                    return false;
+                return true;
+            });
+    }
     auto Server::__bind_internal(const std::string& host, int port, int socket_flags) -> int {
-        return {};
+        if (!is_valid()) return -1;
+
+        _svr_sock = __create_server_socket(host, port, socket_flags, _socket_options);
+        if (_svr_sock == INVALID_SOCKET) 
+            return -1;
+
+        if (port == 0) {
+            struct sockaddr_storage addr;
+            socklen_t addr_len = sizeof addr;
+            if (getsockname(_svr_sock, reinterpret_cast<struct sockaddr*>(&addr), &addr_len) == -1)
+                return -1;
+            if (addr.ss_family == AF_INET) 
+                return ntohs(reinterpret_cast<struct sockaddr_in*>(&addr)->sin_port);
+            else if (addr.ss_family == AF_INET6) 
+                return ntohs(reinterpret_cast<struct sockaddr_in6*>(&addr)->sin6_port);
+            else 
+                return -1;
+        } else {
+            return port;
+        }
     }
     auto Server::__listen_internal() -> bool {
-        return {};
+        auto ret = true;
+        _is_running = true;
+
+        auto se = detail::scope_exit([&]() { _is_running = false; });
+        {
+            std::unique_ptr<TaskQueue> task_queue(_new_stack_queue());
+            while (_svr_sock != INVALID_SOCKET) {
+                if (_idle_interval_sec > 0 || _idle_interval_usec > 0) {
+                    auto val = detail::select_read(_svr_sock, _idle_interval_sec, _idle_interval_usec);
+                    if(val == 0) {
+                        task_queue->on_idle();
+                        continue;
+                    }
+                }
+                socket_t sock = accept(_svr_sock, nullptr, nullptr);
+                if (sock == INVALID_SOCKET) {
+                    if (errno == EMFILE) {
+                        std::this_thread::sleep_for(std::chrono::milliseconds(1));
+                        continue;
+                    } else if (errno == EINTR || errno == EAGAIN) {
+                        continue;
+                    }
+                    if (_svr_sock != INVALID_SOCKET) {
+                        detail::close_socket(_svr_sock);
+                        ret = false;
+                    } else { // 服务器的socket由用户关闭 
+                    
+                    }
+                    break;
+                }
+                {
+                    timeval tv;
+                    tv.tv_sec  = static_cast<long>(_read_timeout_sec);
+                    tv.tv_usec = static_cast<decltype(tv.tv_usec)>(_read_timeout_usec);
+                    setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, reinterpret_cast<const void*>(&tv), sizeof(tv));
+                }
+                {
+                    timeval tv;
+                    tv.tv_sec  = static_cast<long>(_write_timeout_sec);
+                    tv.tv_usec = static_cast<decltype(tv.tv_usec)>(_write_timeout_usec);
+                    setsockopt(sock, SOL_SOCKET, SO_SNDTIMEO, reinterpret_cast<const void*>(&tv), sizeof(tv));
+                }
+                task_queue->enqueue([this, sock]() { __process_close_socket(sock); });
+            }
+            task_queue->shutdown();
+        }
+        return ret;
+    }
+
+    auto Server::__process_close_socket(socket_t sock) -> bool {
+        auto ret = detail::process_server_socket(_svr_sock, sock, _keep_alive_max_count, _keep_alive_timeout_sec, 
+            _read_timeout_sec, _read_timeout_usec, _write_timeout_sec, _write_timeout_usec, 
+            [this](Stream& strm, bool close_connection, bool& connection_closed) {
+                return process_request(strm, close_connection, connection_closed, nullptr);
+            });
+
+        detail::shutdown_socket(sock);
+        detail::close_socket(sock);
+        return ret;
     }
 }

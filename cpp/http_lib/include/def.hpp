@@ -18,12 +18,20 @@
 #include <utility>
 #include <vector>
 #include <unistd.h>
+#include <fcntl.h>
+#include <resolv.h>
+#include <sys/un.h>
 #include <sys/stat.h>
+#include <poll.h>
+#include <netdb.h>
+#include <arpa/inet.h>
+#include <netinet/tcp.h>
 
 const int INVALID_SOCKET = -1;
 const size_t CPPHTTPLIB_PAYLOAD_MAX_LENGTH         = 
             std::numeric_limits<size_t>::max();
 const bool CPPHTTPLIB_TCP_NODELAY                  = false;
+const int CPPHTTPLIB_LISTEN_BACKLOG                = 5;
 
 const size_t CPPHTTPLIB_READ_TIMEOUT_SECOND        = 5;
 const size_t CPPHTTPLIB_READ_TIMEOUT_USECOND       = 0;

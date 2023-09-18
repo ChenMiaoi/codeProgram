@@ -40,6 +40,7 @@ namespace httplib {
     public:
         Server();
         virtual ~Server() = default;
+        virtual auto is_valid() const -> bool;
     
     public:
         auto Get (const std::string &pattern, Handler handler) -> Server&;
@@ -113,7 +114,7 @@ namespace httplib {
         auto __make_matcher(const std::string& pattern) -> std::unique_ptr<detail::MatcherBase>;
 
         // support function
-        auto __create_socket(const std::string& host, int port, int socket_flags, 
+        auto __create_server_socket(const std::string& host, int port, int socket_flags, 
             SocketOptions socket_option) const                                          -> socket_t;
         auto __bind_internal(const std::string& host, int port, int socket_flags)       -> int;
         auto __listen_internal() -> bool;
@@ -140,7 +141,7 @@ namespace httplib {
         auto __read_content_core(Stream &strm, Request &req, Response &res, 
                         ContentRecevier receiver, MultipartContentHeader multipart_header,
                         ContentRecevier multipart_receiver)                             -> bool;
-        // auto virtual __process_close_socket(socket_t sock)                              -> bool;
+        auto virtual __process_close_socket(socket_t sock)                              -> bool;
 
     protected:
         std::atomic<socket_t> _svr_sock {INVALID_SOCKET};
