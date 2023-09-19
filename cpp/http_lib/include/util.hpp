@@ -2,14 +2,13 @@
 #define __UTIL_H__
 
 #include "def.hpp"
+#include "stream.hpp"
 #include "data_deal/data_sink.hpp"
 
+#include <cassert>
+#include <chrono>
 #include <algorithm>
-#include <asm-generic/errno-base.h>
-#include <asm-generic/socket.h>
 #include <atomic>
-#include <bits/types/struct_timeval.h>
-#include <bits/types/time_t.h>
 #include <cerrno>
 #include <cstddef>
 #include <cstdint>
@@ -26,6 +25,7 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <sys/un.h>
+#include <thread>
 
 namespace httplib {
     namespace detail {    
@@ -71,6 +71,41 @@ namespace httplib {
             }
         private:
             ContentProviderWithoutLength _content_provider;
+        };
+
+        class SocketStream: public Stream {
+        public:
+            SocketStream(socket_t sock, time_t read_timeout_sec, time_t read_timeout_usec, 
+                time_t write_timeout_sec, time_t write_timeout_usec)
+                : _sock(sock)
+                , _read_timeout_sec(read_timeout_sec)
+                , _read_timeout_usec(read_timeout_usec)
+                , _write_timeout_sec(write_timeout_sec)
+                , _write_timeout_usec(write_timeout_usec)
+                , _read_buf(_read_buf_size, 0) {}
+            ~SocketStream() override {};
+
+        public:
+            auto is_readable() const -> bool override;
+            auto is_writable() const -> bool override;
+            auto read(char* ptr, size_t size)        -> ssize_t override;
+            auto write(const char* ptr, size_t size) -> ssize_t override;
+            auto socket() const -> socket_t override;
+            auto get_remote_info(std::string& ip, int& port) const -> void override; 
+            auto get_local_info(std::string& ip, int& port)  const -> void override; 
+
+        private:
+            socket_t _sock;
+            time_t _read_timeout_sec;
+            time_t _read_timeout_usec;
+            time_t _write_timeout_sec;
+            time_t _write_timeout_usec;
+
+            std::vector<char> _read_buf;
+            size_t _read_buf_off = 0;
+            size_t _read_buf_content_off = 0;
+
+            inline static size_t _read_buf_size = 1024 * 4;
         };
         inline bool is_dir(const std::string& path) {
             struct stat st;
@@ -200,25 +235,124 @@ namespace httplib {
             tv.tv_sec  = static_cast<long>(sec);
             tv.tv_usec = static_cast<decltype(tv.tv_usec)>(usec);
 
-            return handle_eintr([&]() { // 当select返回-1且错误为EINTR时不断重试
+            return handle_eintr([&]() -> ssize_t { // 当select返回-1且错误为EINTR时不断重试
                 return select(static_cast<int>(sock + 1), &fds, nullptr, nullptr, &tv);
             });
+        }
+        inline bool select_write(socket_t sock, time_t sec, time_t usec) {
+        #ifdef CPPHTTPLIB_USE_POLL
+            struct pollfd pfd_read;
+            pfd_read.fd = sock;
+            pfd_read.events = POLL_OUT;
+
+            auto timeout = static_cast<int>(sec * 1000 + usec / 1000);
+
+            return handle_eintr([&]() {
+                return poll(&pfd_read, 1, timeout);
+            });
+        #endif
+            if (sock >= FD_SETSIZE) return 1;
+
+            fd_set fds;
+            FD_ZERO(&fds);
+            FD_SET(sock, &fds);
+
+            timeval tv;
+            tv.tv_sec  = static_cast<long>(sec);
+            tv.tv_usec = static_cast<decltype(tv.tv_usec)>(usec);
+
+            return handle_eintr([&]() -> ssize_t {
+                return select(static_cast<int>(sock + 1), nullptr, &fds, nullptr, &tv);
+            });
+        }
+        inline ssize_t read_socket(socket_t sock, void *ptr, size_t size, int flags) {
+            return handle_eintr([&]() -> ssize_t {
+                return recv(sock, ptr, size, flags);
+            });
+        }
+        inline bool is_socket_alive(socket_t sock) {
+            const auto val = detail::select_read(sock, 0, 0);
+            if (val == 0) return true;
+            else if (val < 0 && errno == EBADF) return false;
+            
+            char buf[1];
+            return detail::read_socket(sock, &buf[0], sizeof(buf), MSG_PEEK) > 0;
+        }
+        inline bool keep_alive(socket_t sock, time_t keep_alive_timeout_sec) {
+            auto start = std::chrono::steady_clock::now();
+            
+            while (true) {
+                auto val = select_read(sock, 0, 10000);
+                if (val < 0) {
+                    return false;
+                } else if (val == 0) {
+                    auto current = std::chrono::steady_clock::now();
+                    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(current - start);
+                    auto timeout = keep_alive_timeout_sec * 1000;
+                    if (duration.count() > timeout)
+                        return false;
+                    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+                } else {
+                    return true;
+                }
+            }
         }
 
         template <typename T>
         inline bool process_server_socket_core(const std::atomic<socket_t> &svr_sock, socket_t sock, size_t keep_alive_max_count,
             time_t keep_alive_timeout_sec, T callback) {
-            /* TODO */
-            return {};
+            assert(keep_alive_max_count > 0);
+
+            auto ret = false;
+            auto count = keep_alive_max_count;
+
+            while (svr_sock != INVALID_SOCKET && count > 0 && keep_alive(sock, keep_alive_timeout_sec)) {
+                auto close_connection = count == 1;
+                auto connection_closed = false;
+
+                ret = callback(close_connection, connection_closed);
+                if (!ret || connection_closed)
+                    break;
+                count--;
+            }
+            return ret;
         }
 
         template <typename T>
         inline bool process_server_socket(const std::atomic<socket_t>& svr_sock, socket_t sock, size_t keep_alive_max_count, time_t keep_alive_timeout_sec, 
             time_t read_timeout_sec, time_t read_timeout_usec, time_t write_timeout_sec, time_t write_timeout_usec, T callback) {
-            /* TODO */
-            return {};
+            return process_server_socket_core(svr_sock, sock, keep_alive_max_count, keep_alive_timeout_sec, 
+                [&](bool close_connection, bool& connection_closed) {
+                    SocketStream strm(sock, read_timeout_sec, read_timeout_usec, write_timeout_sec, write_timeout_usec);
+                    return callback(strm, close_connection, connection_closed);
+                });
         }
     } // namespace detail
+
+    namespace detail {
+        inline auto SocketStream::is_readable() const -> bool {
+            return select_read(_sock, _read_timeout_sec, _read_timeout_usec) > 0;
+        }
+        inline auto SocketStream::is_writable() const -> bool {
+            return select_write(_sock, _write_timeout_sec, _write_timeout_usec) > 0 &&
+                is_socket_alive(_sock);
+        }
+        inline auto SocketStream::read(char *ptr, size_t size) -> ssize_t {
+            return {};
+        }
+        inline auto SocketStream::write(const char *ptr, size_t size) -> ssize_t {
+            return {};
+        }
+        inline auto SocketStream::get_remote_info(std::string &ip, int &port) const -> void {
+
+        }
+        inline auto SocketStream::get_local_info(std::string &ip, int &port) const -> void {
+
+        }
+        inline auto SocketStream::socket() const -> socket_t{
+            return {};
+        }
+    }
 
     inline void defaul_socket_options(socket_t sock) {
         int yes = 1;

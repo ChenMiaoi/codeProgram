@@ -216,6 +216,10 @@ namespace httplib {
 
 /* for support private */
 namespace httplib {
+    auto Server::process_request(Stream& strm, bool close_connection, bool& connection_closed, 
+            const std::function<void(Request&)>& setup_reqeust) -> bool {
+        return {};
+    }
     auto Server::__make_matcher(const std::string& pattern) -> std::unique_ptr<detail::MatcherBase> {
         if (pattern.find("/:") != std::string::npos) {
             std::cout << "[Debug]: " << "entry the make_matcher, PathParamsMatcher" << std::endl;
