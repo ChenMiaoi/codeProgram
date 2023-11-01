@@ -4,6 +4,9 @@
 #include "symbol/global.h"
 #include "symbol/parse.h"
 #include "../config"
+#include "util/util.h"
+
+using namespace rvc;
 
 int main(int argc, char* argv[]) {
     int libc = 1;
@@ -36,7 +39,7 @@ int main(int argc, char* argv[]) {
     }
 
     if (!in) {
-        ERROR("Missing source file!");
+        erron << "Missing source file!";
         return -1;
     }
     if (libc) {

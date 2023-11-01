@@ -1,7 +1,7 @@
 #ifndef __GLOBAL_H__
 #define __GLOBAL_H__
 
-#include "../defs.h"
+#include "../def/defs.h"
 #include "../util/util.h"
 
 #include <string>
@@ -15,7 +15,7 @@ typedef struct global {
     int types_idx       = 0;
     int global_ir_idx   = 0;
     int ph1_ir_idx      = 0;
-    int ph2_ir_idx      = 0;
+    int ph2_ir_idx      = 0;    
     int label_lut_idx   = 0;
     int aliases_idx     = 0;
     int constants_idx   = 0;
@@ -36,11 +36,15 @@ typedef struct global {
     
     std::string             source;
 
-    type_t* add_type();
     type_t* add_type_name(const std::string& name);
     type_t* add_type_name(const std::string& name, const base_type_t base);
 
     block_t* add_block(block_t* parent, func_t* func, macro_t* macro);
+
+    void add_alias(const std::string& alias, const std::string& value);
+
+    func_t* add_func(const std::string& name);
+    // int insert_trie(trie_t* trie, const std::string& name, int funcs_index);
 } global_t;
 
 typedef struct elf {
@@ -62,7 +66,8 @@ typedef struct elf {
     std::string elf_strtab;
     std::string elf_section;
 
-    void elf_add_symbol(std::string symbol, int len, int pc);
+    void elf_add_symbol(const std::string& symbol, int len, int pc);
+    int elf_write_int(std::string& buf, int index, int val);
     void elf_write_symbol_int(int val);
 } elf_t;
 

@@ -30,14 +30,16 @@ endif()
 
 set(SYMBOL src/symbol)
 set(UTIL src/util)
+set(DEFS src/def)
 
 add_library(libps ${SYMBOL}/parse.cc)
 add_library(libgb ${SYMBOL}/global.cc)
 add_library(libut ${UTIL}/util.cc)
+add_library(libdf ${DEFS}/defs.cc)
 
 add_executable(miao src/main.cc)
 # add_dependencies(miao generate_libc)
 
 target_link_libraries(
-    miao libgb libps libut # libc.inc
+    miao libgb libps libut libdf # libc.inc
 )

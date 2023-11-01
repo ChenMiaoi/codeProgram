@@ -14,16 +14,18 @@ void parse::run() {
     parse_internal();
 
     // for (int i = 0; i < global_config.types_idx; i++) {
-    //     printf("%s\n", global_config.types[i].type_name.c_str());
+    //     INFO(global_config.types[i].type_name);
     // }
 }
 
 void __load_source_file(const std::string& file) {
     std::ifstream steam(file);
     // steam.open(file, std::ios::in | std::ios::binary);
-    INFO("entry " + file);
+    // INFO("entry " + file);
+    info << "entry " << file;
     if (!steam.is_open()) {
-        ERROR("can't open this file <" + file + ">");
+        // ERROR("can't open this file <" + file + ">");
+        fatal << "can't open this file <" << file << ">";
         return;
     }
     std::string buffer;
@@ -54,4 +56,13 @@ void parse::parse_internal() {
 
     static_cast<void>(global_config.add_block(nullptr, nullptr, nullptr));
     elf_config.elf_add_symbol("", 0, 0);
+
+    global_config.add_alias(ARCH_PREDEFINED, "1");
+
+    fn = global_config.add_func("__syscall");
+
+    // INFO("func = " + fn->return_def.var_name);
+    info << "func = " << fn->return_def.var_name;
+    // INFO("func_tries_idx = " + std::to_string(global_config.func_tries_idx));
+    info << "func_tries_idx = " << std::to_string(global_config.func_tries_idx);
 }

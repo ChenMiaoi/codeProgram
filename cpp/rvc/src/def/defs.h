@@ -1,8 +1,12 @@
 #ifndef __DEFS_H__
 #define __DEFS_H__
 
+#include "../../config"
+#include "../util/util.h"
+
 #include <string>
 #include <vector>
+#include <functional>
 
 constexpr const int MAX_CODE        = 262144;
 constexpr const int MAX_DATA        = 262144;
@@ -24,6 +28,20 @@ constexpr const int MAX_FUNC_TRIES  = 1356;
 
 constexpr const int ELF_START       = 0x10000;
 constexpr const int REG_COUNT       = 8;
+
+struct opcode;
+struct var;
+struct macro;
+struct func;
+struct block_t;
+struct ph1_ir;
+struct label_lut;
+struct regfile;
+struct ph2_ir;
+struct type;
+struct alias;
+struct constant;
+struct trie;
 
 /*
 * 
@@ -73,6 +91,8 @@ typedef struct func {
     int                 num_params;         // 形参列表个数
     bool                is_va_args;         // 是否是可变参
     int                 stack_size;         // 函数堆栈大小，总是开始在第四字节
+
+    func* add_func(const std::string& name, int& funcs_index, trie* func_tries, int& func_tries_index);
 } func_t;
 
 typedef struct block_t {
@@ -85,6 +105,8 @@ typedef struct block_t {
     macro_t*            macro;              // 当前块所属的宏
     int                 locals_size;        // 局部变量数量
     int                 index;              // 当前块索引
+
+    block_t* add_block(int index, block_t *parent, func_t *func, macro_t *macro);
 } block_t;
 
 typedef struct ph1_ir {
@@ -139,6 +161,10 @@ typedef struct type {
     int                 size;               // 类型大小
     std::vector<var_t>  fields;             // 字段
     int                 num_fields;         // 字段数量
+
+    type* add_type(int& type_idx);
+    void add_type_name(const std::string& name);
+    void add_type_name(const std::string& name, const base_type_t base);
 } type_t;
 
 typedef struct lvalue {
@@ -155,6 +181,8 @@ typedef struct alias {
     std::string alias;                      // 假名名称
     std::string value;                      // 变量名
     bool        disabled;                   // 是否可用
+
+    void add_alias(int& aliases_idx, const std::string &alias, const std::string &value);
 } alias_t;
 
 /*
@@ -173,6 +201,8 @@ typedef struct constant {
 typedef struct trie {
     int index;                              // 索引值
     int next[128];                          // 当前节点的子节点
+
+    int insert_trie(const std::string& name, int func_index, int& func_tries_index);
 } trie_t;
 
 #endif //! __DEFS_H__
