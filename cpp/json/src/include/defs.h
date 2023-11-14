@@ -21,6 +21,16 @@
 #   define SIMPLE_JSON_NESTING_LIMIT    1000
 #endif //! SIMPLE_JSON_NESTING_LIMIT
 
+constexpr const int SIMPLE_JSON_INVALID = 0;
+constexpr const int SIMPLE_JSON_FALSE   = 1 << 0;
+constexpr const int SIMPLE_JSON_TRUE    = 1 << 1;
+constexpr const int SIMPLE_JSON_NULL    = 1 << 2;
+constexpr const int SIMPLE_JSON_NUMBER  = 1 << 3;
+constexpr const int SIMPLE_JSON_STRING  = 1 << 4;
+constexpr const int SIMPLE_JSON_ARRAY   = 1 << 5;
+constexpr const int SIMPLE_JSON_OBJECT  = 1 << 6;
+constexpr const int SIMPLE_JSON_RAW     = 1 << 7;
+
 #include "log.h"
 
 #endif //! __SIMPLE_JSON_DEFS_H__

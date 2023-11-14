@@ -15,5 +15,5 @@ int main(int, char**){
     test.version();
 
     using namespace std::string_literals;
-    test.parse("{}"s);
+    auto json = test.parse("    true"s);
 }

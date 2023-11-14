@@ -26,6 +26,14 @@ typedef class simple_json {
 
     parse_buffer buffer;
     error global_error;
+protected:
+    EXTERN(__self) new_item();
+
+    EXTERN(bool) parse_value(__self const item, parse_buffer* const input_buffer);
+    EXTERN(bool) parse_string();
+    EXTERN(bool) parse_number();
+    EXTERN(bool) parse_array();
+    EXTERN(bool) parse_object();
 public:
     EXTERN(const std::string) version(void);
     EXTERN(__self) parse(const std::string& value);
@@ -34,9 +42,6 @@ public:
         const char** return_parse_end, bool require_null_terminated);
     EXTERN(__self) parse_with_len_opts(const std::string& value, size_t len, 
         const char** return_parse_end, bool require_null_terminated);
-    
-    EXTERN(__self) new_item();
-    EXTERN(bool) parse_value(__self const item, parse_buffer* const input_buffer);
 } simple_json;
 
 typedef class simple_json_hooks {
