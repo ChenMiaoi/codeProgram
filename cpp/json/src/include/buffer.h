@@ -60,8 +60,8 @@ EXTERN(bool) cannot_access_at_index(const T* buffer, size_t index) {
  * ex. "   null" -> "null", "   " is offset long
  */
 template<typename T, typename = std::enable_if_t<is_parse_buffer_v<T>>>
-EXTERN(const char*) buffer_at_offset(const T* buffer) {
-    return (buffer->content).substr(buffer->offset).c_str();
+EXTERN(std::string) buffer_at_offset(const T* buffer) {
+    return (buffer->content).substr(buffer->offset);
 }
 
 #endif //! __SIMPLE_JSON_BUFFER_H__
