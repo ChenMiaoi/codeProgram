@@ -1,10 +1,12 @@
 include ./common.mk
 
-SRCS_ASM = \
-	start.S	\
+SRCS_ASM = 		\
+	start.S		\
+	mem.S
 	
-SRCS_C	 = \
-	kernel.c \
+SRCS_C	 = 		\
+	kernel.c 	\
+	uart.c		\
 
 # .S -> .o
 OBJS  = ${SRCS_ASM: .S=.o}
@@ -16,7 +18,7 @@ all: os.elf
 
 # .o -> .elf
 os.elf: ${OBJS}
-	${CC} ${CFLAGS} -Ttext=0x80000000 -o os.elf $^
+	${CC} ${CFLAGS} -T os.ld -o os.elf $^
 	${OBJCOPY} -O binary os.elf os.bin
 
 # .c -> .o
