@@ -7,6 +7,8 @@ SRCS_ASM = 		\
 SRCS_C	 = 		\
 	kernel.c 	\
 	uart.c		\
+	printf.c	\
+	mm.c		\
 
 # .S -> .o
 OBJS  = ${SRCS_ASM: .S=.o}
@@ -41,9 +43,20 @@ debug: all
 	@${QEMU} ${QFLAGS} -kernel os.elf -s -S &
 	@${GDB} os.elf -q -x ./gdbinit
 
+.PHONY : dash-debug
+dash-debug: all
+	@echo "Press Ctrl-C and then input 'quit' to exit GDB and QEMU"
+	@echo "-------------------------------------------------------"
+	@${QEMU} ${QFLAGS} -kernel os.elf -S &
+	@${GDB} os.elf -q
+
 .PHONY : code
 code: all
 	@${OBJDUMP} -S os.elf | less
+
+.PHONY : dump
+dump: all
+	@${OBJREAD} -S os.elf | less
 
 .PHONY : clean
 clean:

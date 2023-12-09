@@ -4,13 +4,19 @@
 #include "types.h"
 #include "platform.h"
 
+#include <stddef.h>
+#include <stdarg.h>
+
 /* uart.c */
 extern int uart_init(void);
 extern int uart_putc(char c);
 extern int uart_puts(char* s);
 
 /* printf.c */
+extern int  printf(const char* fmt, ...);
+extern void panic(const char* s);
 
-/* memory.c */
+/* mm.c */
+extern void page_init(void);
 
 #endif //! __OS_H

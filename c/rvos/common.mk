@@ -9,3 +9,4 @@ GDB = gdb-multiarch
 # GDB = ${CROSS_COMPILE}
 OBJDUMP = ${CROSS_COMPILE}objdump
 OBJCOPY = ${CROSS_COMPILE}objcopy
+OBJREAD = ${CROSS_COMPILE}readelf

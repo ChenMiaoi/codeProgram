@@ -1,9 +1,8 @@
-extern void uart_init(void);
-extern void uart_puts(char* s);
+#include "os.h"
 
 void __main__(void) {
     uart_init();
-    uart_puts("hello world\n");
+    page_init();
 
     while (1) ;
 }
