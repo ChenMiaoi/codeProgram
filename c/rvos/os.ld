@@ -49,8 +49,12 @@ SECTIONS {
 
     .data : {
         /* 这里声明了，.data段是对齐4096KB的，因为我们的页表大小为4096KB */
-        . = ALIGN(4096);
+        /**! BUG 这里有一个问题，如果 `. = ALIGN(4096)`在前面，就会导致后面内核中获取
+         * ! DATA_START的位置直接变化为BSS_START，而BSS_START和DATA_END是相等的，
+         * ! 这就意味着，DATA_START = DATA_END，导致了DATA段直接为0 
+         */
         PROVIDE(_data_start = .);
+        . = ALIGN(4096);
 
         /* .sdata不是一个标准的ELF段，常规下和.data一样，
             特殊情况用于存储特殊类型数据，比如大小端，数据对齐 */
