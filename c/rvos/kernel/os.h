@@ -21,4 +21,12 @@ extern void  page_init(void);
 extern void* page_alloc(int npages);
 extern void  page_free(void* p);
 
+/* sched.c */
+#include "sched.h"
+extern void sched_init(void);
+extern void schedule(void);
+extern int  task_create(void (*task)(void));
+extern void task_delay(volatile int count);
+extern void task_yield();
+
 #endif //! __OS_H

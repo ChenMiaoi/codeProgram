@@ -1,63 +1,36 @@
 include ./common.mk
 
-SRCS_ASM = 		\
-	start.S		\
-	mem.S
-	
-SRCS_C	 = 		\
-	kernel.c 	\
-	uart.c		\
-	printf.c	\
-	mm.c		\
+export CROSS_COMPILE CFLAGS QEMU QFLAGS \
+	CC GDB OBJDUMP OBJCOPY OBJREAD
 
-# .S -> .o
-OBJS  = ${SRCS_ASM: .S=.o}
-# .c -> .o
-OBJS += ${SRCS_C:   .c=.o}
+.PHONY: all run debug dash-debug code dump clean 
 
-.DEFAULT_GOAL := all
-all: os.elf
+SUB := kernel
 
-# .o -> .elf
-os.elf: ${OBJS}
-	${CC} ${CFLAGS} -T os.ld -o os.elf $^
-	${OBJCOPY} -O binary os.elf os.bin
+all: subdirs
+	@echo "Building the os"
 
-# .c -> .o
-%.o : %.c
-	${CC} ${CFLAGS} -c -o $@ $^
-# .S -> .o
-%.o : %.S
-	${CC} ${CFLAGS} -c -o $@ $^
+subdirs:
+	for dir in $(SUB); do \
+		$(MAKE) -C $$dir;\
+	done
 
 run: all
-	@${QEMU} -M ? | grep virt >/dev/null || exit
-	@echo "Press Ctrl-A and then X to exit QEMU"
-	@echo "------------------------------------"
-	@${QEMU} ${QFLAGS} -kernel os.elf
+	$(MAKE) -C kernel run
 
-.PHONY : debug
 debug: all
-	@echo "Press Ctrl-C and then input 'quit' to exit GDB and QEMU"
-	@echo "-------------------------------------------------------"
-	@${QEMU} ${QFLAGS} -kernel os.elf -s -S &
-	@${GDB} os.elf -q -x ./gdbinit
+	$(MAKE) -C kernel debug
 
-.PHONY : dash-debug
 dash-debug: all
-	@echo "Press Ctrl-C and then input 'quit' to exit GDB and QEMU"
-	@echo "-------------------------------------------------------"
-	@${QEMU} ${QFLAGS} -kernel os.elf -S &
-	@${GDB} os.elf -q
+	$(MAKE) -C kernel dash-debug
 
-.PHONY : code
 code: all
-	@${OBJDUMP} -S os.elf | less
+	$(MAKE) -C kernel code
 
-.PHONY : dump
 dump: all
-	@${OBJREAD} -S os.elf | less
+	$(MAKE) -C kernel dump
 
-.PHONY : clean
 clean:
-	rm -rf *.o *.bin *.elf
+	for dir in $(SUB); do \
+		$(MAKE) -C $$dir clean; \
+	done
