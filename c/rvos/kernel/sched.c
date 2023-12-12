@@ -19,15 +19,6 @@ static int _top = 0;
 static int _current = -1;
 
 /**
- * 对mscratch进行写操作
- * 
- * @param x 需要写的值
- */
-static void w_mscratch(reg_t x) {
-    asm volatile("csrw mscratch, %0" : : "r" (x));
-}
-
-/**
  * 调度的初始化程序
  * 在switch.S中我们就知道，需要对mscratch进行置零操作
  */

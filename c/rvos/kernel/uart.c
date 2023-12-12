@@ -1,3 +1,4 @@
+#include "os.h"
 #include "platform.h"
 #include "types.h"
 
@@ -152,6 +153,12 @@ void uart_init() {
      */
     lcr = 0;
     uart_write_reg(LCR, lcr | (3 << 0));
+
+	/**
+	 * 开启接收中断使能
+	 */
+	uint8_t ier = uart_read_reg(IER);
+	uart_write_reg(IER, ier | (1 << 0));
 }
 
 /**
@@ -174,5 +181,31 @@ int uart_putc(char c) {
 void uart_puts(char* s) {
 	while (*s) {
 		(void)uart_putc(*s++);
+	}
+}
+
+/**
+ * 向uart缓冲区中读取一个字符
+ * 
+ * @return int 返回读取到的字符
+ */
+int uart_getc(void) {
+	if (uart_read_reg(LSR) & LSR_RX_READY) 
+		return uart_read_reg(RHR);
+	else
+		return -1;
+}
+
+/**
+ * 测试uart外部中断调用
+ */
+void uart_isr() {
+	while (1) {
+		int c= uart_getc();
+		if (c == -1) break;
+		else {
+			uart_putc((char)c);
+			uart_putc('\n');
+		}
 	}
 }

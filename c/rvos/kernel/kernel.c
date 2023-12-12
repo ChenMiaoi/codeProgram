@@ -9,6 +9,10 @@ int main(void) {
 
     page_test();
 
+    trap_init();
+
+    plic_init();
+    
     sched_init();
 
     os_main();

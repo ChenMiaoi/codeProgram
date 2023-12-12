@@ -22,4 +22,37 @@
  */
 #define UART0 0x10000000L
 
+/**
+ * UART0_IRQ 中断源
+ * ref https://github.com/qemu/qemu/blob/master/include/hw/riscv/virt.h
+ */
+#define UART0_IRQ 10
+
+/**
+ * 板级中断PLIC
+ * ref https://github.com/qemu/qemu/blob/master/include/hw/riscv/virt.h
+ * ref https://github.com/riscv/riscv-plic-spec/blob/master/riscv-plic-1.0.0.pdf
+ * 
+ * @code {.cc}
+ * #define VIRT_PLIC_HART_CONFIG "MS"
+ * #define VIRT_PLIC_NUM_SOURCES 127
+ * #define VIRT_PLIC_NUM_PRIORITIES 7
+ * #define VIRT_PLIC_PRIORITY_BASE 0x04
+ * #define VIRT_PLIC_PENDING_BASE 0x1000
+ * #define VIRT_PLIC_ENABLE_BASE 0x2000
+ * #define VIRT_PLIC_ENABLE_STRIDE 0x80
+ * #define VIRT_PLIC_CONTEXT_BASE 0x200000
+ * #define VIRT_PLIC_CONTEXT_STRIDE 0x1000
+ * #define VIRT_PLIC_SIZE(__num_context) \
+ *     (VIRT_PLIC_CONTEXT_BASE + (__num_context) * VIRT_PLIC_CONTEXT_STRIDE)
+ * @endcode
+ */
+#define PLIC_BASE 0x0c000000L
+#define PLIC_PRIORIY(id)        (PLIC_BASE + (id) * 4)
+#define PLIC_PENDING(id)        (PLIC_BASE + 0x1000 + ((id) / 32) * 4)
+#define PLIC_MENABLE(hart)      (PLIC_BASE + 0x2000 + (hart) * 0x80)
+#define PLIC_MTHRESHOLD(hart)   (PLIC_BASE + 0x200000 + (hart) * 0x1000)
+#define PLIC_MCLAIM(hart)       (PLIC_BASE + 0x200004 + (hart) * 0x1000)
+#define PLIC_MCOMPLETE(hart)    (PLIC_BASE + 0x200004 + (hart) + 0x1000)
+
 #endif // !__PLATFORM_H__

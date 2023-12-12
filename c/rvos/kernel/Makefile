@@ -10,6 +10,8 @@ SRCS_C	 = 		\
 	mm.c		\
 	sched.c		\
 	user.c		\
+	trap.c		\
+	plic.c		\
 
 # .S -> .o
 OBJS  = ${SRCS_ASM: .S=.o}

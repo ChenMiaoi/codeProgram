@@ -65,6 +65,40 @@
 	lw t6, 120(\base)
 .endm
 
+.text
+# 当进入中断或异常时，就会陷入内核态
+# 定义的类C函数为：void trap_vector(void)
+# 在后续要进入的C函数为： reg_t trap_handler(reg_t epc, reg_t cause)
+.global trap_vector
+# 我们规定trap vector必须总是以4字节对齐的
+.align 4
+trap_vector:
+	# 此处和__switch_to逻辑类似，首先保存当前任务上下文
+	csrrw 	t6, mscratch, t6
+	reg_save t6
+
+	# 保存当前任务的mscratch
+	mv 		t5, t6
+	csrr	t6, mscratch
+	sw		t6, 120(t5)
+
+	csrw	mscratch, t5
+
+	# 对trap_handler传参
+	csrr	a0, mepc
+	csrr	a1, mcause
+	call	trap_handler
+
+	# 返回后，接收trap_handler返回值
+	csrw	mepc, a0
+
+	# 恢复上下文寄存器
+	csrr	t6, mscratch
+	reg_restore	t6
+
+	# 返回用户态
+	mret
+
 # 函数原型为： void __switch_to(context_t* next)
 # 在rv中有规定，函数传参用a0...保存
 .global __switch_to

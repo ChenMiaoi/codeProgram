@@ -7,6 +7,11 @@ void user_task0(void)
 	printf("Task 0: Created!\n");
 	while (1) {
 		printf("Task 0: Running...\n");
+
+#ifdef TRAP_TEST
+		trap_test();
+#endif
+
 		task_delay(DELAY);
 		task_yield();
 	}
