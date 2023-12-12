@@ -3,6 +3,14 @@ include ./common.mk
 export CROSS_COMPILE CFLAGS QEMU QFLAGS \
 	CC GDB OBJDUMP OBJCOPY OBJREAD
 
+ifdef TEST_TRAP
+	CFLAGS += -DTRAP_TEST
+endif
+
+ifdef TEST_IER
+	CFLAGS += -DEX_IER_TEST
+endif
+
 .PHONY: all run debug dash-debug code dump clean 
 
 SUB := kernel
