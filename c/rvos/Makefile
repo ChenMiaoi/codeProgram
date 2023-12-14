@@ -11,6 +11,10 @@ ifdef TEST_IER
 	CFLAGS += -DEX_IER_TEST
 endif
 
+ifdef TEST_TIMER
+	CFLAGS += -DTIMER_TEST
+endif
+
 .PHONY: all run debug dash-debug code dump clean 
 
 SUB := kernel

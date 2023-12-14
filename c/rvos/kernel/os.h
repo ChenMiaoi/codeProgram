@@ -44,4 +44,9 @@ extern void plic_init(void);
 extern int  plic_claim(void);
 extern void plic_complete(int irq);
 
+/* timer.c */
+extern void timer_init(void);
+extern void timer_load(int interval);
+extern void timer_handler(void);
+
 #endif //! __OS_H

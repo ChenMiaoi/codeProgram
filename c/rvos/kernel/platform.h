@@ -55,4 +55,29 @@
 #define PLIC_MCLAIM(hart)       (PLIC_BASE + 0x200004 + (hart) * 0x1000)
 #define PLIC_MCOMPLETE(hart)    (PLIC_BASE + 0x200004 + (hart) + 0x1000)
 
+/**
+ * 在Qemu-virt模拟的板级硬件上，有一个CLINT(Core Local INTerruptor)模块与软件定时器
+ * 中断有关
+ * ref https://gitee.com/qemu/qemu/blob/master/include/hw/riscv/sifive_clint.h
+ * 
+ * @code {.cc}
+ * enum {
+ * 	SIFIVE_SIP_BASE     = 0x0,
+ * 	SIFIVE_TIMECMP_BASE = 0x4000,
+ * 	SIFIVE_TIME_BASE    = 0xBFF8
+ * };
+ *
+ * enum {
+ * 	SIFIVE_CLINT_TIMEBASE_FREQ = 10000000
+ * };
+ * @endcode
+ */
+#define CLINT_BASE 0x20000000L
+#define CLINT_MSIP(hart) (CLINT_BASE + 4 * (hart))
+#define CLINT_MTIME_CMP(hart) (CLINT_BASE + 0x4000 + 8 * (hart))
+#define CLINT_MTIME (CLINT_BASE + 0xBFF8)
+
+/* 10000000 ticks每秒 */
+#define CLINT_TIMEBASE_FREQ 10000000
+
 #endif // !__PLATFORM_H__

@@ -12,6 +12,8 @@ int main(void) {
     trap_init();
 
     plic_init();
+
+    timer_init();
     
     sched_init();
 

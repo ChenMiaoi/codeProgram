@@ -36,6 +36,9 @@ reg_t trap_handler(reg_t epc, reg_t cause) {
             break;
         case 7:
             printf("timer interruption!\n");
+        #ifdef TIMER_TEST
+            timer_handler();
+        #endif
             break;
         case 11:
             printf("external interruption!\n");
