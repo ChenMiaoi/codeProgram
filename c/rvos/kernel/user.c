@@ -5,6 +5,9 @@
 void user_task0(void)
 {
 	printf("Task 0: Created!\n");
+
+	task_yield();
+	printf("Task 0: I'm back\n");
 	while (1) {
 		printf("Task 0: Running...\n");
 
@@ -13,7 +16,7 @@ void user_task0(void)
 #endif
 
 		task_delay(DELAY);
-		task_yield();
+		// task_yield();
 	}
 }
 
@@ -23,7 +26,7 @@ void user_task1(void)
 	while (1) {
 		printf("Task 1: Running...\n");
 		task_delay(DELAY);
-		task_yield();
+		// task_yield();
 	}
 }
 

@@ -39,7 +39,7 @@ void plic_init() {
     w_mie(r_mie() | MIE_MEIE);
 
     /* 允许全局中断 */
-    w_mstatus(r_mstatus() | MSTATUS_MIE);
+    // w_mstatus(r_mstatus() | MSTATUS_MIE);
 }
 
 /**

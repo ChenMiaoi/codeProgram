@@ -1,4 +1,6 @@
 #include "os.h"
+#include "platform.h"
+#include "riscv.h"
 #include "sched.h"
 
 /*定义在swicth.S中 */
@@ -24,6 +26,9 @@ static int _current = -1;
  */
 void sched_init(void) {
     w_mscratch(0);
+
+    /* 允许软件中断 */
+    w_mie(r_mie() | MIE_MSIE);
 }
 
 void schedule() {
@@ -34,6 +39,7 @@ void schedule() {
 
     /* 对下一个程序进行调度 */
     _current = (_current + 1) % _top;
+    printf("current task: %d\n", _current);
     context_t* next = &(ctx_tasks[_current]);
     __switch_to(next);
 }
@@ -45,10 +51,12 @@ void schedule() {
  * @return int 
  */
 int task_create(void (*start_routin)(void)) {
+    printf("create task: %x\n", start_routin);
     if (_top < MAX_TASK) {
         /* 此处设置运行栈和调度切换时要运行的任务 */
-        ctx_tasks[_top].sp = (reg_t)&task_stack[_top][STACK_SIZE];
-        ctx_tasks[_top].ra = (reg_t)start_routin;
+        ctx_tasks[_top].sp  = (reg_t)&task_stack[_top][STACK_SIZE];
+        ctx_tasks[_top].ra  = (reg_t)start_routin;
+        ctx_tasks[_top].epc = (reg_t)start_routin;
         _top++;
         return 0;
     }
@@ -59,7 +67,11 @@ int task_create(void (*start_routin)(void)) {
  * 当前任务自主放弃CPU资源，进行调度
  */
 void task_yield() {
-    schedule();
+    // schedule();
+
+    /* 触发软件中断 */
+    int id = r_mhartid();
+    *(uint32_t*)CLINT_MSIP(id) = 1;
 }
 
 /**

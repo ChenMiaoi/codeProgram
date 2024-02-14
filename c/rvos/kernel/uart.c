@@ -154,8 +154,8 @@ void uart_init() {
     lcr = 0;
     uart_write_reg(LCR, lcr | (3 << 0));
 
-	/**
-	 * 开启接收中断使能
+    /**
+     * 开启接收中断使能
 	 */
 	uint8_t ier = uart_read_reg(IER);
 	uart_write_reg(IER, ier | (1 << 0));

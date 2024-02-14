@@ -28,6 +28,14 @@ _start:
     la      sp, stacks + STACK_SIZE
                             # 我们需要重新初始化栈指针位置
     add     sp, sp, t0;     # 使得不论哪一种结构，sp的指向始终从栈底开始
+
+    # 在main中，我们会调用第一个task，所以需要为任务准备mstatus信息
+    # 设置mstatus.MPP为3，可以保持mret后仍旧是M态
+    # 设置mstatus.MPIE为1，允许中断
+    li      t0, 3 << 11 | 1 << 7 
+    csrr    a1, mstatus
+    or      t0, t0, a1
+    csrw    mstatus, t0
     
     j main                  # jump to main
     
@@ -35,6 +43,8 @@ sleep:
     wfi
     j       sleep           # jump to    sleep      
 
+# RISC-V中，栈指针总是与16字节对齐的
+.align 16
 stacks:
     # 为所有的hart流开辟一个栈空间
     .skip   STACK_SIZE * MAXNUM_CPU

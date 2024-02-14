@@ -2,6 +2,7 @@ SRCS_ASM = 		\
 	start.S		\
 	mem.S		\
 	switch.S	\
+	# ../usys.S	\
 	
 SRCS_C	 = 		\
 	kernel.c 	\
@@ -13,6 +14,8 @@ SRCS_C	 = 		\
 	trap.c		\
 	plic.c		\
 	timer.c		\
+	lock.c		\
+	# syscall.c	\
 
 # .S -> .o
 OBJS  = ${SRCS_ASM: .S=.o}

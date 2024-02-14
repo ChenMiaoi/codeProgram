@@ -36,6 +36,8 @@ typedef struct context {
 	reg_t t4;
 	reg_t t5;
 	reg_t t6;
+
+	reg_t epc;	// 为了保护epc实现抢占, off: 31 * 4 = 124
 } context_t;
 
 #endif //! __SCHED_H

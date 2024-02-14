@@ -7,7 +7,7 @@ int main(void) {
     uart_init();
     page_init();
 
-    page_test();
+    // page_test();
 
     trap_init();
 

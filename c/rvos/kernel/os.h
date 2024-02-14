@@ -36,7 +36,7 @@ extern void task_yield();
 
 /* trap.c */
 extern void  trap_init();
-extern reg_t trap_handler(reg_t epc, reg_t cause);
+extern reg_t trap_handler(reg_t epc, reg_t cause, context_t* ctx);
 extern void  trap_test();
 
 /* plic.c */
@@ -45,8 +45,18 @@ extern int  plic_claim(void);
 extern void plic_complete(int irq);
 
 /* timer.c */
+#include "timer.h"
 extern void timer_init(void);
 extern void timer_load(int interval);
 extern void timer_handler(void);
+extern timer_t *timer_create(void (*handler)(void *arg), void *arg, uint32_t timeout);
+extern void timer_delete(timer_t*timer);
+
+/* lock.c */
+extern int spin_lock(void);
+extern int spin_unlock(void);
+
+/* syscall.c */
+extern void do_syscall(context_t* cxt);
 
 #endif //! __OS_H

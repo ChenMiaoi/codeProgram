@@ -58,7 +58,7 @@
 /**
  * 在Qemu-virt模拟的板级硬件上，有一个CLINT(Core Local INTerruptor)模块与软件定时器
  * 中断有关
- * ref https://gitee.com/qemu/qemu/blob/master/include/hw/riscv/sifive_clint.h
+ * ref https://github.com/qemu/qemu/blob/master/include/hw/riscv/sifive_clint.h
  * 
  * @code {.cc}
  * enum {
